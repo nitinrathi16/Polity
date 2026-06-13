@@ -1,0 +1,1515 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UPPSC 2026 — Federalism & Panchayati Raj Topper Toolkit</title>
+<style>
+  /* ===== PRINT-FIRST CSS ===== */
+  @page {
+    size: A4;
+    margin: 15mm 12mm 15mm 12mm;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: 11pt;
+    color: #1a1a2e;
+    background: #f8f9ff;
+    line-height: 1.55;
+  }
+
+  /* ===== HEADER ===== */
+  .main-header {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    color: white;
+    padding: 22px 28px 18px;
+    border-radius: 0 0 16px 16px;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .main-header::before {
+    content: '🏛️';
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    font-size: 80px;
+    opacity: 0.12;
+  }
+  .main-header h1 {
+    font-size: 20pt;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  }
+  .main-header .sub {
+    font-size: 10pt;
+    opacity: 0.85;
+    margin-top: 4px;
+  }
+  .badge-row {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+  }
+  .badge {
+    background: rgba(255,255,255,0.18);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 20px;
+    padding: 3px 11px;
+    font-size: 8.5pt;
+    font-weight: 600;
+  }
+
+  /* ===== SECTION CONTAINERS ===== */
+  .section {
+    background: white;
+    border-radius: 12px;
+    margin-bottom: 18px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    overflow: hidden;
+    page-break-inside: avoid;
+  }
+  .section-header {
+    padding: 13px 20px 11px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-header .icon {
+    font-size: 20px;
+    min-width: 28px;
+  }
+  .section-header h2 {
+    font-size: 13pt;
+    font-weight: 700;
+    color: white;
+  }
+  .section-header .num {
+    font-size: 8pt;
+    opacity: 0.8;
+    margin-left: auto;
+    background: rgba(255,255,255,0.2);
+    padding: 2px 8px;
+    border-radius: 10px;
+  }
+  .section-body { padding: 16px 20px; }
+
+  /* Color themes */
+  .theme-navy   .section-header { background: linear-gradient(90deg,#1a1a2e,#16213e); }
+  .theme-blue   .section-header { background: linear-gradient(90deg,#0f3460,#1565C0); }
+  .theme-green  .section-header { background: linear-gradient(90deg,#1b5e20,#2e7d32); }
+  .theme-orange .section-header { background: linear-gradient(90deg,#bf360c,#e64a19); }
+  .theme-purple .section-header { background: linear-gradient(90deg,#4a148c,#6a1b9a); }
+  .theme-teal   .section-header { background: linear-gradient(90deg,#004d40,#00695c); }
+  .theme-red    .section-header { background: linear-gradient(90deg,#b71c1c,#c62828); }
+  .theme-indigo .section-header { background: linear-gradient(90deg,#1a237e,#283593); }
+
+  /* ===== TIMELINE (Pre-73rd) ===== */
+  .timeline { position: relative; padding-left: 28px; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 10px;
+    top: 4px;
+    bottom: 4px;
+    width: 3px;
+    background: linear-gradient(180deg,#1565C0,#43a047,#e64a19);
+    border-radius: 3px;
+  }
+  .tl-item {
+    position: relative;
+    margin-bottom: 14px;
+    padding: 10px 14px;
+    background: #f4f6ff;
+    border-radius: 8px;
+    border-left: 3px solid #1565C0;
+  }
+  .tl-item::before {
+    content: '';
+    position: absolute;
+    left: -22px;
+    top: 14px;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: #1565C0;
+    border: 2px solid white;
+    box-shadow: 0 0 0 2px #1565C0;
+  }
+  .tl-item.green  { border-left-color:#2e7d32; }
+  .tl-item.green::before  { background:#2e7d32; box-shadow:0 0 0 2px #2e7d32; }
+  .tl-item.orange { border-left-color:#e64a19; }
+  .tl-item.orange::before { background:#e64a19; box-shadow:0 0 0 2px #e64a19; }
+  .tl-year {
+    font-weight: 800;
+    font-size: 12pt;
+    color: #1565C0;
+  }
+  .tl-item.green .tl-year  { color:#2e7d32; }
+  .tl-item.orange .tl-year { color:#e64a19; }
+  .tl-title { font-weight: 700; font-size: 10pt; margin: 2px 0; }
+  .tl-desc { font-size: 9.5pt; color: #444; }
+
+  /* ===== ARTICLE CARDS ===== */
+  .art-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px,1fr));
+    gap: 10px;
+    margin: 10px 0;
+  }
+  .art-card {
+    background: linear-gradient(135deg,#e8f0fe,#f0e7ff);
+    border: 1.5px solid #c5cae9;
+    border-radius: 8px;
+    padding: 10px 12px;
+  }
+  .art-card .art-num {
+    font-size: 11pt;
+    font-weight: 800;
+    color: #1a237e;
+    display: block;
+  }
+  .art-card .art-title {
+    font-size: 9pt;
+    color: #333;
+    margin-top: 3px;
+    font-weight: 600;
+  }
+  .art-card .art-sub {
+    font-size: 8.5pt;
+    color: #555;
+    margin-top: 2px;
+  }
+
+  /* ===== THREE-TIER DIAGRAM ===== */
+  .tier-diagram {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    margin: 14px 0;
+  }
+  .tier-box {
+    width: 100%;
+    max-width: 580px;
+    border-radius: 10px;
+    padding: 12px 20px;
+    text-align: center;
+    color: white;
+    position: relative;
+  }
+  .tier-box.t1 { background: linear-gradient(90deg,#1a237e,#283593); }
+  .tier-box.t2 { background: linear-gradient(90deg,#1b5e20,#2e7d32); max-width:500px; }
+  .tier-box.t3 { background: linear-gradient(90deg,#4a148c,#6a1b9a); max-width:400px; }
+  .tier-arrow {
+    font-size: 22px;
+    color: #666;
+    line-height: 1;
+    margin: 2px 0;
+  }
+  .tier-box .t-level { font-size: 8pt; opacity: 0.8; margin-bottom: 3px; }
+  .tier-box .t-name  { font-size: 13pt; font-weight: 800; }
+  .tier-box .t-head  { font-size: 9pt; opacity: 0.9; margin-top: 3px; }
+  .tier-box .t-num   {
+    position: absolute; right: 14px; top: 50%; transform: translateY(-50%);
+    background: rgba(255,255,255,0.2); border-radius: 8px;
+    padding: 4px 10px; font-size: 9pt; font-weight: 700;
+  }
+
+  /* ===== TABLE ===== */
+  table { width: 100%; border-collapse: collapse; font-size: 9.5pt; margin: 10px 0; }
+  th {
+    background: #1a1a2e;
+    color: white;
+    padding: 8px 10px;
+    text-align: left;
+    font-size: 9pt;
+  }
+  td { padding: 7px 10px; border-bottom: 1px solid #e8e8f0; }
+  tr:nth-child(even) td { background: #f5f5ff; }
+  tr:hover td { background: #eef2ff; }
+  .td-art { font-weight: 700; color: #1565C0; white-space: nowrap; }
+
+  /* ===== SCHEDULE CARDS (11th/12th Schedule) ===== */
+  .schedule-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 10px 0;
+  }
+  .sch-card {
+    border-radius: 8px;
+    padding: 10px 13px;
+    border: 1.5px solid;
+  }
+  .sch-card.s11 { border-color:#1565C0; background:#e8f0fe; }
+  .sch-card.s12 { border-color:#2e7d32; background:#e8f5e9; }
+  .sch-card h4 { font-size: 10pt; font-weight: 800; margin-bottom: 6px; }
+  .sch-card.s11 h4 { color:#1565C0; }
+  .sch-card.s12 h4 { color:#2e7d32; }
+  .sch-item {
+    font-size: 8.5pt;
+    padding: 2px 0;
+    color: #333;
+    display: flex;
+    gap: 6px;
+    align-items: baseline;
+  }
+  .sch-item .sn {
+    background: #1565C0;
+    color: white;
+    border-radius: 3px;
+    padding: 0 4px;
+    font-size: 7.5pt;
+    font-weight: 700;
+    min-width: 18px;
+    text-align: center;
+  }
+  .sch-card.s12 .sn { background:#2e7d32; }
+
+  /* ===== KEY POINTS ===== */
+  .kp-list { list-style: none; }
+  .kp-list li {
+    padding: 5px 0 5px 20px;
+    position: relative;
+    font-size: 9.5pt;
+    border-bottom: 1px dashed #e0e0ee;
+  }
+  .kp-list li:last-child { border-bottom: none; }
+  .kp-list li::before {
+    content: '▶';
+    position: absolute;
+    left: 0;
+    color: #1565C0;
+    font-size: 8pt;
+    top: 6px;
+  }
+  .kp-list li strong { color: #1a1a2e; }
+
+  /* ===== HIGHLIGHT BOX ===== */
+  .highlight {
+    border-radius: 8px;
+    padding: 11px 14px;
+    margin: 10px 0;
+    font-size: 9.5pt;
+  }
+  .highlight.blue   { background:#e3f2fd; border-left:4px solid #1565C0; }
+  .highlight.green  { background:#e8f5e9; border-left:4px solid #2e7d32; }
+  .highlight.orange { background:#fff3e0; border-left:4px solid #e64a19; }
+  .highlight.purple { background:#f3e5f5; border-left:4px solid #6a1b9a; }
+  .highlight.red    { background:#ffebee; border-left:4px solid #c62828; }
+  .highlight h4 { font-size: 10pt; font-weight: 700; margin-bottom: 5px; }
+  .highlight.blue   h4 { color:#1565C0; }
+  .highlight.green  h4 { color:#2e7d32; }
+  .highlight.orange h4 { color:#e64a19; }
+  .highlight.purple h4 { color:#6a1b9a; }
+  .highlight.red    h4 { color:#c62828; }
+
+  /* ===== UP SPECIFIC STATS ===== */
+  .stat-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 10px 0;
+  }
+  .stat-card {
+    flex: 1;
+    min-width: 100px;
+    background: linear-gradient(135deg,#1a1a2e,#0f3460);
+    color: white;
+    border-radius: 10px;
+    padding: 12px 14px;
+    text-align: center;
+  }
+  .stat-card .s-num { font-size: 18pt; font-weight: 900; color: #64b5f6; }
+  .stat-card .s-label { font-size: 8pt; opacity: 0.85; margin-top: 2px; }
+
+  /* ===== MCQ SECTION ===== */
+  .mcq-header {
+    background: linear-gradient(90deg,#b71c1c,#c62828);
+    color: white;
+    padding: 14px 20px;
+    border-radius: 12px 12px 0 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .mcq-header h2 { font-size: 13pt; font-weight: 800; }
+  .mcq-num { font-size: 30pt; font-weight: 900; opacity: 0.3; margin-left: auto; }
+  .mcq-body { background: white; border-radius: 0 0 12px 12px; padding: 14px 18px; }
+  .mcq-item {
+    margin-bottom: 16px;
+    page-break-inside: avoid;
+    border: 1px solid #e0e0ee;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .mcq-q {
+    background: #f5f5ff;
+    padding: 10px 14px;
+    font-size: 9.5pt;
+    font-weight: 600;
+    border-bottom: 1px solid #e0e0ee;
+  }
+  .mcq-q .qn {
+    display: inline-block;
+    background: #1a1a2e;
+    color: white;
+    border-radius: 50%;
+    width: 20px; height: 20px;
+    line-height: 20px;
+    text-align: center;
+    font-size: 8pt;
+    font-weight: 700;
+    margin-right: 6px;
+  }
+  .mcq-opts { display: grid; grid-template-columns: 1fr 1fr; padding: 8px 14px; gap: 4px; }
+  .mcq-opt {
+    font-size: 9pt;
+    padding: 4px 6px;
+    border-radius: 5px;
+    color: #333;
+  }
+  .mcq-opt.correct {
+    background: #e8f5e9;
+    color: #1b5e20;
+    font-weight: 700;
+    border: 1.5px solid #43a047;
+  }
+  .mcq-ans {
+    background: #fff8e1;
+    padding: 7px 14px;
+    font-size: 8.5pt;
+    color: #5d4037;
+    border-top: 1px solid #ffe082;
+  }
+  .mcq-ans strong { color: #bf360c; }
+
+  /* ===== ULB TABLE ===== */
+  .ulb-row { display: flex; gap: 10px; margin: 10px 0; flex-wrap: wrap; }
+  .ulb-card {
+    flex: 1;
+    min-width: 140px;
+    border-radius: 10px;
+    padding: 12px 14px;
+    border: 2px solid;
+  }
+  .ulb-card.np  { border-color:#1565C0; background:#e3f2fd; }
+  .ulb-card.npp { border-color:#6a1b9a; background:#f3e5f5; }
+  .ulb-card.nn  { border-color:#1b5e20; background:#e8f5e9; }
+  .ulb-card h4  { font-size: 10pt; font-weight: 800; margin-bottom: 5px; }
+  .ulb-card.np  h4 { color:#1565C0; }
+  .ulb-card.npp h4 { color:#6a1b9a; }
+  .ulb-card.nn  h4 { color:#1b5e20; }
+  .ulb-card p   { font-size: 8.5pt; color: #444; }
+
+  /* ===== TWO COLUMN ===== */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+
+  /* ===== COMPARISON TABLE ===== */
+  .comp-table th { font-size: 8.5pt; }
+  .comp-table td { font-size: 8.5pt; }
+  .comp-table .h-col { background:#e8f0fe; font-weight: 700; color:#1a237e; }
+
+  /* ===== PRINT STYLES ===== */
+  @media print {
+    body { background: white; font-size: 10pt; }
+    .main-header { border-radius: 0 0 8px 8px; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+    .section { box-shadow: none; border: 1px solid #dde; }
+    .section-header { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+    .tier-box, .stat-card { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+    .mcq-header { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+    .mcq-opt.correct { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+    .art-card { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+    .highlight { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+    .ulb-card { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+    .tl-item { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+    .section { page-break-inside: avoid; }
+    .mcq-item { page-break-inside: avoid; }
+    a { text-decoration: none; color: inherit; }
+  }
+
+  @media screen {
+    .main-header { margin: 0 0 20px 0; border-radius: 0 0 16px 16px; }
+    .container { max-width: 920px; margin: 0 auto; padding: 0 14px 30px; }
+  }
+
+  .tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 7.5pt;
+    font-weight: 700;
+    margin: 2px 3px 2px 0;
+  }
+  .tag-blue   { background:#bbdefb; color:#0d47a1; }
+  .tag-green  { background:#c8e6c9; color:#1b5e20; }
+  .tag-orange { background:#ffe0b2; color:#bf360c; }
+  .tag-red    { background:#ffcdd2; color:#b71c1c; }
+
+  .divider {
+    border: none;
+    border-top: 2px dashed #c5cae9;
+    margin: 14px 0;
+  }
+
+  .page-break { page-break-before: always; }
+
+  .sticky-note {
+    background: #fffde7;
+    border: 1.5px dashed #f9a825;
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin: 10px 0;
+    font-size: 9pt;
+  }
+  .sticky-note::before { content: '📌 '; }
+
+  .formula-box {
+    background: #e8eaf6;
+    border: 2px solid #3949ab;
+    border-radius: 8px;
+    padding: 10px 16px;
+    margin: 10px 0;
+    font-family: monospace;
+    font-size: 10pt;
+    color: #1a237e;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- ===== MAIN HEADER ===== -->
+<div class="main-header">
+  <h1>🏛️ UPPSC 2026 — Federalism & Panchayati Raj</h1>
+  <div class="sub">73rd/74th Amendment · UP Panchayati Raj Act · MCQs · SDM Topper Level Analysis</div>
+  <div class="badge-row">
+    <span class="badge">🎯 Top 10 Rank Target</span>
+    <span class="badge">📜 Art. 243–243ZG</span>
+    <span class="badge">🗳️ UP Panchayat Election 2026</span>
+    <span class="badge">⚖️ 11th & 12th Schedule</span>
+    <span class="badge">🏙️ ULBs — 74th Amendment</span>
+  </div>
+</div>
+
+<!-- ===== SECTION 1: PRE-73RD AMENDMENT ===== -->
+<div class="section theme-navy">
+  <div class="section-header">
+    <span class="icon">📜</span>
+    <h2>Section 1 — Pre-73rd Amendment: Historical Background</h2>
+    <span class="num">🕐 Historical</span>
+  </div>
+  <div class="section-body">
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-year">1957</div>
+        <div class="tl-title">⚙️ Balwant Rai Mehta Committee</div>
+        <div class="tl-desc">
+          <strong>Recommended:</strong> 3-tier Panchayati Raj system — Gram Panchayat (village), Panchayat Samiti (block), Zila Parishad (district).<br>
+          <strong>Key concept:</strong> "Democratic Decentralisation" — first formal recommendation for PRIs.<br>
+          Rajasthan first implemented it (2 Oct 1959, Nagaur district), followed by AP.
+        </div>
+      </div>
+
+      <div class="tl-item green">
+        <div class="tl-year">1977</div>
+        <div class="tl-title">🏗️ Ashok Mehta Committee</div>
+        <div class="tl-desc">
+          <strong>Recommended:</strong> 2-tier system — Zila Parishad (district) + Mandal Panchayat (group of villages, 15,000-20,000 pop).<br>
+          <strong>Key features:</strong> Official political party participation at village level; Nyaya Panchayats abolished; SC/ST reservation.<br>
+          <strong>Rejected:</strong> 3-tier dropped in favour of 2-tier — NOT implemented.
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-year">1985</div>
+        <div class="tl-title">📋 G.V.K. Rao Committee</div>
+        <div class="tl-desc">
+          Called Panchayati Raj "a <em>grass without roots</em>" — bureaucratisation of development had undermined PRIs.
+          Recommended: District as basic unit; Zila Parishad should be apex body; regular elections.
+        </div>
+      </div>
+
+      <div class="tl-item orange">
+        <div class="tl-year">1986</div>
+        <div class="tl-title">🔬 L.M. Singhvi Committee</div>
+        <div class="tl-desc">
+          <strong>First to recommend Constitutional status to PRIs.</strong><br>
+          Coined: "Gram Sabha" as foundation of democracy.<br>
+          Recommended: Nyaya Panchayats for minor disputes; Village clusters for viability.
+        </div>
+      </div>
+
+      <div class="tl-item green">
+        <div class="tl-year">1989</div>
+        <div class="tl-title">❌ 64th/65th Constitutional Amendment Bills — Lapsed</div>
+        <div class="tl-desc">
+          Rajiv Gandhi govt introduced these bills to give PRIs/ULBs constitutional status.
+          Passed in Lok Sabha, rejected in Rajya Sabha. Eventually led to 73rd/74th Amendment in 1992.
+        </div>
+      </div>
+
+      <div class="tl-item orange">
+        <div class="tl-year">1992</div>
+        <div class="tl-title">✅ 73rd Constitutional Amendment Act — LANDMARK</div>
+        <div class="tl-desc">
+          Passed by Parliament; received President's assent on <strong>20 April 1992</strong>; came into force <strong>24 April 1993</strong>.<br>
+          Added <strong>Part IX</strong> (Art. 243-243O) + <strong>11th Schedule</strong> (29 subjects).<br>
+          24 April is celebrated as <strong>Panchayati Raj Diwas</strong> 🎉
+        </div>
+      </div>
+    </div>
+
+    <div class="highlight orange">
+      <h4>🧠 Trick to Remember Committees</h4>
+      <strong>B</strong>alwant (3-tier, 1957) → <strong>A</strong>shok (2-tier, 1977) → <strong>G</strong>VK (grass without roots, 1985) → <strong>L</strong>M Singhvi (Constitutional status, 1986)<br>
+      Mnemonic: <strong>BAGL</strong> — "Bharat ka Aadhar Gram Level hai"
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION 2: 73RD AMENDMENT — FULL ANALYSIS ===== -->
+<div class="section theme-blue">
+  <div class="section-header">
+    <span class="icon">⚖️</span>
+    <h2>Section 2 — 73rd Amendment (1992): Complete Article Analysis</h2>
+    <span class="num">Art. 243–243O</span>
+  </div>
+  <div class="section-body">
+
+    <div class="art-grid">
+      <div class="art-card">
+        <span class="art-num">Art. 243</span>
+        <div class="art-title">Definitions</div>
+        <div class="art-sub">District, Gram Sabha, Gram Panchayat, Intermediate Level, Panchayat, Village defined</div>
+      </div>
+      <div class="art-card">
+        <span class="art-num">Art. 243A</span>
+        <div class="art-title">Gram Sabha</div>
+        <div class="art-sub">Body of persons registered as voters in a village — Foundation of Panchayati Raj</div>
+      </div>
+      <div class="art-card">
+        <span class="art-num">Art. 243B</span>
+        <div class="art-title">Constitution of Panchayats</div>
+        <div class="art-sub">3-tier system mandatory for states with pop > 20 lakh; Gram, Intermediate, District level</div>
+      </div>
+      <div class="art-card">
+        <span class="art-num">Art. 243C</span>
+        <div class="art-title">Composition</div>
+        <div class="art-sub">Members chosen by direct election; Chairpersons — Legislature may provide for their election</div>
+      </div>
+      <div class="art-card">
+        <span class="art-num">Art. 243D</span>
+        <div class="art-title">Reservation of Seats</div>
+        <div class="art-sub">SC/ST (proportionate to pop), Women (≥1/3 of all seats including SC/ST reserved for women)</div>
+      </div>
+      <div class="art-card">
+        <span class="art-num">Art. 243E</span>
+        <div class="art-title">Duration of Panchayats</div>
+        <div class="art-sub">5-year term; dissolution requires fresh election within 6 months; remaining term only</div>
+      </div>
+      <div class="art-card">
+        <span class="art-num">Art. 243F</span>
+        <div class="art-title">Disqualification</div>
+        <div class="art-sub">Same grounds as State Legislature; minimum age 21 years; can't hold office of profit</div>
+      </div>
+      <div class="art-card">
+        <span class="art-num">Art. 243G</span>
+        <div class="art-title">Powers & Functions</div>
+        <div class="art-sub">Legislature may endow Panchayats with powers regarding 11th Schedule subjects</div>
+      </div>
+      <div class="art-card">
+        <span class="art-num">Art. 243H</span>
+        <div class="art-title">Powers of Taxation</div>
+        <div class="art-sub">Legislature may authorise Panchayats to levy taxes, duties, tolls, fees; grants-in-aid</div>
+      </div>
+      <div class="art-card">
+        <span class="art-num">Art. 243-I</span>
+        <div class="art-title">Finance Commission</div>
+        <div class="art-sub">Governor to constitute SFC every 5 years to review financial position of Panchayats</div>
+      </div>
+      <div class="art-card">
+        <span class="art-num">Art. 243J</span>
+        <div class="art-title">Audit of Accounts</div>
+        <div class="art-sub">Legislature to make provisions for maintenance and audit of Panchayat accounts</div>
+      </div>
+      <div class="art-card">
+        <span class="art-num">Art. 243K</span>
+        <div class="art-title">State Election Commission</div>
+        <div class="art-sub">SEC: Superintendence, direction and control of elections; SEC = Status of HC judge</div>
+      </div>
+      <div class="art-card">
+        <span class="art-num">Art. 243L</span>
+        <div class="art-title">UT Application</div>
+        <div class="art-sub">President may apply Part IX to Union Territories with modifications</div>
+      </div>
+      <div class="art-card">
+        <span class="art-num">Art. 243M</span>
+        <div class="art-title">Non-application</div>
+        <div class="art-sub">Not applicable to: Nagaland, Meghalaya, Mizoram, Hill areas of Manipur, Darjeeling</div>
+      </div>
+      <div class="art-card">
+        <span class="art-num">Art. 243N</span>
+        <div class="art-title">Continuance of Existing Laws</div>
+        <div class="art-sub">Existing laws to continue for 1 year after commencement of 73rd Amendment</div>
+      </div>
+      <div class="art-card">
+        <span class="art-num">Art. 243O</span>
+        <div class="art-title">Bar to Interference</div>
+        <div class="art-sub">Courts shall NOT interfere in electoral matters of Panchayats (Art. 329 equivalent)</div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="two-col">
+      <div class="highlight blue">
+        <h4>🏛️ Gram Sabha vs Gram Panchayat</h4>
+        <table>
+          <tr><th>Aspect</th><th>Gram Sabha</th><th>Gram Panchayat</th></tr>
+          <tr><td><strong>Nature</strong></td><td>Permanent body (Art.243A)</td><td>Executive body</td></tr>
+          <tr><td><strong>Members</strong></td><td>All registered voters</td><td>Elected representatives</td></tr>
+          <tr><td><strong>Head</strong></td><td>No head (open body)</td><td>Gram Pradhan/Sarpanch</td></tr>
+          <tr><td><strong>Meetings</strong></td><td>At least 2/year in UP</td><td>Monthly/as needed</td></tr>
+          <tr><td><strong>Functions</strong></td><td>Plans approval, social audit</td><td>Implementation</td></tr>
+          <tr><td><strong>Constitutional</strong></td><td>Art. 243A</td><td>Art. 243B</td></tr>
+        </table>
+      </div>
+
+      <div class="highlight green">
+        <h4>🎯 Reservation Provisions (Art. 243D)</h4>
+        <ul class="kp-list">
+          <li><strong>SC/ST seats:</strong> Proportionate to their population in that area</li>
+          <li><strong>Women:</strong> Not less than <strong>1/3rd of total seats</strong> including SC/ST reserved seats</li>
+          <li><strong>OBC:</strong> Left to state legislature's discretion (not mandatory)</li>
+          <li><strong>Chairpersons:</strong> Also reserved for SC/ST & Women (1/3rd)</li>
+          <li><strong>Rotation:</strong> Reserved seats rotate each election</li>
+          <li><strong>UP Special:</strong> UP provides 50% reservation for women (above constitutional minimum)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="highlight purple">
+      <h4>🏦 State Finance Commission (Art. 243-I) — KEY FACTS</h4>
+      <ul class="kp-list">
+        <li>Constituted by <strong>Governor</strong> after every 5 years</li>
+        <li>Reviews financial position of Panchayats & makes recommendations to Governor</li>
+        <li>Recommends: <strong>Tax distribution</strong> between state & PRIs; <strong>Grants-in-aid</strong> from Consolidated Fund</li>
+        <li>State shall place SFC report before State Legislature</li>
+        <li><strong>UP SFC:</strong> UP has constituted multiple SFCs; 5th SFC recommendations under consideration for UPPSC 2026</li>
+      </ul>
+    </div>
+
+    <div class="highlight orange">
+      <h4>🗳️ State Election Commission (Art. 243K)</h4>
+      <ul class="kp-list">
+        <li>SEC is completely independent of Election Commission of India</li>
+        <li>State Election Commissioner has <strong>same status as HC Judge</strong> — removal same procedure</li>
+        <li>SEC controls: Superintendence + Direction + Control of ALL local body elections</li>
+        <li>Cannot be removed except by impeachment-like procedure</li>
+        <li><strong>UP SEC:</strong> Based in Lucknow; currently overseeing 2026 Panchayat election preparation</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION 3: 11TH SCHEDULE ===== -->
+<div class="section theme-green">
+  <div class="section-header">
+    <span class="icon">📋</span>
+    <h2>Section 3 — 11th Schedule (29 Functions) + 12th Schedule (18 Functions)</h2>
+    <span class="num">Art. 243G / 243W</span>
+  </div>
+  <div class="section-body">
+
+    <div class="schedule-grid">
+      <div class="sch-card s11">
+        <h4>📋 11th Schedule — Panchayats (29 Subjects)</h4>
+        <div class="sch-item"><span class="sn">1</span>Agriculture including agricultural extension</div>
+        <div class="sch-item"><span class="sn">2</span>Land improvement, land reforms</div>
+        <div class="sch-item"><span class="sn">3</span>Minor irrigation, water management</div>
+        <div class="sch-item"><span class="sn">4</span>Animal husbandry, dairying & poultry</div>
+        <div class="sch-item"><span class="sn">5</span>Fisheries</div>
+        <div class="sch-item"><span class="sn">6</span>Social forestry, farm forestry</div>
+        <div class="sch-item"><span class="sn">7</span>Minor forest produce</div>
+        <div class="sch-item"><span class="sn">8</span>Small scale industries, food processing</div>
+        <div class="sch-item"><span class="sn">9</span>Khadi, village & cottage industries</div>
+        <div class="sch-item"><span class="sn">10</span>Rural housing</div>
+        <div class="sch-item"><span class="sn">11</span>Drinking water</div>
+        <div class="sch-item"><span class="sn">12</span>Fuel & fodder</div>
+        <div class="sch-item"><span class="sn">13</span>Roads, culverts, bridges, ferries</div>
+        <div class="sch-item"><span class="sn">14</span>Rural electrification</div>
+        <div class="sch-item"><span class="sn">15</span>Non-conventional energy sources</div>
+        <div class="sch-item"><span class="sn">16</span>Poverty alleviation programmes</div>
+        <div class="sch-item"><span class="sn">17</span>Education incl. primary/secondary schools</div>
+        <div class="sch-item"><span class="sn">18</span>Technical training & vocational education</div>
+        <div class="sch-item"><span class="sn">19</span>Adult & non-formal education</div>
+        <div class="sch-item"><span class="sn">20</span>Libraries</div>
+        <div class="sch-item"><span class="sn">21</span>Cultural activities</div>
+        <div class="sch-item"><span class="sn">22</span>Markets & fairs</div>
+        <div class="sch-item"><span class="sn">23</span>Health & sanitation, hospitals, PHCs</div>
+        <div class="sch-item"><span class="sn">24</span>Family welfare</div>
+        <div class="sch-item"><span class="sn">25</span>Women & child development</div>
+        <div class="sch-item"><span class="sn">26</span>Social welfare incl. handicapped/mentally retarded</div>
+        <div class="sch-item"><span class="sn">27</span>Welfare of weaker sections (SC/ST)</div>
+        <div class="sch-item"><span class="sn">28</span>Public distribution system</div>
+        <div class="sch-item"><span class="sn">29</span>Maintenance of community assets</div>
+      </div>
+
+      <div class="sch-card s12">
+        <h4>🏙️ 12th Schedule — Urban Bodies (18 Subjects)</h4>
+        <div class="sch-item"><span class="sn">1</span>Urban planning incl. town planning</div>
+        <div class="sch-item"><span class="sn">2</span>Regulation of land use, construction</div>
+        <div class="sch-item"><span class="sn">3</span>Planning for economic & social development</div>
+        <div class="sch-item"><span class="sn">4</span>Roads & bridges</div>
+        <div class="sch-item"><span class="sn">5</span>Water supply (domestic, industrial, commercial)</div>
+        <div class="sch-item"><span class="sn">6</span>Public health, sanitation, conservancy, solid waste</div>
+        <div class="sch-item"><span class="sn">7</span>Fire services</div>
+        <div class="sch-item"><span class="sn">8</span>Urban forestry, environment, ecology</div>
+        <div class="sch-item"><span class="sn">9</span>Safeguarding interests of weaker sections</div>
+        <div class="sch-item"><span class="sn">10</span>Slum improvement & upgradation</div>
+        <div class="sch-item"><span class="sn">11</span>Urban poverty alleviation</div>
+        <div class="sch-item"><span class="sn">12</span>Provision of urban amenities (parks, gardens)</div>
+        <div class="sch-item"><span class="sn">13</span>Promotion of cultural, educational, aesthetic aspects</div>
+        <div class="sch-item"><span class="sn">14</span>Burials & burial grounds, cremations</div>
+        <div class="sch-item"><span class="sn">15</span>Cattle pounds, prevention of cruelty to animals</div>
+        <div class="sch-item"><span class="sn">16</span>Vital statistics incl. births & deaths</div>
+        <div class="sch-item"><span class="sn">17</span>Public amenities (lighting, parking, bus stops)</div>
+        <div class="sch-item"><span class="sn">18</span>Regulation of slaughter houses & tanneries</div>
+      </div>
+    </div>
+
+    <div class="sticky-note">
+      <strong>Memory Trick:</strong> 11th Schedule = 29 subjects (11×29 → "Eleven se Unattees"), 12th Schedule = 18 subjects (12×18 → "Barah se Atharah"). Both are <em>discretionary</em> — State legislature decides what to transfer. Art. 243G & 243W use the word "may endow."
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION 4: UP THREE-TIER STRUCTURE ===== -->
+<div class="section theme-purple">
+  <div class="section-header">
+    <span class="icon">🏘️</span>
+    <h2>Section 4 — UP Panchayati Raj: 3-Tier Structure</h2>
+    <span class="num">UP Panchayat Raj Act, 1947</span>
+  </div>
+  <div class="section-body">
+
+    <div class="tier-diagram">
+      <div class="tier-box t1">
+        <div class="t-level">TIER III — District Level</div>
+        <div class="t-name">🏛️ Zila Panchayat</div>
+        <div class="t-head">Head: Adhyaksha (President) + CEO (IAS officer)</div>
+        <div class="t-num">75 districts</div>
+      </div>
+      <div class="tier-arrow">⬇️</div>
+      <div class="tier-box t2">
+        <div class="t-level">TIER II — Block Level</div>
+        <div class="t-name">🏢 Kshetra Panchayat (Panchayat Samiti)</div>
+        <div class="t-head">Head: Pramukh (President) + BDO (Block Development Officer)</div>
+        <div class="t-num">826 Blocks</div>
+      </div>
+      <div class="tier-arrow">⬇️</div>
+      <div class="tier-box t3">
+        <div class="t-level">TIER I — Village Level</div>
+        <div class="t-name">🏡 Gram Panchayat</div>
+        <div class="t-head">Head: Gram Pradhan + Panchayat Secretary (govt servant)</div>
+        <div class="t-num">57,965 GPs</div>
+      </div>
+    </div>
+
+    <div class="stat-row">
+      <div class="stat-card">
+        <div class="s-num">57,965</div>
+        <div class="s-label">Gram Panchayats in UP</div>
+      </div>
+      <div class="stat-card">
+        <div class="s-num">826</div>
+        <div class="s-label">Kshetra Panchayats (Blocks)</div>
+      </div>
+      <div class="stat-card">
+        <div class="s-num">75</div>
+        <div class="s-label">Zila Panchayats (Districts)</div>
+      </div>
+      <div class="stat-card">
+        <div class="s-num">12.69 cr</div>
+        <div class="s-label">Panchayat Voters (2026 List)</div>
+      </div>
+      <div class="stat-card">
+        <div class="s-num">2026</div>
+        <div class="s-label">Next Panchayat Election (April–July)</div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="two-col">
+      <div>
+        <div class="highlight blue">
+          <h4>🏡 Gram Panchayat — Key Provisions (UP Act)</h4>
+          <ul class="kp-list">
+            <li><strong>Population basis:</strong> Minimum 1000 population for a Gram Panchayat</li>
+            <li><strong>Ward Members:</strong> 9-15 ward members (varies by pop)</li>
+            <li><strong>Gram Pradhan:</strong> Elected directly by voters, 5-year term</li>
+            <li><strong>Up-Pradhan:</strong> Deputy — elected by ward members</li>
+            <li><strong>Meetings:</strong> Gram Sabha meets at least 2 times/year (UP provision)</li>
+            <li><strong>Quorum:</strong> 1/5th of total Gram Sabha members</li>
+            <li><strong>Panchayat Secretary:</strong> Government-appointed, does not vote</li>
+            <li><strong>No confidence:</strong> Can be removed by 2/3 majority after 2.5 years</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="highlight green">
+          <h4>🏢 Kshetra Panchayat — Key Provisions</h4>
+          <ul class="kp-list">
+            <li><strong>Coverage:</strong> One block = one Kshetra Panchayat</li>
+            <li><strong>Pramukh:</strong> Indirectly elected (by ward members + ex-officio members)</li>
+            <li><strong>Ex-officio members:</strong> All Gram Pradhans + MLAs/MLCs/MPs of area</li>
+            <li><strong>BDO:</strong> Chief Executive Officer of Kshetra Panchayat</li>
+            <li><strong>Functions:</strong> Secondary education, minor irrigation, small industries</li>
+          </ul>
+        </div>
+        <div class="highlight purple">
+          <h4>🏛️ Zila Panchayat — Key Provisions</h4>
+          <ul class="kp-list">
+            <li><strong>Adhyaksha:</strong> President, indirectly elected</li>
+            <li><strong>CEO:</strong> District Magistrate or IAS-level officer</li>
+            <li><strong>Members:</strong> Directly elected + ex-officio (MPs/MLAs/MLCs)</li>
+            <li><strong>Functions:</strong> Higher education, district roads, district hospitals</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="highlight orange">
+      <h4>🗳️ UP Panchayat Election 2026 — Latest Update</h4>
+      Elections to <strong>57,965 Gram Panchayats, 826 Kshetra Panchayats, and 75 Zila Panchayats</strong> expected between April–July 2026.
+      Final Voter List (12.69 crore voters) released April 22, 2026. OBC reservation finalization pending.
+      <span class="tag tag-red">⚡ Current Affairs</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION 5: UP PANCHAYATI RAJ ACT 1947 — KEY PROVISIONS ===== -->
+<div class="section theme-teal">
+  <div class="section-header">
+    <span class="icon">📜</span>
+    <h2>Section 5 — UP Panchayat Raj Act 1947: Key Provisions</h2>
+    <span class="num">UPPSC Favourite</span>
+  </div>
+  <div class="section-body">
+
+    <table>
+      <tr>
+        <th style="width:25%">Provision</th>
+        <th style="width:35%">Detail</th>
+        <th style="width:40%">UPPSC Significance</th>
+      </tr>
+      <tr>
+        <td class="td-art">Formation</td>
+        <td>UP Panchayati Raj Act, 1947 (amended multiple times including 1994 after 73rd Amendment)</td>
+        <td>First UP Panchayat Act predates Constitution</td>
+      </tr>
+      <tr>
+        <td class="td-art">Gram Panchayat</td>
+        <td>Minimum pop 1000; 9-15 ward members; Pradhan + Up-Pradhan</td>
+        <td>Direct election of Gram Pradhan; Up-Pradhan by ward members</td>
+      </tr>
+      <tr>
+        <td class="td-art">Kshetra Panchayat</td>
+        <td>Block-level; Pramukh + Sahayak Pramukh (deputy); BDO as CEO</td>
+        <td>Pramukh = indirect election; was called "Panchayat Samiti" earlier</td>
+      </tr>
+      <tr>
+        <td class="td-art">Zila Panchayat</td>
+        <td>District level; Adhyaksha + Sahayak Adhyaksha; DM/CEO; 75 in UP</td>
+        <td>Adhyaksha = indirect; MLAs/MPs are ex-officio non-voting members</td>
+      </tr>
+      <tr>
+        <td class="td-art">Reservation (UP)</td>
+        <td><strong>50% seats for women</strong> (UP increased from 33% constitutional minimum); SC/ST proportionate; OBC 27%</td>
+        <td>UP among states with 50% women reservation</td>
+      </tr>
+      <tr>
+        <td class="td-art">Term</td>
+        <td>5 years from date of first meeting; if dissolved, election within 6 months</td>
+        <td>Art. 243E — if dissolved, new Panchayat completes remaining term only</td>
+      </tr>
+      <tr>
+        <td class="td-art">Minimum Age</td>
+        <td>21 years for all Panchayat elections in UP</td>
+        <td>Art. 243F — 21 years minimum age for Panchayat membership</td>
+      </tr>
+      <tr>
+        <td class="td-art">Gram Sabha</td>
+        <td>Meets at least twice a year in UP (April & October); Quorum = 1/5 members</td>
+        <td>Social audit of MGNREGA compulsory in Gram Sabha</td>
+      </tr>
+      <tr>
+        <td class="td-art">Nyaya Panchayat</td>
+        <td>Judicial functions at village level; handles petty civil/criminal matters; UP still has provision</td>
+        <td>Ashok Mehta recommended abolition but UP retained it</td>
+      </tr>
+      <tr>
+        <td class="td-art">UP SEC</td>
+        <td>State Election Commission, Lucknow; controls all PRI + ULB elections in UP</td>
+        <td>Independent of ECI; conducts elections under Art. 243K</td>
+      </tr>
+      <tr>
+        <td class="td-art">No-confidence</td>
+        <td>Gram Pradhan can be removed after completion of 2.5 years by 2/3 majority of ward members + Gram Sabha</td>
+        <td>Cannot be removed before 2.5 years</td>
+      </tr>
+    </table>
+
+    <div class="sticky-note">
+      <strong>UP Amendment 2021:</strong> UP Panchayati Raj (Amendment) Act 2021 introduced provision for educated candidates (minimum 8th pass for Pradhan), later stayed by Allahabad HC. This is UPPSC-relevant as a controversy on Constitutional rights.
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION 6: 74TH AMENDMENT — URBAN LOCAL BODIES ===== -->
+<div class="section theme-orange">
+  <div class="section-header">
+    <span class="icon">🏙️</span>
+    <h2>Section 6 — 74th Amendment (1992): Urban Local Bodies</h2>
+    <span class="num">Art. 243P–243ZG</span>
+  </div>
+  <div class="section-body">
+
+    <div class="two-col">
+      <div>
+        <div class="highlight orange">
+          <h4>📅 Key Dates</h4>
+          <ul class="kp-list">
+            <li><strong>Passed:</strong> 74th Constitutional Amendment Act, 1992</li>
+            <li><strong>Assent:</strong> 20 April 1992</li>
+            <li><strong>Force:</strong> 1 June 1993</li>
+            <li><strong>Part IX-A</strong> added: Art. 243P–243ZG</li>
+            <li><strong>12th Schedule:</strong> 18 subjects for ULBs</li>
+            <li><strong>Note:</strong> 73rd & 74th came together, implemented simultaneously</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="highlight blue">
+          <h4>📜 Key Articles (74th Amendment)</h4>
+          <ul class="kp-list">
+            <li><strong>Art. 243P:</strong> Definitions (Municipality, Ward, Transitional area)</li>
+            <li><strong>Art. 243Q:</strong> Constitution of Municipalities</li>
+            <li><strong>Art. 243R:</strong> Composition of Municipalities</li>
+            <li><strong>Art. 243S:</strong> Ward Committees (for cities > 3 lakh pop)</li>
+            <li><strong>Art. 243T:</strong> Reservation of seats (SC/ST + 1/3 women)</li>
+            <li><strong>Art. 243U:</strong> Duration (5 years)</li>
+            <li><strong>Art. 243V:</strong> Disqualification</li>
+            <li><strong>Art. 243W:</strong> Powers & Functions (12th Schedule)</li>
+            <li><strong>Art. 243X:</strong> Finance (taxes, fees, grants)</li>
+            <li><strong>Art. 243Y:</strong> Finance Commission</li>
+            <li><strong>Art. 243Z:</strong> Audit</li>
+            <li><strong>Art. 243ZA:</strong> Elections (SEC)</li>
+            <li><strong>Art. 243ZG:</strong> Bar to interference by courts</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+    <h3 style="font-size:11pt; margin-bottom:10px; color:#bf360c;">🏙️ Three Types of Urban Local Bodies</h3>
+
+    <div class="ulb-row">
+      <div class="ulb-card np">
+        <h4>🌱 Nagar Panchayat</h4>
+        <p><strong>Population:</strong> Transitional area — urban & rural character<br>
+        <strong>Pop range:</strong> Approx 12,000–25,000 (varies by state)<br>
+        <strong>Head:</strong> Adhyaksha (President)<br>
+        <strong>Status:</strong> Smallest ULB, for fast-growing towns<br>
+        <strong>Art:</strong> 243Q(1)(a)<br>
+        <strong>UP count:</strong> ~438 Nagar Panchayats</p>
+      </div>
+      <div class="ulb-card npp">
+        <h4>🏘️ Nagar Palika Parishad</h4>
+        <p><strong>Population:</strong> Smaller urban area<br>
+        <strong>Pop range:</strong> Approx 25,000–5,00,000<br>
+        <strong>Head:</strong> Adhyaksha (President) + EO<br>
+        <strong>Also called:</strong> Municipal Council / Nagar Palika<br>
+        <strong>Art:</strong> 243Q(1)(b)<br>
+        <strong>UP count:</strong> ~196 Nagar Palika Parishads</p>
+      </div>
+      <div class="ulb-card nn">
+        <h4>🏛️ Nagar Nigam</h4>
+        <p><strong>Population:</strong> Larger urban area<br>
+        <strong>Pop range:</strong> Generally > 5 lakh<br>
+        <strong>Head:</strong> <strong>Mayor</strong> (elected) + Nagar Ayukt (IAS Commissioner)<br>
+        <strong>Art:</strong> 243Q(1)(c)<br>
+        <strong>UP Nagar Nigams:</strong> 17 (Lucknow, Kanpur, Agra, Varanasi, Prayagraj, Meerut, Ghaziabad, Bareilly, Aligarh, Moradabad, Gorakhpur, Saharanpur, Firozabad, Jhansi, Mathura-Vrindavan, Shahjahanpur, Ayodhya)</p>
+      </div>
+    </div>
+
+    <div class="highlight green">
+      <h4>🏙️ UP ke 17 Nagar Nigam — Topper Must Know!</h4>
+      <div style="display:flex; flex-wrap:wrap; gap:5px; margin-top:5px;">
+        <span class="tag tag-blue">Lucknow 🏛️</span>
+        <span class="tag tag-blue">Kanpur</span>
+        <span class="tag tag-blue">Agra</span>
+        <span class="tag tag-blue">Varanasi</span>
+        <span class="tag tag-blue">Prayagraj</span>
+        <span class="tag tag-blue">Meerut</span>
+        <span class="tag tag-blue">Ghaziabad</span>
+        <span class="tag tag-blue">Bareilly</span>
+        <span class="tag tag-blue">Aligarh</span>
+        <span class="tag tag-blue">Moradabad</span>
+        <span class="tag tag-blue">Gorakhpur</span>
+        <span class="tag tag-blue">Saharanpur</span>
+        <span class="tag tag-blue">Firozabad</span>
+        <span class="tag tag-blue">Jhansi</span>
+        <span class="tag tag-blue">Mathura-Vrindavan</span>
+        <span class="tag tag-blue">Shahjahanpur</span>
+        <span class="tag tag-green">Ayodhya ⭐New</span>
+      </div>
+      <p style="margin-top:6px; font-size:9pt; color:#555;">UP also has: ~196 Nagar Palika Parishads + ~438 Nagar Panchayats = Total ~651 ULBs in Uttar Pradesh</p>
+    </div>
+
+    <div class="highlight blue">
+      <h4>⚡ Ward Committees (Art. 243S) — UPPSC Trick Question</h4>
+      Mandatory only for cities/towns with <strong>population of 3 lakh or more</strong>.
+      Ward Committee consists of one or more wards within a Municipality.
+      Legislature may make provisions for constitution and functions of Ward Committees.
+      <span class="tag tag-orange">⚠️ Often confused — 3 lakh, NOT 1 lakh</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION 7: 73rd vs 74th COMPARISON ===== -->
+<div class="section theme-indigo">
+  <div class="section-header">
+    <span class="icon">⚖️</span>
+    <h2>Section 7 — 73rd vs 74th Amendment: Comparative Analysis</h2>
+    <span class="num">Must Know Table</span>
+  </div>
+  <div class="section-body">
+    <table class="comp-table">
+      <tr>
+        <th>Aspect</th>
+        <th>73rd Amendment (Panchayats)</th>
+        <th>74th Amendment (Municipalities)</th>
+      </tr>
+      <tr>
+        <td class="h-col">Part Added</td>
+        <td>Part IX (Art. 243–243O)</td>
+        <td>Part IX-A (Art. 243P–243ZG)</td>
+      </tr>
+      <tr>
+        <td class="h-col">Schedule</td>
+        <td>11th Schedule (29 subjects)</td>
+        <td>12th Schedule (18 subjects)</td>
+      </tr>
+      <tr>
+        <td class="h-col">In Force</td>
+        <td>24 April 1993</td>
+        <td>1 June 1993</td>
+      </tr>
+      <tr>
+        <td class="h-col">Area</td>
+        <td>Rural areas</td>
+        <td>Urban areas</td>
+      </tr>
+      <tr>
+        <td class="h-col">3 Tiers</td>
+        <td>Gram Panchayat → Kshetra P → Zila P</td>
+        <td>Nagar Panchayat → Nagar Palika → Nagar Nigam</td>
+      </tr>
+      <tr>
+        <td class="h-col">Gram Sabha equivalent</td>
+        <td>Gram Sabha (Art. 243A) — Constitutional</td>
+        <td>Ward Sabhas — NOT constitutionally mandated</td>
+      </tr>
+      <tr>
+        <td class="h-col">Ward Committee</td>
+        <td>No equivalent</td>
+        <td>Art. 243S — for cities with pop ≥ 3 lakh</td>
+      </tr>
+      <tr>
+        <td class="h-col">Powers Transfer</td>
+        <td>Discretionary ("may endow" — Art. 243G)</td>
+        <td>Discretionary ("may endow" — Art. 243W)</td>
+      </tr>
+      <tr>
+        <td class="h-col">Reservation</td>
+        <td>SC/ST (prop) + 1/3 Women (mandatory)</td>
+        <td>SC/ST (prop) + 1/3 Women (mandatory)</td>
+      </tr>
+      <tr>
+        <td class="h-col">Finance Commission</td>
+        <td>Art. 243-I (SFC for PRIs)</td>
+        <td>Art. 243Y (same SFC covers ULBs too)</td>
+      </tr>
+      <tr>
+        <td class="h-col">Election Authority</td>
+        <td>State Election Commission (Art. 243K)</td>
+        <td>Same SEC (Art. 243ZA)</td>
+      </tr>
+      <tr>
+        <td class="h-col">Head at Base Level</td>
+        <td>Gram Pradhan / Sarpanch</td>
+        <td>Nagar Panchayat — Adhyaksha; Nagar Nigam — Mayor</td>
+      </tr>
+      <tr>
+        <td class="h-col">UP Nomenclature</td>
+        <td>Gram Pradhan, Pramukh, Adhyaksha</td>
+        <td>Adhyaksha (NP), Adhyaksha (NPP), Mayor (NN)</td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<!-- ===== SECTION 8: 15TH FINANCE COMMISSION — UP ===== -->
+<div class="section theme-green">
+  <div class="section-header">
+    <span class="icon">💰</span>
+    <h2>Section 8 — 15th Finance Commission & Local Bodies (UP Focus)</h2>
+    <span class="num">2021–2026</span>
+  </div>
+  <div class="section-body">
+
+    <div class="highlight blue">
+      <h4>📊 15th Finance Commission (Chairman: N.K. Singh) — PRI Recommendations</h4>
+      <ul class="kp-list">
+        <li><strong>Period:</strong> 2021-22 to 2025-26</li>
+        <li><strong>Total grants to Local Bodies:</strong> ₹4.36 lakh crore (significant increase from 14th FC's ₹2 lakh crore)</li>
+        <li><strong>Tied vs Untied:</strong> 60% tied grants (basic services only — sanitation/ODF, drinking water/rainwater); 40% untied</li>
+        <li><strong>Condition:</strong> States must publish audited accounts of ULBs/PRIs to receive grants</li>
+        <li><strong>Rural Local Bodies (RLBs):</strong> ₹2,36,805 crore over 5 years</li>
+        <li><strong>Urban Local Bodies (ULBs):</strong> ₹1,21,055 crore over 5 years</li>
+        <li><strong>Performance grants:</strong> Based on improvement in own-tax revenue</li>
+      </ul>
+    </div>
+
+    <div class="highlight orange">
+      <h4>🗺️ UP Specific — 15th Finance Commission</h4>
+      <ul class="kp-list">
+        <li>UP receives the <strong>largest share</strong> of local body grants (largest state by population)</li>
+        <li>Grants tied to ODF (Open Defecation Free) status and Jal Jeevan Mission progress</li>
+        <li>Million Plus Cities Fund: Lucknow, Kanpur, Agra, Varanasi, Prayagraj, Meerut, Ghaziabad covered</li>
+        <li>UP must publish audited accounts to unlock tied grants</li>
+        <li>15th FC emphasized <strong>own revenue mobilisation</strong> by local bodies as condition</li>
+      </ul>
+    </div>
+
+    <table>
+      <tr>
+        <th>Finance Commission</th>
+        <th>Chairman</th>
+        <th>Period</th>
+        <th>Total LB Grants</th>
+        <th>Key Feature</th>
+      </tr>
+      <tr><td>11th FC</td><td>A.M. Khusro</td><td>2000-05</td><td>₹8,000 cr</td><td>First to give grants to PRIs</td></tr>
+      <tr><td>12th FC</td><td>C. Rangarajan</td><td>2005-10</td><td>₹25,000 cr</td><td>Tied grants for specific purposes</td></tr>
+      <tr><td>13th FC</td><td>Vijay Kelkar</td><td>2010-15</td><td>₹87,519 cr</td><td>Performance-based grants introduced</td></tr>
+      <tr><td>14th FC</td><td>Y.V. Reddy</td><td>2015-20</td><td>₹2,00,292 cr</td><td>Major increase; 10% share of divisible pool</td></tr>
+      <tr><td class="td-art">15th FC</td><td class="td-art">N.K. Singh</td><td class="td-art">2021-26</td><td class="td-art">₹4,36,361 cr</td><td class="td-art">60% tied; audited accounts mandatory</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ===== SECTION 9: FEDERALISM QUICK REFERENCE ===== -->
+<div class="section theme-navy">
+  <div class="section-header">
+    <span class="icon">🏛️</span>
+    <h2>Section 9 — Federalism & Centre-State Relations (Quick Ref)</h2>
+    <span class="num">Art. 245–263</span>
+  </div>
+  <div class="section-body">
+
+    <div class="art-grid">
+      <div class="art-card">
+        <span class="art-num">Art. 245</span>
+        <div class="art-title">Extent of Laws</div>
+        <div class="art-sub">Parliament: whole of India; State: territory of that state</div>
+      </div>
+      <div class="art-card">
+        <span class="art-num">Art. 246</span>
+        <div class="art-title">Distribution of Legislative Power</div>
+        <div class="art-sub">3 Lists: Union (97), State (66), Concurrent (47) — 7th Schedule</div>
+      </div>
+      <div class="art-card">
+        <span class="art-num">Art. 248</span>
+        <div class="art-title">Residuary Powers</div>
+        <div class="art-sub">Residuary powers with Parliament (unlike USA where with states)</div>
+      </div>
+      <div class="art-card">
+        <span class="art-num">Art. 249</span>
+        <div class="art-title">Rajya Sabha Resolution</div>
+        <div class="art-sub">RS can empower Parliament to legislate on State List (2/3 majority)</div>
+      </div>
+      <div class="art-card">
+        <span class="art-num">Art. 250</span>
+        <div class="art-title">During National Emergency</div>
+        <div class="art-sub">Parliament can legislate on State List during Art. 352 Emergency</div>
+      </div>
+      <div class="art-card">
+        <span class="art-num">Art. 252</span>
+        <div class="art-title">Two or More States</div>
+        <div class="art-sub">Parliament can legislate on State List if 2+ states request</div>
+      </div>
+      <div class="art-card">
+        <span class="art-num">Art. 253</span>
+        <div class="art-title">International Treaties</div>
+        <div class="art-sub">Parliament can legislate on any subject for international obligations</div>
+      </div>
+      <div class="art-card">
+        <span class="art-num">Art. 256</span>
+        <div class="art-title">State's Obligation</div>
+        <div class="art-sub">States must comply with laws of Parliament</div>
+      </div>
+      <div class="art-card">
+        <span class="art-num">Art. 257</span>
+        <div class="art-title">Union Control over States</div>
+        <div class="art-sub">Union can give directions to states in matters of national importance</div>
+      </div>
+      <div class="art-card">
+        <span class="art-num">Art. 262</span>
+        <div class="art-title">Inter-State Water Disputes</div>
+        <div class="art-sub">Parliament can set up tribunal; HC/SC jurisdiction excluded</div>
+      </div>
+      <div class="art-card">
+        <span class="art-num">Art. 263</span>
+        <div class="art-title">Inter-State Council</div>
+        <div class="art-sub">President can establish ISC for coordination between Centre-State</div>
+      </div>
+      <div class="art-card">
+        <span class="art-num">Art. 280</span>
+        <div class="art-title">Finance Commission</div>
+        <div class="art-sub">President constitutes FC every 5 years for Centre-State financial distribution</div>
+      </div>
+    </div>
+
+    <div class="two-col" style="margin-top:12px;">
+      <div class="highlight blue">
+        <h4>🏗️ Inter-State Council (Art. 263)</h4>
+        <ul class="kp-list">
+          <li>Set up by President's Order 1990 (Sarkaria Commission recommendation)</li>
+          <li><strong>Chair:</strong> Prime Minister</li>
+          <li><strong>Members:</strong> All Chief Ministers + 6 Cabinet Ministers from Union</li>
+          <li>Meets periodically; advisory body for Centre-State coordination</li>
+          <li>NOT a permanent constitutional body — established by executive order</li>
+        </ul>
+      </div>
+      <div class="highlight green">
+        <h4>🗺️ Zonal Councils</h4>
+        <ul class="kp-list">
+          <li>Created under States Reorganisation Act 1956 (statutory, NOT constitutional)</li>
+          <li><strong>5 Zones:</strong> Northern, Southern, Eastern, Western, Central</li>
+          <li>Chair: Union Home Minister (all 5 councils)</li>
+          <li><strong>UP in:</strong> Central Zone (with MP, Chhattisgarh, Uttarakhand)</li>
+          <li>Advisory bodies — no binding power</li>
+          <li>NE Council: Separate body under NE Council Act 1971</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== MCQ SECTION ===== -->
+<div style="margin-bottom:18px;" class="page-break">
+  <div class="mcq-header">
+    <div>
+      <span class="icon" style="font-size:22px;">🎯</span>
+      <h2 style="display:inline; margin-left:8px;">10 UPPSC Panchayati Raj MCQs — UP Specific</h2>
+    </div>
+    <div class="mcq-num">10</div>
+  </div>
+  <div class="mcq-body">
+
+    <!-- Q1 -->
+    <div class="mcq-item">
+      <div class="mcq-q"><span class="qn">1</span>73वें संविधान संशोधन के तहत ग्राम सभा को किस अनुच्छेद में परिभाषित किया गया है?</div>
+      <div class="mcq-opts">
+        <div class="mcq-opt">(a) अनुच्छेद 243</div>
+        <div class="mcq-opt correct">✅ (b) अनुच्छेद 243A</div>
+        <div class="mcq-opt">(c) अनुच्छेद 243B</div>
+        <div class="mcq-opt">(d) अनुच्छेद 243G</div>
+      </div>
+      <div class="mcq-ans"><strong>Answer: (b)</strong> — Art. 243A ग्राम सभा को एक गाँव के मतदाताओं के निकाय के रूप में परिभाषित करता है। Art. 243 केवल सामान्य परिभाषाएँ देता है।</div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="mcq-item">
+      <div class="mcq-q"><span class="qn">2</span>उत्तर प्रदेश में 2026 के पंचायत चुनावों में कुल कितने ग्राम पंचायत हैं?</div>
+      <div class="mcq-opts">
+        <div class="mcq-opt">(a) 52,000</div>
+        <div class="mcq-opt">(b) 59,163</div>
+        <div class="mcq-opt correct">✅ (c) 57,965</div>
+        <div class="mcq-opt">(d) 62,000</div>
+      </div>
+      <div class="mcq-ans"><strong>Answer: (c)</strong> — UP में 57,965 ग्राम पंचायतें हैं। 826 क्षेत्र पंचायतें (ब्लॉक) एवं 75 जिला पंचायतें। मतदाता सूची में 12.69 करोड़ मतदाता (2026)।</div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="mcq-item">
+      <div class="mcq-q"><span class="qn">3</span>73वें संशोधन के तहत पंचायतों में महिलाओं के लिए सीट आरक्षण की न्यूनतम सीमा क्या है? उत्तर प्रदेश में यह सीमा क्या है?</div>
+      <div class="mcq-opts">
+        <div class="mcq-opt">(a) केंद्र: 1/4, UP: 1/3</div>
+        <div class="mcq-opt correct">✅ (b) केंद्र: 1/3, UP: 1/2 (50%)</div>
+        <div class="mcq-opt">(c) केंद्र: 1/3, UP: 1/3</div>
+        <div class="mcq-opt">(d) केंद्र: 1/2, UP: 1/2</div>
+      </div>
+      <div class="mcq-ans"><strong>Answer: (b)</strong> — Art. 243D के अनुसार न्यूनतम 1/3 (अनुच्छेद में 'not less than one-third')। उत्तर प्रदेश ने इसे बढ़ाकर 50% किया है।</div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="mcq-item">
+      <div class="mcq-q"><span class="qn">4</span>74वें संशोधन के अनुसार वार्ड समितियाँ (Ward Committees) किस जनसंख्या वाले नगरों में अनिवार्य हैं?</div>
+      <div class="mcq-opts">
+        <div class="mcq-opt">(a) 1 लाख से अधिक</div>
+        <div class="mcq-opt">(b) 2 लाख से अधिक</div>
+        <div class="mcq-opt correct">✅ (c) 3 लाख से अधिक</div>
+        <div class="mcq-opt">(d) 5 लाख से अधिक</div>
+      </div>
+      <div class="mcq-ans"><strong>Answer: (c)</strong> — Art. 243S — 3 लाख या अधिक जनसंख्या वाले नगरों में वार्ड समितियाँ अनिवार्य। यह UPPSC का trick question है।</div>
+    </div>
+
+    <!-- Q5 -->
+    <div class="mcq-item">
+      <div class="mcq-q"><span class="qn">5</span>11वीं अनुसूची में पंचायतों को कितने विषय सौंपे गए हैं?</div>
+      <div class="mcq-opts">
+        <div class="mcq-opt">(a) 18</div>
+        <div class="mcq-opt">(b) 25</div>
+        <div class="mcq-opt">(c) 27</div>
+        <div class="mcq-opt correct">✅ (d) 29</div>
+      </div>
+      <div class="mcq-ans"><strong>Answer: (d)</strong> — 11वीं अनुसूची में 29 विषय। 12वीं अनुसूची (ULBs) में 18 विषय। Trick: "Eleven se Unattees, Barah se Atharah"</div>
+    </div>
+
+    <!-- Q6 -->
+    <div class="mcq-item">
+      <div class="mcq-q"><span class="qn">6</span>बलवन्त राय मेहता समिति (1957) ने किस तीन-स्तरीय ढाँचे की अनुशंसा की थी?</div>
+      <div class="mcq-opts">
+        <div class="mcq-opt correct">✅ (a) ग्राम पंचायत, पंचायत समिति, जिला परिषद</div>
+        <div class="mcq-opt">(b) ग्राम पंचायत, ग्राम सभा, जिला परिषद</div>
+        <div class="mcq-opt">(c) ग्राम सभा, जनपद पंचायत, महापालिका</div>
+        <div class="mcq-opt">(d) ग्राम पंचायत, मंडल पंचायत, जिला परिषद</div>
+      </div>
+      <div class="mcq-ans"><strong>Answer: (a)</strong> — Balwant Rai Mehta (1957): ग्राम पंचायत (village) → पंचायत समिति (block) → जिला परिषद (district)। "मंडल पंचायत" Ashok Mehta (1977) की 2-स्तरीय व्यवस्था का हिस्सा था।</div>
+    </div>
+
+    <!-- Q7 -->
+    <div class="mcq-item">
+      <div class="mcq-q"><span class="qn">7</span>उत्तर प्रदेश में नगर निगमों की वर्तमान संख्या कितनी है? अयोध्या को नगर निगम का दर्जा कब मिला?</div>
+      <div class="mcq-opts">
+        <div class="mcq-opt">(a) 14 नगर निगम, 2019</div>
+        <div class="mcq-opt">(b) 15 नगर निगम, 2021</div>
+        <div class="mcq-opt">(c) 16 नगर निगम, 2022</div>
+        <div class="mcq-opt correct">✅ (d) 17 नगर निगम (अयोध्या सहित)</div>
+      </div>
+      <div class="mcq-ans"><strong>Answer: (d)</strong> — UP में 17 नगर निगम हैं। अयोध्या को Nagar Nigam का दर्जा दिया गया (Ram Mandir के बाद विकास योजनाओं के तहत)।</div>
+    </div>
+
+    <!-- Q8 -->
+    <div class="mcq-item">
+      <div class="mcq-q"><span class="qn">8</span>अनुच्छेद 243K के अंतर्गत राज्य निर्वाचन आयुक्त को किस प्रक्रिया से हटाया जा सकता है?</div>
+      <div class="mcq-opts">
+        <div class="mcq-opt">(a) राष्ट्रपति के आदेश से</div>
+        <div class="mcq-opt">(b) राज्यपाल के विवेकाधिकार से</div>
+        <div class="mcq-opt correct">✅ (c) उच्च न्यायालय के न्यायाधीश के समान प्रक्रिया से</div>
+        <div class="mcq-opt">(d) विधानसभा में साधारण बहुमत से</div>
+      </div>
+      <div class="mcq-ans"><strong>Answer: (c)</strong> — Art. 243K — राज्य निर्वाचन आयुक्त की स्थिति उच्च न्यायालय के न्यायाधीश के समान है। उन्हें उसी प्रक्रिया से हटाया जा सकता है।</div>
+    </div>
+
+    <!-- Q9 -->
+    <div class="mcq-item">
+      <div class="mcq-q"><span class="qn">9</span>73वाँ संवैधानिक संशोधन किस दिन लागू हुआ? और यह दिन क्यों महत्वपूर्ण है?</div>
+      <div class="mcq-opts">
+        <div class="mcq-opt">(a) 26 जनवरी 1993</div>
+        <div class="mcq-opt">(b) 20 अप्रैल 1993</div>
+        <div class="mcq-opt correct">✅ (c) 24 अप्रैल 1993 — पंचायती राज दिवस</div>
+        <div class="mcq-opt">(d) 1 जून 1993</div>
+      </div>
+      <div class="mcq-ans"><strong>Answer: (c)</strong> — 73वाँ संशोधन 24 अप्रैल 1993 को लागू हुआ। इसीलिए 24 अप्रैल को राष्ट्रीय पंचायती राज दिवस मनाया जाता है। (74वाँ — 1 जून 1993; अधिनियम पारित — 20 अप्रैल 1992)</div>
+    </div>
+
+    <!-- Q10 -->
+    <div class="mcq-item">
+      <div class="mcq-q"><span class="qn">10</span>15वें वित्त आयोग (अध्यक्ष: एन.के. सिंह) ने स्थानीय निकायों (PRIs + ULBs) को 2021-26 की अवधि के लिए कुल कितना अनुदान अनुशंसित किया?</div>
+      <div class="mcq-opts">
+        <div class="mcq-opt">(a) ₹2.00 लाख करोड़</div>
+        <div class="mcq-opt">(b) ₹2.87 लाख करोड़</div>
+        <div class="mcq-opt">(c) ₹3.50 लाख करोड़</div>
+        <div class="mcq-opt correct">✅ (d) ₹4.36 लाख करोड़ (approx)</div>
+      </div>
+      <div class="mcq-ans"><strong>Answer: (d)</strong> — 15वें वित्त आयोग ने ₹4,36,361 करोड़ स्थानीय निकायों के लिए अनुशंसित किए। इसमें 60% बँधे (Tied) अनुदान और 40% अबँधे (Untied) अनुदान हैं।</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== TOPPER NOTES ===== -->
+<div class="section theme-red">
+  <div class="section-header">
+    <span class="icon">🏆</span>
+    <h2>Section 10 — SDM Topper: Must-Remember Facts & Traps</h2>
+    <span class="num">⭐ High Yield</span>
+  </div>
+  <div class="section-body">
+
+    <div class="two-col">
+      <div class="highlight red">
+        <h4>⚠️ Common UPPSC Traps</h4>
+        <ul class="kp-list">
+          <li>73rd Amendment <strong>came into force 24 April 1993</strong>, NOT when passed (20 April 1992)</li>
+          <li>Gram Sabha ≠ Gram Panchayat. Sabha = body of voters; Panchayat = executive body</li>
+          <li>11th Schedule: <strong>29 subjects</strong>, 12th Schedule: <strong>18 subjects</strong></li>
+          <li>Ward Committees mandatory for pop ≥ <strong>3 lakh</strong> (NOT 1 lakh)</li>
+          <li>Zonal Councils are <strong>statutory</strong> (States Reorganisation Act), NOT constitutional</li>
+          <li>Inter-State Council (Art. 263) is set up by <strong>Executive Order</strong>, not automatically</li>
+          <li>73rd Amendment applies to states; Nagaland, Meghalaya, Mizoram EXEMPT (Art. 243M)</li>
+          <li>Finance Commission ≠ State Finance Commission. SFC = for local bodies only</li>
+        </ul>
+      </div>
+
+      <div class="highlight orange">
+        <h4>📌 UP-Specific Must-Know</h4>
+        <ul class="kp-list">
+          <li>UP: <strong>50% women</strong> reservation in Panchayats (constitutional min = 33%)</li>
+          <li>UP has <strong>17 Nagar Nigams</strong> including Ayodhya</li>
+          <li>UP Panchayat Election 2026: 57,965 GPs + 826 Blocks + 75 Districts</li>
+          <li>UP SEC headquarters: Lucknow</li>
+          <li>UP Gram Pradhan term: 5 years; removal after 2.5 years by 2/3 majority</li>
+          <li>UP: Kshetra Panchayat = block level (NOT Panchayat Samiti in UP terminology)</li>
+          <li>UP: Zila Panchayat Adhyaksha = indirectly elected</li>
+          <li>24 April = Panchayati Raj Diwas 🎉</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="formula-box">
+🧠 ARTICLE MEMORY FORMULA:
+Part IX starts at 243 → A=Gram Sabha → B=Constitution → C=Composition → D=Reservation → E=Duration → F=Disqualification → G=Powers → H=Taxation → I=SFC → J=Audit → K=SEC → L=UTs → M=Non-application → N=Existing Laws → O=Bar to Courts
+
+Part IX-A starts at 243P → Municipalities end at 243ZG
+"P for Palika (municipal)" — art 243P defines ULBs
+    </div>
+
+    <div class="sticky-note">
+      <strong>Last Mile Revision:</strong> For UPPSC Mains, always relate Panchayati Raj to UP ground realities — mention 57,965 GPs, 17 Nagar Nigams, 50% women reservation, 15th FC grants, and upcoming 2026 elections. Examiners reward UP-contextual answers at SDM level.
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div style="text-align:center; padding:14px; font-size:8.5pt; color:#888; border-top:1px solid #e0e0ee; margin-top:8px;">
+  📚 UPPSC 2026 Topper Toolkit — Federalism & Panchayati Raj | Updated June 2026 | Art. 243–243ZG | UP Focus<br>
+  <strong>🎯 Target: SDM — Top 10 Rank | Quality over Quantity</strong>
+</div>
+
+</div><!-- /container -->
+</body>
+</html>
