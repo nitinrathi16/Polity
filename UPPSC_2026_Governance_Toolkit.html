@@ -1,0 +1,1599 @@
+<!DOCTYPE html>
+<html lang="hi-IN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UPPSC 2026 — Governance & Constitutional Bodies Toolkit</title>
+<style>
+  /* ===== TOKENS ===== */
+  :root {
+    --ink: #1a1a2e;
+    --ink2: #2d2d4e;
+    --muted: #6b7280;
+    --rule: #e2e4ea;
+    --bg: #f7f8fc;
+    --card: #ffffff;
+    --accent: #1d4ed8;        /* Constitution blue */
+    --accent2: #7c3aed;       /* Statutory purple */
+    --gold: #b45309;          /* UP saffron */
+    --green: #065f46;         /* Good governance */
+    --red: #991b1b;           /* Warning / controversy */
+    --tag-c: #dbeafe;         /* constitutional tag bg */
+    --tag-s: #ede9fe;         /* statutory tag bg */
+    --tag-u: #fef3c7;         /* UP specific tag bg */
+    --shadow: 0 2px 12px rgba(0,0,0,.07);
+    --radius: 10px;
+  }
+
+  /* ===== RESET ===== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ===== HEADER ===== */
+  .site-header {
+    background: linear-gradient(135deg, #1a1a2e 0%, #1d4ed8 100%);
+    color: #fff;
+    padding: 28px 32px 22px;
+    position: sticky; top: 0; z-index: 100;
+    box-shadow: 0 4px 20px rgba(0,0,0,.2);
+  }
+  .site-header h1 { font-size: 1.5rem; font-weight: 800; letter-spacing: -.5px; }
+  .site-header .sub { font-size: .85rem; opacity: .75; margin-top: 2px; }
+  .badges { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+  .badge {
+    background: rgba(255,255,255,.15); border-radius: 20px;
+    padding: 3px 12px; font-size: .72rem; font-weight: 600; letter-spacing: .3px;
+  }
+
+  /* ===== NAV TABS ===== */
+  .nav-scroll {
+    background: var(--card);
+    border-bottom: 2px solid var(--rule);
+    padding: 0 16px;
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none;
+  }
+  .nav-scroll::-webkit-scrollbar { display: none; }
+  .nav-tab {
+    display: inline-block;
+    padding: 13px 18px;
+    font-size: .8rem; font-weight: 600;
+    color: var(--muted);
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    text-decoration: none;
+    transition: all .2s;
+  }
+  .nav-tab:hover { color: var(--accent); }
+  .nav-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+  /* ===== LAYOUT ===== */
+  .container { max-width: 1100px; margin: 0 auto; padding: 28px 20px 60px; }
+  .section { display: none; }
+  .section.active { display: block; }
+
+  /* ===== CARDS ===== */
+  .card {
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--rule);
+    margin-bottom: 22px;
+    overflow: hidden;
+  }
+  .card-header {
+    padding: 16px 22px 14px;
+    border-bottom: 1px solid var(--rule);
+    display: flex; align-items: center; gap: 12px;
+  }
+  .card-header .icon { font-size: 1.5rem; }
+  .card-header h2 { font-size: 1.05rem; font-weight: 700; color: var(--ink); }
+  .card-header .art-badge {
+    margin-left: auto;
+    background: var(--tag-c);
+    color: var(--accent);
+    font-size: .72rem; font-weight: 700;
+    padding: 3px 10px; border-radius: 20px;
+  }
+  .card-body { padding: 18px 22px; }
+
+  /* ===== GRID ===== */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+  @media (max-width: 680px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } }
+
+  /* ===== INFO BOXES ===== */
+  .info-box {
+    border-radius: 8px;
+    padding: 14px 16px;
+    font-size: .88rem;
+    margin-bottom: 12px;
+  }
+  .info-box.blue { background: #eff6ff; border-left: 4px solid var(--accent); }
+  .info-box.purple { background: #f5f3ff; border-left: 4px solid var(--accent2); }
+  .info-box.gold { background: #fffbeb; border-left: 4px solid var(--gold); }
+  .info-box.green { background: #ecfdf5; border-left: 4px solid var(--green); }
+  .info-box.red { background: #fef2f2; border-left: 4px solid var(--red); }
+  .info-box h4 { font-size: .78rem; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 6px; }
+  .info-box.blue h4 { color: var(--accent); }
+  .info-box.purple h4 { color: var(--accent2); }
+  .info-box.gold h4 { color: var(--gold); }
+  .info-box.green h4 { color: var(--green); }
+  .info-box.red h4 { color: var(--red); }
+
+  /* ===== TABLE ===== */
+  .data-table { width: 100%; border-collapse: collapse; font-size: .84rem; }
+  .data-table th {
+    background: var(--ink); color: #fff;
+    padding: 10px 14px; text-align: left; font-size: .78rem;
+    font-weight: 600; letter-spacing: .3px;
+  }
+  .data-table td { padding: 10px 14px; border-bottom: 1px solid var(--rule); }
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table tr:nth-child(even) td { background: #f9fafc; }
+
+  /* ===== CURRENT HOLDERS ===== */
+  .holder-card {
+    background: linear-gradient(135deg, #eff6ff, #f5f3ff);
+    border: 1px solid #c7d2fe;
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-bottom: 10px;
+  }
+  .holder-card .name { font-size: 1rem; font-weight: 700; color: var(--ink); }
+  .holder-card .role { font-size: .78rem; color: var(--muted); font-weight: 600; margin-bottom: 4px; }
+  .holder-card .detail { font-size: .82rem; color: var(--ink2); }
+
+  /* ===== MCQ ===== */
+  .mcq-wrap { counter-reset: mcq; }
+  .mcq {
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    padding: 16px 18px;
+    margin-bottom: 14px;
+    position: relative;
+  }
+  .mcq::before {
+    counter-increment: mcq;
+    content: "Q" counter(mcq);
+    position: absolute; top: -10px; left: 16px;
+    background: var(--accent); color: #fff;
+    font-size: .7rem; font-weight: 800;
+    padding: 2px 8px; border-radius: 10px;
+  }
+  .mcq .stem { font-weight: 600; font-size: .9rem; margin-bottom: 10px; color: var(--ink); }
+  .mcq .opts { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+  .mcq .opt { font-size: .83rem; padding: 7px 10px; border-radius: 6px; border: 1px solid var(--rule); cursor: pointer; transition: all .15s; }
+  .mcq .opt:hover { background: #eff6ff; border-color: var(--accent); }
+  .mcq .opt.correct { background: #d1fae5; border-color: #10b981; color: var(--green); font-weight: 600; }
+  .mcq .opt.wrong { background: #fee2e2; border-color: #ef4444; }
+  .mcq .explanation { display: none; margin-top: 10px; padding: 10px 12px; background: #f0fdf4; border-radius: 6px; font-size: .82rem; color: var(--green); border-left: 3px solid #10b981; }
+
+  /* ===== TAGS ===== */
+  .tag { display: inline-block; padding: 2px 9px; border-radius: 12px; font-size: .72rem; font-weight: 700; margin: 2px; }
+  .tag.c { background: var(--tag-c); color: var(--accent); }
+  .tag.s { background: var(--tag-s); color: var(--accent2); }
+  .tag.u { background: var(--tag-u); color: var(--gold); }
+  .tag.g { background: #d1fae5; color: var(--green); }
+
+  /* ===== TIMELINE ===== */
+  .timeline { position: relative; padding-left: 24px; }
+  .timeline::before { content: ''; position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background: var(--rule); }
+  .tl-item { position: relative; margin-bottom: 14px; font-size: .85rem; }
+  .tl-item::before { content: ''; position: absolute; left: -20px; top: 6px; width: 10px; height: 10px; border-radius: 50%; background: var(--accent); border: 2px solid #fff; box-shadow: 0 0 0 2px var(--accent); }
+  .tl-year { font-weight: 700; color: var(--accent); font-size: .78rem; }
+
+  /* ===== PROCESS FLOW ===== */
+  .flow { display: flex; align-items: center; gap: 0; flex-wrap: wrap; margin: 12px 0; }
+  .flow-step {
+    background: var(--accent); color: #fff;
+    padding: 8px 14px; font-size: .78rem; font-weight: 600;
+    border-radius: 6px; margin: 4px 2px;
+  }
+  .flow-arrow { color: var(--muted); font-size: 1.1rem; margin: 0 4px; }
+
+  /* ===== COMPARISON ===== */
+  .compare-table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+  .compare-table th { background: var(--ink2); color: #fff; padding: 9px 12px; text-align: left; }
+  .compare-table td { padding: 9px 12px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  .compare-table tr:nth-child(even) td { background: #f9fafc; }
+
+  /* ===== PRINT ===== */
+  @media print {
+    body { font-size: 12px; background: #fff; color: #000; }
+    .site-header { background: #1a1a2e !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; position: static; }
+    .nav-scroll { display: none; }
+    .section { display: block !important; page-break-before: always; }
+    .section:first-of-type { page-break-before: auto; }
+    .card { box-shadow: none; border: 1px solid #ccc; page-break-inside: avoid; }
+    .mcq .opt { border: 1px solid #ccc; }
+    .mcq .opt.correct { background: #d1fae5 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .data-table th { background: #1a1a2e !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .info-box.blue { background: #eff6ff !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .info-box.red { background: #fef2f2 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .info-box.gold { background: #fffbeb !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .info-box.green { background: #ecfdf5 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .holder-card { background: #eff6ff !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .container { padding: 10px; }
+    h2, h3 { page-break-after: avoid; }
+    .grid-2, .grid-3 { display: block; }
+    .grid-2 > *, .grid-3 > * { margin-bottom: 10px; }
+    a { color: #000; }
+  }
+
+  /* ===== MISC ===== */
+  h3 { font-size: .95rem; font-weight: 700; color: var(--ink2); margin: 16px 0 8px; }
+  ul.bullet { padding-left: 18px; font-size: .87rem; }
+  ul.bullet li { margin-bottom: 5px; }
+  strong { color: var(--ink); }
+  .highlight { background: #fef9c3; padding: 1px 4px; border-radius: 3px; }
+  .score-box { text-align: center; padding: 10px; background: #f0fdf4; border-radius: 8px; }
+  .score-num { font-size: 2rem; font-weight: 800; color: var(--green); }
+  .section-label { font-size: .7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-bottom: 18px; padding-bottom: 8px; border-bottom: 2px solid var(--rule); }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <h1>🏛️ UPPSC 2026 — Governance & Constitutional Bodies Toolkit</h1>
+  <div class="sub">SDM / Top-10 Rank Preparation | Quality Over Quantity</div>
+  <div class="badges">
+    <span class="badge">📅 June 2026 Updated</span>
+    <span class="badge">🔍 Latest Appointments</span>
+    <span class="badge">📝 160 MCQs</span>
+    <span class="badge">🇮🇳 UP Specific Coverage</span>
+  </div>
+</header>
+
+<!-- NAVIGATION -->
+<nav class="nav-scroll">
+  <a class="nav-tab active" onclick="showSection('overview')">🗺️ Overview</a>
+  <a class="nav-tab" onclick="showSection('election')">🗳️ Election Commission</a>
+  <a class="nav-tab" onclick="showSection('cag')">🔍 CAG</a>
+  <a class="nav-tab" onclick="showSection('upsc')">📋 UPSC & PSC</a>
+  <a class="nav-tab" onclick="showSection('rti')">📄 RTI & CIC</a>
+  <a class="nav-tab" onclick="showSection('lokpal')">⚖️ Lokpal & Lokayukta</a>
+  <a class="nav-tab" onclick="showSection('cbi')">🔎 CBI / CVC / ED</a>
+  <a class="nav-tab" onclick="showSection('nhrc')">🤝 NHRC</a>
+  <a class="nav-tab" onclick="showSection('niti')">💡 NITI Aayog</a>
+  <a class="nav-tab" onclick="showSection('up')">🌟 UP Bodies</a>
+  <a class="nav-tab" onclick="showSection('egov')">💻 E-Governance</a>
+  <a class="nav-tab" onclick="showSection('mcq')">❓ MCQ Practice</a>
+</nav>
+
+<div class="container">
+
+<!-- ===================== OVERVIEW ===================== -->
+<div id="overview" class="section active">
+  <div class="section-label">📌 Quick Reference Map</div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="icon">🗂️</span>
+      <h2>Constitutional vs Statutory Bodies — फर्क समझो</h2>
+    </div>
+    <div class="card-body">
+      <div class="grid-2">
+        <div class="info-box blue">
+          <h4>🏛️ Constitutional Bodies (संवैधानिक)</h4>
+          Direct mention in Constitution. Cannot be abolished by ordinary law.<br><br>
+          ✅ Election Commission — Art. 324<br>
+          ✅ CAG — Art. 148<br>
+          ✅ UPSC — Art. 315<br>
+          ✅ State PSC — Art. 315<br>
+          ✅ Finance Commission — Art. 280<br>
+          ✅ Attorney General — Art. 76
+        </div>
+        <div class="info-box purple">
+          <h4>📜 Statutory Bodies (वैधानिक)</h4>
+          Created by Parliament via statute. Can be amended/abolished by law.<br><br>
+          🔵 CBI — DSPE Act 1946<br>
+          🔵 CVC — CVC Act 2003<br>
+          🔵 Lokpal — Lokpal Act 2013<br>
+          🔵 NHRC — PHRA 1993<br>
+          🔵 CIC/RTI — RTI Act 2005<br>
+          🔵 NITI Aayog — Executive Resolution
+        </div>
+      </div>
+
+      <h3>⚡ Current Heads — Quick Revision (June 2026)</h3>
+      <table class="data-table">
+        <thead><tr><th>Body</th><th>Current Head</th><th>Since</th><th>Article</th></tr></thead>
+        <tbody>
+          <tr><td>🗳️ <strong>Chief Election Commissioner</strong></td><td>Gyanesh Kumar</td><td>19 Feb 2025</td><td>Art. 324</td></tr>
+          <tr><td>🔍 <strong>CAG</strong></td><td>K. Sanjay Murthy (15th)</td><td>21 Nov 2024</td><td>Art. 148</td></tr>
+          <tr><td>📋 <strong>UPSC Chairman</strong></td><td>Ajay Kumar, IAS</td><td>15 May 2025</td><td>Art. 316</td></tr>
+          <tr><td>📄 <strong>Chief Information Commissioner</strong></td><td>Raj Kumar Goyal</td><td>15 Dec 2025</td><td>RTI Act</td></tr>
+          <tr><td>⚖️ <strong>Lokpal Chairperson</strong></td><td>Justice A.M. Khanwilkar</td><td>10 Mar 2024</td><td>Lokpal Act</td></tr>
+          <tr><td>🤝 <strong>NHRC Chairperson</strong></td><td>Justice V. Ramasubramanian</td><td>2025</td><td>PHRA 1993</td></tr>
+          <tr><td>💡 <strong>NITI Aayog Vice Chairman</strong></td><td>Ashok Kumar Lahiri</td><td>8 May 2026</td><td>Executive</td></tr>
+          <tr><td>🌟 <strong>UP Lokayukta</strong></td><td>Justice Sanjay Mishra (7th)</td><td>2016</td><td>UP Act 1975</td></tr>
+          <tr><td>🗳️ <strong>UP State Election Commissioner</strong></td><td>Manoj Kumar, IAS</td><td>—</td><td>Art. 243K</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><span class="icon">📊</span><h2>Independence Mechanisms — तुलनात्मक अध्ययन</h2></div>
+    <div class="card-body">
+      <table class="compare-table">
+        <thead><tr><th>Body</th><th>Appointed By</th><th>Removal</th><th>Salary Charged to</th></tr></thead>
+        <tbody>
+          <tr><td>CEC</td><td>President (after SC on Selection Committee)</td><td>Like SC Judge</td><td>Consolidated Fund of India</td></tr>
+          <tr><td>CAG</td><td>President</td><td>Like SC Judge</td><td>Consolidated Fund of India</td></tr>
+          <tr><td>UPSC Chair</td><td>President</td><td>President (on grounds)</td><td>Consolidated Fund of India</td></tr>
+          <tr><td>Lokpal</td><td>President (Selection Committee)</td><td>Like SC Judge</td><td>Consolidated Fund of India</td></tr>
+          <tr><td>NHRC Chair</td><td>President (6-member committee)</td><td>Like SC Judge</td><td>Charged to CFI</td></tr>
+          <tr><td>CIC</td><td>President (3-member selection committee)</td><td>Like CEC</td><td>Consolidated Fund of India</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== ELECTION COMMISSION ===================== -->
+<div id="election" class="section">
+  <div class="section-label">🗳️ Election Commission of India</div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="icon">🗳️</span>
+      <h2>Election Commission of India</h2>
+      <span class="art-badge">Art. 324</span>
+    </div>
+    <div class="card-body">
+      <div class="grid-2">
+        <div class="info-box blue">
+          <h4>📜 Constitutional Provision</h4>
+          <strong>Article 324</strong> — Superintendence, direction and control of elections vested in Election Commission.<br><br>
+          <strong>Art. 325</strong> — No person to be ineligible for inclusion in electoral rolls on grounds of religion, race, caste or sex.<br>
+          <strong>Art. 326</strong> — Adult Suffrage (18+ years).<br>
+          <strong>Art. 327</strong> — Parliament to make provision for elections.<br>
+          <strong>Art. 329</strong> — Bar on interference by courts.
+        </div>
+        <div class="info-box purple">
+          <h4>⚙️ New Appointment Law (2023)</h4>
+          <strong>CEC & Other ECs Act, 2023</strong> replaced the 1991 Act.<br><br>
+          <strong>Selection Committee:</strong><br>
+          • PM (Chair) • Cabinet Minister nominated by PM • Leader of Opposition (LoS in LS)<br><br>
+          <strong>Search Committee:</strong> Led by Law Minister + 2 senior secretaries (shortlists 5 names).<br><br>
+          ⚠️ <em>SC directive (2023):</em> Appointment should involve independent mechanism — not just Executive.
+        </div>
+      </div>
+
+      <h3>👥 Composition</h3>
+      <table class="data-table">
+        <thead><tr><th>Member</th><th>Detail</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Chief Election Commissioner</strong></td><td>1 — Head of ECI, seniority-based elevation</td></tr>
+          <tr><td><strong>Election Commissioners</strong></td><td>Currently 2 — Appointed by President on SC recommendation</td></tr>
+          <tr><td><strong>Tenure</strong></td><td>6 years OR age 65, whichever earlier</td></tr>
+          <tr><td><strong>Salary</strong></td><td>₹2,50,000/month — Equal to SC Judge — Charged to CFI</td></tr>
+          <tr><td><strong>Removal</strong></td><td>CEC — same as SC Judge (Art. 324). EC — on CEC's recommendation</td></tr>
+        </tbody>
+      </table>
+
+      <h3>🌟 Powers & Functions</h3>
+      <div class="grid-2">
+        <ul class="bullet">
+          <li><strong>Superintendence, direction & control</strong> of elections to Parliament, State Legislatures, President, VP</li>
+          <li>Prepare & revise <strong>Electoral Rolls</strong></li>
+          <li>Notify election dates & schedule</li>
+          <li>Recognition of political parties & allot symbols</li>
+          <li>Model Code of Conduct enforcement</li>
+        </ul>
+        <ul class="bullet">
+          <li>Advice President/Governor on disqualification of MPs/MLAs</li>
+          <li>Order repoll / countermand election in case of booth capturing</li>
+          <li>Register/de-register political parties</li>
+          <li>Grant/withdraw star campaigner status</li>
+          <li>Set expenditure limits for candidates</li>
+        </ul>
+      </div>
+
+      <h3>📋 Model Code of Conduct (MCC) — Key Points</h3>
+      <div class="info-box gold">
+        <h4>⚠️ MCC — UPPSC Favorite Topic</h4>
+        • MCC comes into force from the date of announcement of election schedule.<br>
+        • <strong>NOT a statutory document</strong> — it is based on consensus among political parties (1960 origin).<br>
+        • Prohibits: New government schemes, welfare announcements, transfers of officials.<br>
+        • Ruling party cannot use state machinery for campaign purposes.<br>
+        • Government advertisements using public funds banned during MCC period.<br>
+        • ECI can censure, issue show-cause, or approach courts — <strong>no direct punitive power under MCC.</strong>
+      </div>
+
+      <h3>🔴 Independence Mechanisms</h3>
+      <div class="info-box green">
+        <h4>✅ How ECI Stays Independent</h4>
+        1. CEC removal only through SC Judge-like procedure (Parliament address + Presidential order).<br>
+        2. Service conditions cannot be varied to CEC's disadvantage after appointment.<br>
+        3. ECI controls its own secretariat (unlike many other bodies).<br>
+        4. Election courts cannot be set up without ECI consultation.
+      </div>
+
+      <h3>⚠️ Limitations</h3>
+      <div class="info-box red">
+        <h4>❌ What ECI CANNOT Do</h4>
+        • Cannot regulate election expenditure of political parties (only candidates).<br>
+        • No power to punish under MCC — depends on executive cooperation.<br>
+        • Rajya Sabha & State Legislative Council elections — conducted through respective legislatures.<br>
+        • No jurisdiction over local body elections (done by State Election Commissions).
+      </div>
+
+      <h3>🆕 Current Status (2025-26)</h3>
+      <div class="holder-card">
+        <div class="role">Chief Election Commissioner</div>
+        <div class="name">Gyanesh Kumar</div>
+        <div class="detail">🗓️ Since: 19 Feb 2025 | 🎓 IAS 1988 Batch (Kerala Cadre) | Succeeded Rajiv Kumar<br>
+        First CEC appointed under the CEC & Other ECs Act, 2023 | Born: 27 Jan 1964, Agra (UP)</div>
+      </div>
+      <div class="holder-card">
+        <div class="role">Election Commissioners (2)</div>
+        <div class="name">Sukhbir Singh Sandhu + Vivek Joshi</div>
+        <div class="detail">Vivek Joshi: IAS 1989 batch (Haryana Cadre) — appointed 19 Feb 2025</div>
+      </div>
+
+      <div class="info-box blue">
+        <h4>🌟 UP Specific</h4>
+        • UP has largest electorate (15+ crore voters) — special challenge for ECI.<br>
+        • UP 2022 elections: 7-phase elections, Model Code in force from Jan to Mar 2022.<br>
+        • UP 2027 elections: Due Feb-March 2027 (next major state poll).<br>
+        • Gyanesh Kumar born in Agra, UP — symbolic connection.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== CAG ===================== -->
+<div id="cag" class="section">
+  <div class="section-label">🔍 Comptroller & Auditor General</div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="icon">🔍</span>
+      <h2>CAG — Comptroller & Auditor General of India</h2>
+      <span class="art-badge">Art. 148–151</span>
+    </div>
+    <div class="card-body">
+      <div class="grid-2">
+        <div class="info-box blue">
+          <h4>📜 Constitutional Articles</h4>
+          <strong>Art. 148</strong> — Establishment of CAG office; appointment by President; tenure; salary = SC Judge.<br>
+          <strong>Art. 149</strong> — Duties and powers (Parliament shall prescribe).<br>
+          <strong>Art. 150</strong> — Accounts of Union & States kept as per CAG's advice.<br>
+          <strong>Art. 151</strong> — CAG's reports laid before Parliament / State Legislature.<br><br>
+          <strong>Governing Act:</strong> CAG's (Duties, Powers & Conditions of Service) Act, 1971.
+        </div>
+        <div class="info-box purple">
+          <h4>⚙️ Appointment & Tenure</h4>
+          • Appointed by <strong>President of India</strong> by warrant under hand & seal.<br>
+          • Tenure: <strong>6 years OR age 65</strong>, whichever earlier.<br>
+          • Salary: ₹2,50,000/month = SC Judge — Charged to <strong>Consolidated Fund of India</strong>.<br>
+          • Ineligible for further office under Government after retirement.<br>
+          • No prescribed procedure for appointment (Executive decides) — subject to reform debate.
+        </div>
+      </div>
+
+      <h3>🔴 Removal Process</h3>
+      <div class="flow">
+        <div class="flow-step">Proven misbehaviour or incapacity</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">Address by both Houses of Parliament (Special Majority)</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">Presidential Order</div>
+      </div>
+      <small style="color:var(--muted)">Same procedure as removal of a Supreme Court Judge.</small>
+
+      <h3>🌟 Types of Audit</h3>
+      <table class="data-table">
+        <thead><tr><th>Type</th><th>Purpose</th><th>Report</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Financial Audit</strong></td><td>Are accounts maintained correctly? Any discrepancy?</td><td>Finance Accounts</td></tr>
+          <tr><td><strong>Compliance/Regularity Audit</strong></td><td>Rules & regulations followed?</td><td>Appropriation Accounts</td></tr>
+          <tr><td><strong>Performance Audit</strong></td><td>Economy, Efficiency, Effectiveness (3E)</td><td>Performance Audit Reports</td></tr>
+          <tr><td><strong>Propriety Audit</strong></td><td>Was expenditure wise & prudent? (goes beyond legality)</td><td>Included in annual reports</td></tr>
+        </tbody>
+      </table>
+
+      <h3>📊 What CAG Audits</h3>
+      <div class="grid-2">
+        <ul class="bullet">
+          <li>All Union & State government departments</li>
+          <li>Railways, Defence, Post, Telecom</li>
+          <li>1500+ Public Sector Enterprises</li>
+          <li>400+ Non-commercial Autonomous Bodies</li>
+        </ul>
+        <ul class="bullet">
+          <li>Bodies "substantially financed" by govt (>75%)</li>
+          <li>Panchayati Raj Institutions</li>
+          <li>External audit: IAEA (2022–27), FAO (2020–25)</li>
+          <li><strong>CANNOT audit:</strong> RBI, Supreme Court, President's office</li>
+        </ul>
+      </div>
+
+      <h3>⚠️ Key Limitations</h3>
+      <div class="info-box red">
+        <h4>❌ Limitations of CAG</h4>
+        • <strong>No Comptroller function</strong> in India — unlike UK's CAG. Cannot control issue of funds (only audits after expenditure).<br>
+        • CAG reports laid before legislature — but no power to ensure action on recommendations.<br>
+        • Delhi govt controversy: 12 CAG reports withheld for 4+ years — CAG has no enforcement power to force tabling.<br>
+        • Appointment process: No independent committee — solely executive decision (reform debates ongoing).<br>
+        • No suo motu power to initiate action — only advisory.
+      </div>
+
+      <h3>🆕 Current CAG (2024)</h3>
+      <div class="holder-card">
+        <div class="role">15th Comptroller & Auditor General of India</div>
+        <div class="name">K. Sanjay Murthy</div>
+        <div class="detail">🗓️ Since: 21 Nov 2024 | Succeeded Girish Chandra Murmu<br>
+        🎓 IAS 1989 Batch (Andhra Pradesh Cadre) | Prev: Secretary, Dept. of Higher Education, MoE<br>
+        Key role in implementing NEP 2020</div>
+      </div>
+
+      <div class="info-box gold">
+        <h4>🌟 Famous CAG Reports (UPPSC Relevant)</h4>
+        • <strong>2G Spectrum Scam (2011)</strong> — Vinod Rai's report, estimated ₹1.76 lakh crore loss.<br>
+        • <strong>Coal Allocation Scam (2012)</strong> — CAG estimated ₹1.86 lakh crore loss.<br>
+        • <strong>Commonwealth Games (2010)</strong> — Massive irregularities reported.<br>
+        • These made CAG globally known as "guardian of public purse."
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== UPSC ===================== -->
+<div id="upsc" class="section">
+  <div class="section-label">📋 UPSC & State PSCs</div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="icon">📋</span>
+      <h2>Union Public Service Commission (UPSC)</h2>
+      <span class="art-badge">Art. 315–323</span>
+    </div>
+    <div class="card-body">
+      <div class="grid-2">
+        <div class="info-box blue">
+          <h4>📜 Constitutional Articles</h4>
+          <strong>Art. 315</strong> — UPSC established; State PSC for each state.<br>
+          <strong>Art. 316</strong> — Composition: Chairman + members appointed by President; at least 50% must have held government office for ≥10 years.<br>
+          <strong>Art. 317</strong> — Removal: Only by President on SC inquiry (misbehavior).<br>
+          <strong>Art. 318</strong> — Power to make regulations.<br>
+          <strong>Art. 319</strong> — Prohibition on holding office after retirement (Chairman: no further govt office).<br>
+          <strong>Art. 320</strong> — Functions of UPSC.<br>
+          <strong>Art. 323</strong> — Annual Report to President.
+        </div>
+        <div class="info-box purple">
+          <h4>⚙️ Composition & Tenure</h4>
+          • Total <strong>1 Chairman + 10 Members</strong> (President decides number).<br>
+          • Tenure: <strong>6 years OR age 65</strong> years, whichever earlier.<br>
+          • Salary: ₹2,50,000/month — Charged to CFI.<br>
+          • <strong>No re-appointment</strong> after serving full term.<br>
+          • UPSC Chairman ineligible for any government office after retirement.<br>
+          • Member can become UPSC Chairman or SPSC Chairman.
+        </div>
+      </div>
+
+      <h3>🌟 Functions (Art. 320)</h3>
+      <ul class="bullet">
+        <li>Conducts examinations for <strong>All India Services (IAS, IPS, IFS)</strong> and Central Services (Group A & B).</li>
+        <li>Direct recruitment to Central Services posts by interview.</li>
+        <li>Advises on matters related to <strong>promotion, transfer, disciplinary matters</strong> of civil servants.</li>
+        <li>Advises on principles for appointments, promotions, and transfers.</li>
+        <li>Handles <strong>DPC (Departmental Promotion Committee)</strong> work.</li>
+        <li>Examines claims for reimbursement of legal expenses by civil servants.</li>
+      </ul>
+
+      <h3>❌ Exclusions (Outside UPSC Purview)</h3>
+      <div class="info-box red">
+        <h4>What UPSC Does NOT Handle</h4>
+        • Group C and D posts (handled by Staff Selection Commission, Railways, etc.)<br>
+        • Posts connected with armed forces<br>
+        • Posts filled by promotion from ministerial/clerical cadres<br>
+        • Posts filled based on competitive examination where Parliament/President specifically excludes<br>
+        • Parliament by law can exclude any service from UPSC purview (Art. 320(3))
+      </div>
+
+      <h3>⚖️ Independence Mechanisms</h3>
+      <div class="info-box green">
+        <h4>✅ How UPSC Stays Independent</h4>
+        1. <strong>Removal only by President</strong> on SC inquiry — for misbehavior/incapacity.<br>
+        2. <strong>Service conditions fixed by President</strong> — cannot be varied to disadvantage post-appointment.<br>
+        3. <strong>Salary charged to CFI</strong> — not voted in Parliament.<br>
+        4. <strong>Annual Report to President</strong> — laid before Parliament with explanation for non-acceptance.<br>
+        5. No serving member can practice before UPSC after retirement.
+      </div>
+
+      <h3>🏛️ State PSC — (UPPSC relevant)</h3>
+      <div class="info-box gold">
+        <h4>🌟 State PSC (UPPSC)</h4>
+        <strong>Art. 315</strong>: Each state shall have a PSC.<br>
+        <strong>Art. 316</strong>: Chairman & members appointed by <strong>Governor</strong>.<br>
+        Removal: By <strong>President</strong> (not Governor) on SC inquiry.<br>
+        Governor can suspend a member pending inquiry.<br><br>
+        <strong>UPPSC:</strong><br>
+        • Conducts PCS (Provincial Civil Service) exam — SDM, DSP, BDO posts.<br>
+        • Also conducts RO/ARO, APO, and various other state service exams.<br>
+        • HQ: Allahabad (Prayagraj), Uttar Pradesh.
+      </div>
+
+      <h3>🔄 Joint PSC</h3>
+      <p style="font-size:.87rem">Art. 315(2): Parliament may establish a <strong>Joint PSC</strong> for two or more states on request. Members appointed by President. Rarely used in practice.</p>
+
+      <div class="holder-card">
+        <div class="role">UPSC Chairperson</div>
+        <div class="name">Ajay Kumar, IAS</div>
+        <div class="detail">🗓️ Since: 15 May 2025 | Succeeded Preeti Sudan (who served Aug 2024 – May 2025)<br>
+        UPSC HQ: Dholpur House, Shahjahan Road, New Delhi</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== RTI ===================== -->
+<div id="rti" class="section">
+  <div class="section-label">📄 RTI Act 2005 & CIC</div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="icon">📄</span>
+      <h2>Right to Information Act, 2005</h2>
+      <span class="art-badge">Statutory Act</span>
+    </div>
+    <div class="card-body">
+      <div class="info-box blue">
+        <h4>📜 Background & Art. 19(1)(a)</h4>
+        RTI is derived from <strong>Freedom of Speech (Art. 19(1)(a))</strong> — Supreme Court held that right to information is part of this freedom.<br>
+        Enacted: <strong>15 June 2005</strong>, fully effective from <strong>12 Oct 2005</strong>.<br>
+        Replaced: Freedom of Information Act, 2002.<br>
+        Objective: Promote <strong>transparency & accountability</strong> in working of public authorities.
+      </div>
+
+      <h3>⏱️ Time Limits — UPPSC Favorite</h3>
+      <table class="data-table">
+        <thead><tr><th>Scenario</th><th>Time Limit</th></tr></thead>
+        <tbody>
+          <tr><td>Normal information request</td><td><strong>30 days</strong></td></tr>
+          <tr><td>Life or liberty of a person involved</td><td><strong>48 hours</strong></td></tr>
+          <tr><td>Information obtained from 3rd party</td><td><strong>40 days</strong> (10 extra for 3rd party notice)</td></tr>
+          <tr><td>First appeal to PIO's superior</td><td><strong>30 days</strong></td></tr>
+          <tr><td>First appellate authority decision</td><td><strong>30 days</strong> (extendable to 45)</td></tr>
+          <tr><td>Second appeal to IC</td><td>Within 90 days of first appeal decision</td></tr>
+          <tr><td>RTI request fee</td><td>₹10 per application; BPL families exempt</td></tr>
+        </tbody>
+      </table>
+
+      <h3>🚫 Exemptions (Section 8) — Critical for Exam</h3>
+      <div class="grid-2">
+        <div class="info-box red">
+          <h4>❌ Absolute Exemptions</h4>
+          • Information prejudicial to <strong>sovereignty, security, integrity</strong> of India.<br>
+          • Cabinet papers/deliberations<br>
+          • Information expressly forbidden by court<br>
+          • Breach of Parliamentary privilege<br>
+          • Information causing breach of national security
+        </div>
+        <div class="info-box gold">
+          <h4>⚡ Qualified Exemptions (Override by Public Interest)</h4>
+          • Commercial confidence / trade secrets<br>
+          • Information held in fiduciary capacity<br>
+          • Personal information (no public activity/interest)<br>
+          • Information that would endanger life of informant<br>
+          <em>Note: Public interest can override these but NOT absolute exemptions.</em>
+        </div>
+      </div>
+
+      <h3>🏛️ Central Information Commission (CIC)</h3>
+      <table class="data-table">
+        <thead><tr><th>Aspect</th><th>Detail</th></tr></thead>
+        <tbody>
+          <tr><td>Composition</td><td>1 Chief Information Commissioner + up to 10 Information Commissioners</td></tr>
+          <tr><td>Appointment</td><td>President on recommendation of PM (chair) + LoP (LS) + Cabinet Minister nominated by PM</td></tr>
+          <tr><td>Tenure</td><td>Central Government prescribed (earlier 5 years — changed by RTI Amendment Act 2019)</td></tr>
+          <tr><td>Salary</td><td>CIC = CEC salary; IC = Election Commissioner salary (earlier — now govt fixes)</td></tr>
+          <tr><td>Appeal</td><td>High Court (not Supreme Court directly)</td></tr>
+          <tr><td>Penalty Power</td><td>₹250/day up to ₹25,000 on PIO for delay; also recommend disciplinary action</td></tr>
+        </tbody>
+      </table>
+
+      <div class="holder-card">
+        <div class="role">Chief Information Commissioner</div>
+        <div class="name">Raj Kumar Goyal</div>
+        <div class="detail">🗓️ Since: 15 Dec 2025 | Prev: Law Secretary of India (IAS officer)<br>
+        Succeeded Heeralal Samariya</div>
+      </div>
+
+      <div class="info-box purple">
+        <h4>⚠️ RTI Amendment Act, 2019 — Controversy</h4>
+        Before 2019: CIC tenure = 5 years; salary = CEC/EC.<br>
+        After 2019: Tenure & salary to be determined by <strong>Central Government</strong> by rules.<br>
+        Critics: This undermines independence of CIC. Govt: Brings transparency in setting compensation.
+      </div>
+
+      <h3>🌟 Organisations OUTSIDE RTI</h3>
+      <div class="info-box red">
+        <h4>Second Schedule — Exempt Bodies</h4>
+        IB, RAW, BSF, CRPF, CISF, SSB, NIA, NSG, Assam Rifles, DRDO, Cabinet Secretariat (intelligence), FSB — <strong>but</strong> information relating to corruption, human rights violation NOT exempt even for these bodies.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== LOKPAL ===================== -->
+<div id="lokpal" class="section">
+  <div class="section-label">⚖️ Lokpal & Lokayukta</div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="icon">⚖️</span>
+      <h2>Lokpal & Lokayuktas Act, 2013</h2>
+      <span class="art-badge">Statutory Body</span>
+    </div>
+    <div class="card-body">
+      <div class="info-box blue">
+        <h4>📜 Background & Legal Basis</h4>
+        Enacted: <strong>17 Dec 2013</strong> (Parliament), Assent: <strong>1 Jan 2014</strong>, Effective: <strong>16 Jan 2014</strong>.<br>
+        Based on recommendations of: <strong>1st ARC (1966)</strong>, various SC/HC judgments, Anna Hazare movement (2011).<br>
+        <strong>Art. 253</strong>: Parliament passed Lokpal Act to give effect to UN Convention on Corruption (ratified 2011).<br>
+        First Lokpal constituted: <strong>March 2019</strong> (after 5 years of Act!).
+      </div>
+
+      <h3>👥 Composition</h3>
+      <table class="data-table">
+        <thead><tr><th>Member</th><th>Detail</th></tr></thead>
+        <tbody>
+          <tr><td>Chairperson</td><td>1 — Former CJI or Judge of SC</td></tr>
+          <tr><td>Members</td><td>Maximum 8 — at least 50% Judicial, at least 50% from SC/ST/OBC/Minorities/Women</td></tr>
+          <tr><td>Tenure</td><td>5 years or age 70, whichever earlier</td></tr>
+          <tr><td>Appointment by</td><td>President on recommendation of <strong>5-member Selection Committee</strong></td></tr>
+          <tr><td>Selection Committee</td><td>PM (Chair) + Speaker LS + Leader of Opposition LS + CJI + Eminent Jurist</td></tr>
+          <tr><td>Salary</td><td>Chair = CJI; Members = SC Judge — Charged to CFI</td></tr>
+        </tbody>
+      </table>
+
+      <h3>🎯 Jurisdiction (Who Lokpal Can Investigate)</h3>
+      <div class="grid-2">
+        <ul class="bullet">
+          <li><strong>Prime Minister</strong> — with conditions: No enquiry into: national security, defence, foreign relations, atomic energy, space; Full Bench required (7 of 8 members); in-camera proceedings</li>
+          <li>Union Ministers</li>
+          <li>MPs (excluding Parliament proceedings covered by Art. 105)</li>
+          <li>Group A, B, C, D officers of Union Govt</li>
+        </ul>
+        <ul class="bullet">
+          <li>Employees of <strong>Central Public Sector Undertakings</strong></li>
+          <li>Entities receiving ₹10 lakh+ from govt</li>
+          <li>Complaint must be filed within <strong>7 years</strong> of commission of offence</li>
+          <li><strong>NOT under Lokpal:</strong> Members of Armed Forces, State Governments (Lokayukta for states)</li>
+        </ul>
+      </div>
+
+      <h3>⚙️ Investigation Process</h3>
+      <div class="flow">
+        <div class="flow-step">Complaint Filed</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">Preliminary Inquiry (Inquiry Wing)</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">Investigation (CBI or Lokpal's own wing)</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">Prosecution Sanction</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">Trial in Special Court</div>
+      </div>
+
+      <h3>⚠️ Current Challenges</h3>
+      <div class="info-box red">
+        <h4>❌ Limitations & Controversies</h4>
+        • <strong>No Annual Reports</strong> since 2021-22 — accountability deficit.<br>
+        • Complaints dropped from 2,469 (2022-23) to 233 (2025) — public disillusionment.<br>
+        • <strong>12-year delay</strong> in setting up Prosecution Wing — exposes institutional inertia.<br>
+        • Depends on CBI for major investigations — CBI itself has independence questions.<br>
+        • Can only recommend action; cannot directly prosecute.
+      </div>
+
+      <div class="holder-card">
+        <div class="role">Lokpal Chairperson (2nd Lokpal)</div>
+        <div class="name">Justice A.M. Khanwilkar</div>
+        <div class="detail">🗓️ Since: 10 March 2024 | Appointed by President Droupadi Murmu<br>
+        Prev: SC Judge (2016-2022) | Notable: Puttaswamy judgment (Privacy), Sabarimala case<br>
+        Members: Justice L. Narayana Swamy, Justice Sanjay Yadav, Justice Ritu Raj Awasthi + others</div>
+      </div>
+
+      <div class="info-box gold">
+        <h4>🌟 Lokayukta vs Lokpal</h4>
+        <table class="compare-table">
+          <thead><tr><th>Aspect</th><th>Lokpal</th><th>Lokayukta (UP)</th></tr></thead>
+          <tbody>
+            <tr><td>Level</td><td>Central</td><td>State</td></tr>
+            <tr><td>Law</td><td>Lokpal & Lokayuktas Act 2013</td><td>UP Lokayukta Act 1975</td></tr>
+            <tr><td>Appointment</td><td>President (5-member committee)</td><td>Governor after consultation with CJ HC + Leader of Opposition</td></tr>
+            <tr><td>Jurisdiction</td><td>Central public servants + PM</td><td>State public servants, Ministers</td></tr>
+            <tr><td>Power</td><td>Investigates + recommends prosecution</td><td>Investigates + recommends to Governor/CM</td></tr>
+            <tr><td>First in India</td><td>Pinaki Chandra Ghose (2019)</td><td>Maharashtra 1971; UP: Vishwambhar Dayal 1977</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>🌟 UP Lokayukta</h3>
+      <div class="info-box purple">
+        <h4>UP Lokayukta Act, 1975</h4>
+        • UP was among early states to establish Lokayukta (1977).<br>
+        • <strong>Jurisdiction:</strong> CM, Ministers, MLAs, State govt officers.<br>
+        • Currently: <strong>Justice Sanjay Mishra</strong> (7th Lokayukta) — appointed by Supreme Court intervention (2016).<br>
+        • Appointment controversy: SC had to intervene when UP govt failed to appoint Lokayukta for years.<br>
+        • Tenure: 5 years — NOT eligible for reappointment.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== CBI CVC ED ===================== -->
+<div id="cbi" class="section">
+  <div class="section-label">🔎 CBI / CVC / ED</div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="icon">🔎</span>
+      <h2>CBI — Central Bureau of Investigation</h2>
+      <span class="art-badge">DSPE Act 1946</span>
+    </div>
+    <div class="card-body">
+      <div class="grid-2">
+        <div class="info-box blue">
+          <h4>📜 Legal Basis</h4>
+          <strong>Delhi Special Police Establishment (DSPE) Act, 1946</strong>.<br>
+          CBI set up in 1963 on recommendation of <strong>Santhanam Committee</strong>.<br>
+          Operates under <strong>Ministry of Personnel</strong> (not Home).<br>
+          <strong>NOT a Constitutional or Statutory body</strong> — created by executive resolution.
+        </div>
+        <div class="info-box purple">
+          <h4>⚙️ Key Structure</h4>
+          • Director: Appointed by committee (PM + LoP + CJI) — fixed tenure <strong>2 years</strong> under CVC Act.<br>
+          • Divisions: AC (Anti-Corruption), SC (Special Crimes), BS (Bank Securities Fraud).<br>
+          • Works under general superintendence of <strong>CVC</strong> for corruption cases.<br>
+          • Needs <strong>consent of State Govt</strong> to investigate in state territory (Section 6 DSPE Act).
+        </div>
+      </div>
+
+      <div class="info-box red">
+        <h4>⚠️ "Caged Parrot" Controversy</h4>
+        SC in <strong>Coal Scam case (2013)</strong> called CBI "caged parrot" speaking in its master's voice.<br>
+        Issue: CBI shares status reports with Law Ministry, which can influence investigation.<br>
+        SC directed: Status reports to be shared with court, not Ministry, in certain cases.
+      </div>
+
+      <h3>🔎 Central Vigilance Commission (CVC)</h3>
+      <div class="info-box green">
+        <h4>CVC Act, 2003</h4>
+        • Statutory body under <strong>CVC Act, 2003</strong>.<br>
+        • <strong>Composition:</strong> 1 Central Vigilance Commissioner + 2 Vigilance Commissioners.<br>
+        • <strong>Appointment:</strong> President on recommendation of PM + Home Minister + LoP (LS).<br>
+        • <strong>Tenure:</strong> 4 years or age 65, whichever earlier.<br>
+        • <strong>Function:</strong> Superintendence over CBI (anti-corruption work); advises on vigilance matters.<br>
+        • Exercises general superintendence — cannot direct CBI to file FIR or close case.<br>
+        • Receives complaints of corruption related to Central Govt employees.
+      </div>
+
+      <h3>💰 ED — Enforcement Directorate</h3>
+      <table class="data-table">
+        <thead><tr><th>Aspect</th><th>Detail</th></tr></thead>
+        <tbody>
+          <tr><td>Parent Law</td><td>FEMA 1999 (Foreign Exchange); PMLA 2002 (Money Laundering)</td></tr>
+          <tr><td>Parent Ministry</td><td>Department of Revenue, Ministry of Finance</td></tr>
+          <tr><td>Powers</td><td>Arrest, search & seizure, attachment of property, prosecution under PMLA/FEMA</td></tr>
+          <tr><td>Key Feature</td><td>PMLA: Reverse burden of proof — accused must prove innocence regarding laundered assets</td></tr>
+          <tr><td>Controversies</td><td>Multiple opposition leaders arrested; SC scrutiny on ECIR vs FIR equivalence (2022 Vijay Madanlal Choudhary case)</td></tr>
+          <tr><td>Director Tenure</td><td>Fixed 2-year term; extended by 1 year at a time up to max 5 years (amended via Ordinance 2021)</td></tr>
+        </tbody>
+      </table>
+
+      <h3>🔄 Inter-relationship</h3>
+      <div class="info-box gold">
+        <h4>CBI vs CVC vs ED — Key Differences</h4>
+        • <strong>CVC:</strong> Superintendence body for CBI (anti-corruption); itself investigates top officers.<br>
+        • <strong>CBI:</strong> Investigates (anti-corruption, economic offenses, special crimes).<br>
+        • <strong>ED:</strong> Enforces economic laws — FEMA, PMLA. NOT under CVC.<br>
+        • State govts can withdraw CBI consent: Chhattisgarh, Jharkhand, Kerala, Maharashtra, Mizoram, Punjab, Rajasthan, Telangana, West Bengal (9 states as of 2025) withdrew general consent.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== NHRC ===================== -->
+<div id="nhrc" class="section">
+  <div class="section-label">🤝 National Human Rights Commission</div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="icon">🤝</span>
+      <h2>National Human Rights Commission (NHRC)</h2>
+      <span class="art-badge">PHRA 1993</span>
+    </div>
+    <div class="card-body">
+      <div class="info-box blue">
+        <h4>📜 Legal Basis</h4>
+        Protection of Human Rights Act (PHRA), <strong>1993</strong> — amended in 2006 & 2019.<br>
+        Established: <strong>12 October 1993</strong>.<br>
+        Based on: <strong>Paris Principles (1993)</strong> — UN standards for national human rights institutions.<br>
+        NHRC is accredited with <strong>A Status</strong> by GANHRI (Global Alliance of NHRIs).
+      </div>
+
+      <h3>👥 Composition (After 2019 Amendment)</h3>
+      <table class="data-table">
+        <thead><tr><th>Position</th><th>Eligibility</th><th>Tenure</th></tr></thead>
+        <tbody>
+          <tr><td>Chairperson</td><td>Former CJI OR former SC Judge (2019 amendment added SC Judge option)</td><td>3 years or age 70</td></tr>
+          <tr><td>Full-time Members (5)</td><td>Former SC Judge; Former HC CJ; Experts in HR</td><td>3 years or age 70</td></tr>
+          <tr><td>Deemed Members (7)</td><td>Chairpersons of: NCW, NCM, NCSC, NCST, NCMinorities, NCBC, Chief Commissioner for Persons with Disabilities</td><td>Ex-officio</td></tr>
+          <tr><td>Women members</td><td>At least 1 woman among full-time members</td><td>—</td></tr>
+        </tbody>
+      </table>
+
+      <h3>🏛️ Appointment Committee (6 Members)</h3>
+      <div class="flow">
+        <div class="flow-step">PM (Chair)</div>
+        <div class="flow-arrow">+</div>
+        <div class="flow-step">Speaker LS</div>
+        <div class="flow-arrow">+</div>
+        <div class="flow-step">Dy. Chair RS</div>
+        <div class="flow-arrow">+</div>
+        <div class="flow-step">LoP Both Houses</div>
+        <div class="flow-arrow">+</div>
+        <div class="flow-step">Home Minister</div>
+      </div>
+
+      <h3>🌟 Powers & Functions</h3>
+      <ul class="bullet">
+        <li>Inquire into human rights violations suo motu or on complaint</li>
+        <li>Intervene in <strong>court proceedings</strong> (like an amicus)</li>
+        <li>Visit state-controlled institutions (prisons, etc.) with State Govt approval</li>
+        <li>Review constitutional/legal safeguards for human rights</li>
+        <li>Recommend compensation to victim / action against violator</li>
+        <li>Promote human rights research & education</li>
+      </ul>
+
+      <h3>⚠️ Limitations</h3>
+      <div class="info-box red">
+        <h4>❌ Critical Limitations</h4>
+        • Can only <strong>recommend</strong> — no binding orders.<br>
+        • Cannot investigate complaints older than <strong>1 year</strong> from date of occurrence.<br>
+        • <strong>Armed Forces:</strong> Only seeks report from Govt; cannot independently investigate. (Biggest criticism — "toothless against army violations")<br>
+        • State HRCs have jurisdiction over state-level violations — NHRC refers to them.<br>
+        • Complaints against courts not entertained.
+      </div>
+
+      <div class="holder-card">
+        <div class="role">9th NHRC Chairperson</div>
+        <div class="name">Justice V. Ramasubramanian</div>
+        <div class="detail">🗓️ Assumed office: 2025 | Former SC Judge<br>
+        Born: 30 June 1958, Tamil Nadu<br>
+        Note: 2nd NHRC Chair to have never served as CJI (after Justice Arun Kumar Mishra)</div>
+      </div>
+
+      <div class="info-box gold">
+        <h4>🌟 UP Human Rights Commission</h4>
+        • UP has its own <strong>State Human Rights Commission (SHRC)</strong>.<br>
+        • Handles complaints against state/local authority violations.<br>
+        • NHRC refers UP-specific cases to UP SHRC.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== NITI AAYOG ===================== -->
+<div id="niti" class="section">
+  <div class="section-label">💡 NITI Aayog</div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="icon">💡</span>
+      <h2>NITI Aayog</h2>
+      <span class="art-badge">Executive Resolution 2015</span>
+    </div>
+    <div class="card-body">
+      <div class="info-box blue">
+        <h4>📜 Background — Planning Commission vs NITI Aayog</h4>
+        <table class="compare-table">
+          <thead><tr><th>Aspect</th><th>Planning Commission (1950–2014)</th><th>NITI Aayog (Jan 1, 2015–)</th></tr></thead>
+          <tbody>
+            <tr><td>Legal Status</td><td>Executive Resolution (same)</td><td>Executive Resolution</td></tr>
+            <tr><td>Approach</td><td><strong>Top-down</strong> (Central plans imposed)</td><td><strong>Bottom-up</strong> (States as partners)</td></tr>
+            <tr><td>Fund Allocation</td><td>✅ Had powers (Centrally Sponsored Schemes)</td><td>❌ NO fund allocation power (Finance Commission does this)</td></tr>
+            <tr><td>Structure</td><td>Deputy Chairman was key (PM = Chairman)</td><td>Vice Chairman + CEO (PM = Chairman)</td></tr>
+            <tr><td>Five Year Plans</td><td>Created Five Year Plans (1–12th)</td><td>Replaced with 3-year Action Plans, 7-year Strategy, 15-year Vision</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>👥 Structure</h3>
+      <table class="data-table">
+        <thead><tr><th>Position</th><th>Current</th><th>Role</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Chairperson</strong></td><td>PM Narendra Modi (ex-officio)</td><td>Heads all meetings</td></tr>
+          <tr><td><strong>Vice Chairperson</strong></td><td>Ashok Kumar Lahiri (since 8 May 2026)</td><td>Day-to-day operations; rank = Cabinet Minister</td></tr>
+          <tr><td><strong>CEO</strong></td><td>BVR Subrahmanyam (since Feb 2023)</td><td>Administrative head; rank = Secretary to Govt</td></tr>
+          <tr><td><strong>Full-time Members</strong></td><td>Experts in various domains</td><td>Policy formulation</td></tr>
+          <tr><td><strong>Governing Council</strong></td><td>All CMs + LG of UTs</td><td>Federal consultation body</td></tr>
+          <tr><td><strong>Regional Councils</strong></td><td>CMs of specified states</td><td>Regional issues</td></tr>
+          <tr><td><strong>Special Invitees</strong></td><td>Ministers nominated by PM</td><td>Sectoral expertise</td></tr>
+        </tbody>
+      </table>
+
+      <h3>🌟 Key Functions</h3>
+      <ul class="bullet">
+        <li><strong>Cooperative Federalism:</strong> Bring states as "partners in development" — 15-year roadmap, 7-year strategy, 3-year action agenda.</li>
+        <li><strong>Think Tank:</strong> Policy research, strategy, innovation — not implementation.</li>
+        <li><strong>SDG Localisation:</strong> SDG India Index tracks state-wise progress on 17 SDGs.</li>
+        <li><strong>Atal Innovation Mission (AIM):</strong> Promotes startup ecosystem (Atal Tinkering Labs, Atal Incubation Centres).</li>
+        <li><strong>Monitoring:</strong> Tracks Aspirational Districts Programme (115 backward districts).</li>
+        <li>Advises on <strong>PPP (Public Private Partnership)</strong> and infrastructure policy.</li>
+      </ul>
+
+      <h3>🌟 NITI Aayog Key Reports/Initiatives</h3>
+      <div class="grid-2">
+        <div class="info-box green">
+          <h4>📊 Key Indices & Reports</h4>
+          • SDG India Index (annual)<br>
+          • Health Index (states)<br>
+          • State Energy & Climate Index<br>
+          • School Education Quality Index<br>
+          • India Innovation Index<br>
+          • Multidimensional Poverty Index
+        </div>
+        <div class="info-box gold">
+          <h4>🚀 Key Initiatives</h4>
+          • Atal Innovation Mission (AIM)<br>
+          • Aspirational Districts Programme<br>
+          • National Data & Analytics Platform<br>
+          • NITI Forum for NE (North East)<br>
+          • Women Entrepreneurship Platform<br>
+          • Frontier Tech Hub
+        </div>
+      </div>
+
+      <div class="info-box red">
+        <h4>⚠️ Criticism of NITI Aayog</h4>
+        • No fund allocation power — reduced ability to implement.<br>
+        • Planning Commission's replacement seen as political decision.<br>
+        • Vice Chairman post has reduced influence vs Planning Commission's Deputy Chairman.<br>
+        • States still demand restoration of untied transfers.<br>
+        • Aspirational Districts Programme — concerns about data manipulation.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== UP BODIES ===================== -->
+<div id="up" class="section">
+  <div class="section-label">🌟 UP-Specific Constitutional & Statutory Bodies</div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="icon">🌟</span>
+      <h2>UP State Election Commission</h2>
+      <span class="art-badge">Art. 243K</span>
+    </div>
+    <div class="card-body">
+      <div class="grid-2">
+        <div class="info-box blue">
+          <h4>📜 Constitutional Provision</h4>
+          <strong>Art. 243K</strong> (73rd & 74th Amendment 1992): Each state shall appoint a State Election Commissioner.<br>
+          SEC conducts elections for:<br>
+          ✅ Gram Panchayats, Block Panchayats, Zila Panchayats<br>
+          ✅ Nagar Panchayats, Nagar Palika Parishads<br>
+          ✅ Nagar Nigams (Municipal Corporations)
+        </div>
+        <div class="info-box purple">
+          <h4>⚙️ Appointment & Removal</h4>
+          • Appointed by <strong>Governor</strong> of UP.<br>
+          • Removal: Same procedure as High Court Judge — by Presidential address.<br>
+          • <strong>Service conditions</strong> cannot be varied to disadvantage after appointment.<br>
+          • <strong>UP SEC Established:</strong> 23 April 1994.<br>
+          • HQ: 32, Station Road, Udaiganj, Lalkuan, Lucknow.<br>
+          • Current SEC: <strong>Manoj Kumar, IAS</strong>
+        </div>
+      </div>
+
+      <div class="info-box red">
+        <h4>⚠️ ECI vs UP SEC — Key Difference</h4>
+        • ECI conducts elections for Parliament & State Legislatures (Art. 324).<br>
+        • UP SEC conducts elections for local bodies only (Art. 243K).<br>
+        • These are <strong>two separate, independent bodies</strong>.<br>
+        • UP SEC decisions are challenged in High Court (Allahabad), not ECI.
+      </div>
+
+      <h3>🌟 UPPSC (UP Public Service Commission)</h3>
+      <div class="info-box gold">
+        <h4>UPPSC Key Facts</h4>
+        • Constitutional body under Art. 315.<br>
+        • Members appointed by <strong>Governor</strong>; removed by <strong>President</strong>.<br>
+        • HQ: Prayagraj (Allahabad).<br>
+        • Conducts: PCS, PCS-J, ACF/RFO, APO, RO/ARO, and various state service exams.<br>
+        • Cadre posts directly recruitable by UPPSC: SDM, DSP, District Commandant (Home Guards), etc.<br>
+        • Chairman appointed by Governor; tenure 6 years or age 62, whichever earlier.<br>
+        <br>
+        <strong>SDM Note:</strong> You (PCS aspirant) will be recruited through UPPSC PCS exam and serve under UP's administrative framework — directly managed by UPPSC!
+      </div>
+
+      <h3>⚖️ UP Lokayukta — Detailed</h3>
+      <table class="data-table">
+        <thead><tr><th>Aspect</th><th>Detail</th></tr></thead>
+        <tbody>
+          <tr><td>Governing Law</td><td>UP Lokayukta Act, 1975</td></tr>
+          <tr><td>Appointment</td><td>Governor — after consultation with CJ of HC + LoP in State Assembly</td></tr>
+          <tr><td>Eligibility</td><td>Retired HC Judge or above</td></tr>
+          <tr><td>Tenure</td><td>5 years; NOT eligible for reappointment</td></tr>
+          <tr><td>Removal</td><td>Governor on address by UP Assembly (special majority)</td></tr>
+          <tr><td>Jurisdiction</td><td>CM, Ministers, MLAs, State Govt employees (Group A & B)</td></tr>
+          <tr><td>Powers</td><td>Summon witnesses, compel production of documents; recommend action to Governor/CM</td></tr>
+          <tr><td>Current</td><td>Justice Sanjay Mishra (7th Lokayukta, since 2016)</td></tr>
+          <tr><td>1st Lokayukta</td><td>Justice Vishwambhar Dayal (1977)</td></tr>
+        </tbody>
+      </table>
+
+      <h3>🏛️ Other Important UP Bodies</h3>
+      <div class="grid-2">
+        <div class="info-box blue">
+          <h4>📋 UP State Human Rights Commission</h4>
+          • Under Protection of Human Rights Act, 1993.<br>
+          • Chair: Retired HC Judge.<br>
+          • Handles state-level HR violations.<br>
+          • NHRC can call back cases if SHRC inactive.
+        </div>
+        <div class="info-box purple">
+          <h4>👩 UP State Women Commission</h4>
+          • Under UP Women Commission Act, 2004.<br>
+          • Chairperson: Dr. Babita Chauhan (2025).<br>
+          • Protects rights & interests of women in UP.<br>
+          • Recommendatory — advisory to state govt.
+        </div>
+        <div class="info-box gold">
+          <h4>📊 UP State Finance Commission</h4>
+          • Art. 243I (73rd Amendment): Every 5 years.<br>
+          • Reviews financial position of Panchayats.<br>
+          • Recommends distribution of taxes between state & Panchayats.
+        </div>
+        <div class="info-box green">
+          <h4>🌾 UP Planning Department</h4>
+          • Works under Chief Minister (Planning).<br>
+          • Coordinates with NITI Aayog at centre.<br>
+          • Implements state-specific schemes & SDG targets.<br>
+          • UP SDG Vision 2030 aligns with national goals.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== E-GOVERNANCE ===================== -->
+<div id="egov" class="section">
+  <div class="section-label">💻 E-Governance Initiatives</div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="icon">💻</span>
+      <h2>E-Governance — Good Governance Initiatives</h2>
+      <span class="art-badge">National & UP Level</span>
+    </div>
+    <div class="card-body">
+      <h3>🇮🇳 National E-Governance Initiatives</h3>
+      <table class="data-table">
+        <thead><tr><th>Initiative</th><th>Purpose</th><th>Ministry</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Digital India (2015)</strong></td><td>Transform India into digital economy; 3 pillars: Digital Infrastructure, Digital Services, Digital Literacy</td><td>MeitY</td></tr>
+          <tr><td><strong>Aadhaar (UIDAI)</strong></td><td>Unique 12-digit biometric ID; basis for DBT, banking, welfare delivery</td><td>MeitY</td></tr>
+          <tr><td><strong>UMANG App</strong></td><td>Unified Mobile App for New-age Governance — 1200+ govt services on single app</td><td>MeitY</td></tr>
+          <tr><td><strong>DISHA Portal</strong></td><td>District level monitoring of Central Schemes</td><td>MoRD</td></tr>
+          <tr><td><strong>e-Sampark</strong></td><td>Online grievance portal for citizen-govt interaction</td><td>Various</td></tr>
+          <tr><td><strong>DigiLocker</strong></td><td>Cloud-based document wallet — Aadhaar linked; legal documents stored digitally</td><td>MeitY</td></tr>
+          <tr><td><strong>MyGov</strong></td><td>Citizen engagement platform — governance participation</td><td>PMOC</td></tr>
+          <tr><td><strong>GeM (Govt e-Marketplace)</strong></td><td>Online procurement platform; eliminates middlemen in govt buying</td><td>Commerce</td></tr>
+          <tr><td><strong>CoWIN</strong></td><td>COVID-19 vaccine registration & certificate platform</td><td>MoHFW</td></tr>
+          <tr><td><strong>PM-WANI</strong></td><td>WiFi Access Network Interface — affordable public WiFi</td><td>DoT</td></tr>
+          <tr><td><strong>e-Court Project</strong></td><td>Digitization of judiciary — case management, judgments online</td><td>Law</td></tr>
+          <tr><td><strong>Jeevan Praman</strong></td><td>Biometric life certificate for pensioners — eliminates travel</td><td>DoPPW</td></tr>
+        </tbody>
+      </table>
+
+      <h3>🌟 UP E-Governance Initiatives</h3>
+      <table class="data-table">
+        <thead><tr><th>Initiative</th><th>Purpose</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Jan Seva Kendra (JSK)</strong></td><td>Single-window common service centres for government services in UP</td></tr>
+          <tr><td><strong>e-Sathee</strong></td><td>UP's one-stop portal for 300+ government services; App + web</td></tr>
+          <tr><td><strong>IGRS-UP</strong></td><td>Integrated Grievance Redressal System — online complaint filing</td></tr>
+          <tr><td><strong>CM Helpline 1076</strong></td><td>Real-time grievance redressal; direct escalation to SDM/DM</td></tr>
+          <tr><td><strong>Nivesh Mitra</strong></td><td>Investment facilitation portal — single-window clearance for businesses</td></tr>
+          <tr><td><strong>UP Revenue Court Portal</strong></td><td>Digitization of land records; mutation online</td></tr>
+          <tr><td><strong>BOND System (UP Police)</strong></td><td>Better Online Network of Discipline — police management</td></tr>
+          <tr><td><strong>MANAV Sampada (HRMS)</strong></td><td>Human Resource Management System for UP state employees</td></tr>
+          <tr><td><strong>PRERNA Portal</strong></td><td>Monitoring of basic education quality (student tracking)</td></tr>
+          <tr><td><strong>e-Panjiyan</strong></td><td>Online birth/death/marriage registration</td></tr>
+        </tbody>
+      </table>
+
+      <div class="info-box green">
+        <h4>🌟 Good Governance Principles (SDM Perspective)</h4>
+        <div class="grid-2">
+          <ul class="bullet">
+            <li><strong>Transparency</strong> — RTI, open data</li>
+            <li><strong>Accountability</strong> — CAG, Lokpal, courts</li>
+            <li><strong>Participation</strong> — Gram Sabha, MyGov</li>
+            <li><strong>Rule of Law</strong> — Equal application</li>
+          </ul>
+          <ul class="bullet">
+            <li><strong>Efficiency</strong> — GeM, e-procurement</li>
+            <li><strong>Equity</strong> — DBT, Aadhaar-linked benefits</li>
+            <li><strong>Responsiveness</strong> — CM Helpline, e-Sathee</li>
+            <li><strong>Consensus Orientation</strong> — NITI Aayog's cooperative federalism</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="info-box blue">
+        <h4>📊 Digital India — Key Achievements (2024-25)</h4>
+        • UPI transactions: 185 billion+ in FY2024-25 — world's largest real-time payment system.<br>
+        • DigiLocker users: 300+ million with 7 billion+ documents stored.<br>
+        • GeM: ₹4 lakh crore+ cumulative procurement.<br>
+        • Common Service Centres (CSCs): 5+ lakh across rural India.<br>
+        • Internet users in India: 900 million+ (2nd largest globally).
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== MCQ PRACTICE ===================== -->
+<div id="mcq" class="section">
+  <div class="section-label">❓ MCQ Practice — UPPSC Pattern</div>
+
+  <div class="card">
+    <div class="card-header"><span class="icon">📝</span><h2>20 High-Quality UPPSC MCQs — Governance & Constitutional Bodies</h2></div>
+    <div class="card-body">
+      <div id="score-display" style="display:none" class="score-box" style="margin-bottom:16px">
+        <div class="score-num" id="score-val">0</div>
+        <div style="font-size:.85rem;color:var(--muted)">Correct Answers</div>
+      </div>
+
+      <div class="mcq-wrap" id="mcqContainer">
+
+        <!-- Q1 -->
+        <div class="mcq">
+          <div class="stem">Which Constitutional Article provides for the Election Commission of India?</div>
+          <ul class="opts">
+            <li class="opt" onclick="answer(this,'wrong')">a) Art. 315</li>
+            <li class="opt" onclick="answer(this,'correct')">b) Art. 324</li>
+            <li class="opt" onclick="answer(this,'wrong')">c) Art. 148</li>
+            <li class="opt" onclick="answer(this,'wrong')">d) Art. 280</li>
+          </ul>
+          <div class="explanation">Art. 324 establishes the ECI and vests superintendence, direction and control of elections. Art. 315 = UPSC, Art. 148 = CAG, Art. 280 = Finance Commission.</div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="mcq">
+          <div class="stem">Who was the FIRST Chief Election Commissioner to be appointed under the CEC & Other ECs (Appointment) Act, 2023?</div>
+          <ul class="opts">
+            <li class="opt" onclick="answer(this,'wrong')">a) Rajiv Kumar</li>
+            <li class="opt" onclick="answer(this,'correct')">b) Gyanesh Kumar</li>
+            <li class="opt" onclick="answer(this,'wrong')">c) Sukhbir Singh Sandhu</li>
+            <li class="opt" onclick="answer(this,'wrong')">d) Vivek Joshi</li>
+          </ul>
+          <div class="explanation">Gyanesh Kumar (IAS 1988, Kerala cadre) became CEC on 19 Feb 2025 — first under the new 2023 Act. Born in Agra, UP. Rajiv Kumar preceded him (appointed under old system).</div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="mcq">
+          <div class="stem">Under Model Code of Conduct (MCC), which of the following is CORRECT?</div>
+          <ul class="opts">
+            <li class="opt" onclick="answer(this,'wrong')">a) MCC is a statutory document enforceable under IPC</li>
+            <li class="opt" onclick="answer(this,'wrong')">b) MCC comes into force from the date of election notification</li>
+            <li class="opt" onclick="answer(this,'correct')">c) MCC is a consensual agreement — not a statutory law</li>
+            <li class="opt" onclick="answer(this,'wrong')">d) ECI can directly punish violations under MCC</li>
+          </ul>
+          <div class="explanation">MCC is based on consensus among political parties (started 1960 Kerala). It has no statutory backing and ECI has no direct punitive power — relies on executive cooperation and approaches courts.</div>
+        </div>
+
+        <!-- Q4 -->
+        <div class="mcq">
+          <div class="stem">The CAG of India as per Article 148 — which of the following is INCORRECT?</div>
+          <ul class="opts">
+            <li class="opt" onclick="answer(this,'wrong')">a) Appointed by the President by warrant under hand and seal</li>
+            <li class="opt" onclick="answer(this,'wrong')">b) Salary is charged to the Consolidated Fund of India</li>
+            <li class="opt" onclick="answer(this,'correct')">c) CAG controls issue of funds from the Consolidated Fund — like UK's CAG</li>
+            <li class="opt" onclick="answer(this,'wrong')">d) CAG's reports are laid before Parliament under Art. 151</li>
+          </ul>
+          <div class="explanation">Unlike UK's CAG, India's CAG does NOT control issue of funds — it functions only as Auditor General. India's CAG cannot prevent expenditure — it can only examine it after the fact.</div>
+        </div>
+
+        <!-- Q5 -->
+        <div class="mcq">
+          <div class="stem">Under RTI Act 2005, information related to life or liberty of a person must be provided within:</div>
+          <ul class="opts">
+            <li class="opt" onclick="answer(this,'wrong')">a) 7 days</li>
+            <li class="opt" onclick="answer(this,'wrong')">b) 24 hours</li>
+            <li class="opt" onclick="answer(this,'correct')">c) 48 hours</li>
+            <li class="opt" onclick="answer(this,'wrong')">d) 15 days</li>
+          </ul>
+          <div class="explanation">Section 7(1) of RTI Act: Information involving life or liberty of a person must be provided within 48 hours. Normal requests: 30 days. Third-party information: 40 days.</div>
+        </div>
+
+        <!-- Q6 -->
+        <div class="mcq">
+          <div class="stem">Which section of RTI Act, 2005 provides for exemptions from disclosure?</div>
+          <ul class="opts">
+            <li class="opt" onclick="answer(this,'wrong')">a) Section 6</li>
+            <li class="opt" onclick="answer(this,'wrong')">b) Section 7</li>
+            <li class="opt" onclick="answer(this,'correct')">c) Section 8</li>
+            <li class="opt" onclick="answer(this,'wrong')">d) Section 11</li>
+          </ul>
+          <div class="explanation">Section 8 lists 10 exemptions from mandatory disclosure. Section 6 = procedure for seeking information, Section 7 = disposal of request, Section 11 = third party information.</div>
+        </div>
+
+        <!-- Q7 -->
+        <div class="mcq">
+          <div class="stem">The current Chairperson of Lokpal (as of 2025-26) is:</div>
+          <ul class="opts">
+            <li class="opt" onclick="answer(this,'wrong')">a) Justice Pinaki Chandra Ghose</li>
+            <li class="opt" onclick="answer(this,'wrong')">b) Justice Pradip Kumar Mohanty</li>
+            <li class="opt" onclick="answer(this,'correct')">c) Justice A.M. Khanwilkar</li>
+            <li class="opt" onclick="answer(this,'wrong')">d) Justice Ritu Raj Awasthi</li>
+          </ul>
+          <div class="explanation">Justice Ajay Manikrao Khanwilkar became Lokpal Chairperson on 10 March 2024 (2nd Lokpal). First Lokpal was Justice Pinaki Chandra Ghose (2019-2022). Justice Mohanty served as acting chairperson between them.</div>
+        </div>
+
+        <!-- Q8 -->
+        <div class="mcq">
+          <div class="stem">Lokpal's jurisdiction over the Prime Minister is subject to which safeguard?</div>
+          <ul class="opts">
+            <li class="opt" onclick="answer(this,'wrong')">a) Prior permission of Rajya Sabha</li>
+            <li class="opt" onclick="answer(this,'wrong')">b) Order of Supreme Court</li>
+            <li class="opt" onclick="answer(this,'correct')">c) Full Bench of Lokpal (7 of 8 members) and in-camera proceedings</li>
+            <li class="opt" onclick="answer(this,'wrong')">d) PM cannot be investigated under any circumstances</li>
+          </ul>
+          <div class="explanation">PM can be investigated but with safeguards: Full Bench (7/8 members), in-camera proceedings, matters related to national security/defence/foreign relations/atomic energy/space excluded, CBI need not be involved.</div>
+        </div>
+
+        <!-- Q9 -->
+        <div class="mcq">
+          <div class="stem">Which Article mandates appointment of State Election Commissioner?</div>
+          <ul class="opts">
+            <li class="opt" onclick="answer(this,'wrong')">a) Art. 324</li>
+            <li class="opt" onclick="answer(this,'wrong')">b) Art. 280</li>
+            <li class="opt" onclick="answer(this,'correct')">c) Art. 243K</li>
+            <li class="opt" onclick="answer(this,'wrong')">d) Art. 315</li>
+          </ul>
+          <div class="explanation">Art. 243K (inserted by 73rd & 74th Constitutional Amendment, 1992) mandates appointment of State Election Commissioner for superintendence of local body elections — Panchayats and Municipalities.</div>
+        </div>
+
+        <!-- Q10 -->
+        <div class="mcq">
+          <div class="stem">Under which Act is the CBI established?</div>
+          <ul class="opts">
+            <li class="opt" onclick="answer(this,'wrong')">a) Prevention of Corruption Act, 1988</li>
+            <li class="opt" onclick="answer(this,'wrong')">b) CBI Act, 1963</li>
+            <li class="opt" onclick="answer(this,'correct')">c) Delhi Special Police Establishment Act, 1946</li>
+            <li class="opt" onclick="answer(this,'wrong')">d) CVC Act, 2003</li>
+          </ul>
+          <div class="explanation">CBI operates under the Delhi Special Police Establishment (DSPE) Act, 1946. The CBI itself was set up in 1963 by executive resolution on Santhanam Committee recommendation. There is no "CBI Act" — CBI is not even a statutory body!</div>
+        </div>
+
+        <!-- Q11 -->
+        <div class="mcq">
+          <div class="stem">NITI Aayog differs from Planning Commission primarily because:</div>
+          <ul class="opts">
+            <li class="opt" onclick="answer(this,'wrong')">a) NITI Aayog is a Constitutional body</li>
+            <li class="opt" onclick="answer(this,'correct')">b) NITI Aayog has no fund allocation powers</li>
+            <li class="opt" onclick="answer(this,'wrong')">c) NITI Aayog prepares Five Year Plans</li>
+            <li class="opt" onclick="answer(this,'wrong')">d) NITI Aayog Chairman is not the PM</li>
+          </ul>
+          <div class="explanation">The key functional difference: NITI Aayog has NO powers to allocate funds to states — this is done by Finance Commission. Planning Commission could control funds through Centrally Sponsored Schemes, giving it enormous leverage. Both are executive resolutions; both have PM as Chairman.</div>
+        </div>
+
+        <!-- Q12 -->
+        <div class="mcq">
+          <div class="stem">The NHRC cannot independently investigate complaints against the Armed Forces. Under Protection of Human Rights Act, what CAN it do?</div>
+          <ul class="opts">
+            <li class="opt" onclick="answer(this,'wrong')">a) Direct court martial proceedings</li>
+            <li class="opt" onclick="answer(this,'correct')">b) Seek a report from the concerned Government</li>
+            <li class="opt" onclick="answer(this,'wrong')">c) Order CBI investigation</li>
+            <li class="opt" onclick="answer(this,'wrong')">d) Suspend the officer concerned</li>
+          </ul>
+          <div class="explanation">Section 19 of PHRA: NHRC can only seek a report from Government regarding complaints against Armed Forces — it CANNOT independently investigate. This is the biggest criticism of NHRC.</div>
+        </div>
+
+        <!-- Q13 -->
+        <div class="mcq">
+          <div class="stem">Which constitutional Article bars courts from interfering in election matters?</div>
+          <ul class="opts">
+            <li class="opt" onclick="answer(this,'wrong')">a) Art. 324</li>
+            <li class="opt" onclick="answer(this,'wrong')">b) Art. 326</li>
+            <li class="opt" onclick="answer(this,'wrong')">c) Art. 327</li>
+            <li class="opt" onclick="answer(this,'correct')">d) Art. 329</li>
+          </ul>
+          <div class="explanation">Art. 329 bars courts from questioning validity of electoral laws (Part (a)) and bars election petitions except as provided by law (Part (b)). Election disputes can only be challenged in Election Petitions before High Court after elections.</div>
+        </div>
+
+        <!-- Q14 -->
+        <div class="mcq">
+          <div class="stem">The CAG's salary is equal to:</div>
+          <ul class="opts">
+            <li class="opt" onclick="answer(this,'wrong')">a) Chief Justice of India</li>
+            <li class="opt" onclick="answer(this,'correct')">b) A Judge of the Supreme Court</li>
+            <li class="opt" onclick="answer(this,'wrong')">c) Chief Election Commissioner</li>
+            <li class="opt" onclick="answer(this,'wrong')">d) Cabinet Secretary</li>
+          </ul>
+          <div class="explanation">CAG's salary = SC Judge (₹2,50,000/month). Note: CEC's salary is also = SC Judge. CJI gets more. This salary is charged to Consolidated Fund of India — not voted in Parliament — ensuring independence.</div>
+        </div>
+
+        <!-- Q15 -->
+        <div class="mcq">
+          <div class="stem">Under which Act is the Enforcement Directorate empowered to attach property related to money laundering?</div>
+          <ul class="opts">
+            <li class="opt" onclick="answer(this,'wrong')">a) FEMA 1999 only</li>
+            <li class="opt" onclick="answer(this,'wrong')">b) IPC and CrPC</li>
+            <li class="opt" onclick="answer(this,'correct')">c) Prevention of Money Laundering Act, 2002</li>
+            <li class="opt" onclick="answer(this,'wrong')">d) CVC Act, 2003</li>
+          </ul>
+          <div class="explanation">ED gets power to arrest, attach property, and prosecute under PMLA 2002. FEMA 1999 deals with foreign exchange violations (civil). ED's key feature: PMLA has reverse burden of proof — accused must prove property is not proceeds of crime.</div>
+        </div>
+
+        <!-- Q16 -->
+        <div class="mcq">
+          <div class="stem">First Lokayukta in India was established in which state?</div>
+          <ul class="opts">
+            <li class="opt" onclick="answer(this,'wrong')">a) Rajasthan</li>
+            <li class="opt" onclick="answer(this,'wrong')">b) Uttar Pradesh</li>
+            <li class="opt" onclick="answer(this,'correct')">c) Maharashtra</li>
+            <li class="opt" onclick="answer(this,'wrong')">d) Karnataka</li>
+          </ul>
+          <div class="explanation">Maharashtra was the first state to establish Lokayukta in 1971. UP established its Lokayukta in 1977 (Justice Vishwambhar Dayal was first). Rajasthan (1973) and Bihar (1974) also preceded UP.</div>
+        </div>
+
+        <!-- Q17 -->
+        <div class="mcq">
+          <div class="stem">Under UPSC Chairman's post-retirement rules (Art. 319), the Chairman is:</div>
+          <ul class="opts">
+            <li class="opt" onclick="answer(this,'wrong')">a) Eligible to become state PSC Chair</li>
+            <li class="opt" onclick="answer(this,'wrong')">b) Eligible for any government appointment</li>
+            <li class="opt" onclick="answer(this,'correct')">c) Ineligible for any further government office</li>
+            <li class="opt" onclick="answer(this,'wrong')">d) Eligible to become Election Commissioner</li>
+          </ul>
+          <div class="explanation">Art. 319: UPSC Chairman is completely ineligible for any further government office after retirement. A UPSC Member (not Chairman) can become UPSC Chairman or a State PSC Chairman. This ensures former UPSC chiefs don't lobby for appointments during their tenure.</div>
+        </div>
+
+        <!-- Q18 -->
+        <div class="mcq">
+          <div class="stem">Which initiative is described as "UP's one-stop portal for 300+ government services"?</div>
+          <ul class="opts">
+            <li class="opt" onclick="answer(this,'wrong')">a) CM Helpline 1076</li>
+            <li class="opt" onclick="answer(this,'correct')">b) e-Sathee</li>
+            <li class="opt" onclick="answer(this,'wrong')">c) IGRS-UP</li>
+            <li class="opt" onclick="answer(this,'wrong')">d) Nivesh Mitra</li>
+          </ul>
+          <div class="explanation">e-Sathee is UP's comprehensive digital service portal for 300+ government services. CM Helpline 1076 = grievance redressal. IGRS-UP = Integrated Grievance Redressal System. Nivesh Mitra = single-window for business investment clearances.</div>
+        </div>
+
+        <!-- Q19 -->
+        <div class="mcq">
+          <div class="stem">The "caged parrot" remark regarding CBI was made by which Court in which case?</div>
+          <ul class="opts">
+            <li class="opt" onclick="answer(this,'wrong')">a) Allahabad HC in Ayodhya Case</li>
+            <li class="opt" onclick="answer(this,'wrong')">b) Delhi HC in 2G Scam case</li>
+            <li class="opt" onclick="answer(this,'correct')">c) Supreme Court in Coal Scam case (2013)</li>
+            <li class="opt" onclick="answer(this,'wrong')">d) Supreme Court in Hawala case</li>
+          </ul>
+          <div class="explanation">In 2013 Coal Scam case, the Supreme Court described CBI as "caged parrot speaking in its master's voice" — criticising the sharing of status reports with government (Law Ministry), which could influence CBI investigations.</div>
+        </div>
+
+        <!-- Q20 -->
+        <div class="mcq">
+          <div class="stem">Which of the following is NOT a function of NITI Aayog?</div>
+          <ul class="opts">
+            <li class="opt" onclick="answer(this,'wrong')">a) Tracking SDG India Index</li>
+            <li class="opt" onclick="answer(this,'wrong')">b) Atal Innovation Mission</li>
+            <li class="opt" onclick="answer(this,'correct')">c) Allocating funds under Centrally Sponsored Schemes to states</li>
+            <li class="opt" onclick="answer(this,'wrong')">d) Aspirational Districts Programme</li>
+          </ul>
+          <div class="explanation">NITI Aayog has NO fund allocation powers — this was the primary change from Planning Commission. Fund allocation (grants, CSS etc.) is done through Finance Commission, Finance Ministry, and line ministries. This is NITI Aayog's biggest limitation.</div>
+        </div>
+
+      </div>
+
+      <div style="text-align:center;margin-top:20px">
+        <button onclick="showAllAnswers()" style="background:var(--accent);color:#fff;border:none;padding:12px 28px;border-radius:8px;font-size:.9rem;font-weight:700;cursor:pointer;margin-right:10px">
+          ✅ Show All Answers
+        </button>
+        <button onclick="resetMCQ()" style="background:var(--rule);color:var(--ink);border:none;padding:12px 28px;border-radius:8px;font-size:.9rem;font-weight:700;cursor:pointer">
+          🔄 Reset
+        </button>
+      </div>
+      <div id="final-score" style="display:none;text-align:center;margin-top:16px;padding:16px;background:#f0fdf4;border-radius:8px">
+        <div style="font-size:1.5rem;font-weight:800;color:var(--green)">Score: <span id="final-num">0</span>/20</div>
+        <div id="score-msg" style="font-size:.9rem;color:var(--muted);margin-top:4px"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /container -->
+
+<script>
+  // Tab navigation
+  function showSection(id) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    event.target.classList.add('active');
+  }
+
+  // MCQ Logic
+  let correct = 0, answered = 0, total = 20;
+
+  function answer(el, type) {
+    const opts = el.closest('.mcq').querySelectorAll('.opt');
+    if (el.classList.contains('correct') || el.classList.contains('wrong')) return; // already answered
+    
+    answered++;
+    if (type === 'correct') {
+      el.classList.add('correct');
+      correct++;
+    } else {
+      el.classList.add('wrong');
+      // show correct
+      opts.forEach(o => {
+        if (o.getAttribute('onclick').includes("'correct'")) o.classList.add('correct');
+      });
+    }
+    // Show explanation
+    el.closest('.mcq').querySelector('.explanation').style.display = 'block';
+  }
+
+  function showAllAnswers() {
+    document.querySelectorAll('.mcq').forEach(mcq => {
+      const opts = mcq.querySelectorAll('.opt');
+      opts.forEach(o => {
+        if (o.getAttribute('onclick').includes("'correct'")) {
+          if (!o.classList.contains('correct') && !o.classList.contains('wrong')) {
+            o.classList.add('correct');
+          }
+        }
+      });
+      mcq.querySelector('.explanation').style.display = 'block';
+    });
+    const el = document.getElementById('final-score');
+    el.style.display = 'block';
+    document.getElementById('final-num').textContent = correct;
+    const pct = Math.round((correct/total)*100);
+    const msgs = {0:'Keep practicing! Governance is learnable.', 10:'Good start! Review the weak areas.', 14:'Above average! You\'re on the right track.', 17:'Excellent! SDM material confirmed 🏆', 20:'Perfect score! You\'re ready for UPPSC 2026!'};
+    let msg = msgs[0];
+    if(correct>=17) msg = msgs[17];
+    else if(correct>=14) msg = msgs[14];
+    else if(correct>=10) msg = msgs[10];
+    else if(correct>=20) msg = msgs[20];
+    document.getElementById('score-msg').textContent = `${pct}% — ${msg}`;
+  }
+
+  function resetMCQ() {
+    correct = 0; answered = 0;
+    document.querySelectorAll('.opt').forEach(o => o.className = 'opt');
+    document.querySelectorAll('.explanation').forEach(e => e.style.display = 'none');
+    document.getElementById('final-score').style.display = 'none';
+    document.querySelectorAll('.opt').forEach(o => {
+      const fn = o.getAttribute('onclick');
+      const type = fn.includes("'correct'") ? 'correct' : 'wrong';
+      o.setAttribute('onclick', `answer(this,'${type}')`);
+    });
+  }
+</script>
+
+</body>
+</html>
