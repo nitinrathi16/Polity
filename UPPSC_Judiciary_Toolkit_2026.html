@@ -1,0 +1,1350 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UPPSC 2026 — Indian Judiciary Toolkit</title>
+<style>
+  /* ===== RESET & BASE ===== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --primary: #1a237e;
+    --primary-light: #3949ab;
+    --accent: #e65100;
+    --accent2: #2e7d32;
+    --accent3: #6a1b9a;
+    --bg: #f8f9fc;
+    --card: #ffffff;
+    --border: #e0e4ef;
+    --text: #1c1c2e;
+    --muted: #5c6380;
+    --highlight: #fff8e1;
+    --highlight2: #e8f5e9;
+    --highlight3: #fce4ec;
+    --highlight4: #e3f2fd;
+    --tag-sc: #e8eaf6;
+    --tag-hc: #e8f5e9;
+    --tag-art: #fff3e0;
+    --radius: 10px;
+    --shadow: 0 2px 14px rgba(26,35,126,0.07);
+  }
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+  /* ===== HEADER ===== */
+  .header {
+    background: linear-gradient(135deg, var(--primary) 0%, #283593 60%, #1565c0 100%);
+    color: #fff;
+    padding: 28px 32px 22px;
+    position: sticky; top: 0; z-index: 100;
+    box-shadow: 0 3px 16px rgba(0,0,0,0.18);
+  }
+  .header-inner { max-width: 1100px; margin: 0 auto; }
+  .header h1 { font-size: 1.55rem; font-weight: 800; letter-spacing: .3px; }
+  .header-sub { font-size: .88rem; opacity: .85; margin-top: 3px; }
+  .badge-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+  .badge {
+    background: rgba(255,255,255,0.18);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 20px;
+    padding: 3px 12px;
+    font-size: .78rem; font-weight: 600;
+    cursor: pointer; transition: background .2s;
+  }
+  .badge:hover { background: rgba(255,255,255,0.32); }
+  /* ===== NAV TABS ===== */
+  .tab-bar {
+    background: #fff;
+    border-bottom: 2px solid var(--border);
+    position: sticky; top: 96px; z-index: 90;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  }
+  .tab-bar-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: flex; overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .tab-bar-inner::-webkit-scrollbar { display: none; }
+  .tab {
+    padding: 11px 18px;
+    font-size: .82rem; font-weight: 600;
+    color: var(--muted);
+    border-bottom: 3px solid transparent;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all .2s;
+    user-select: none;
+  }
+  .tab:hover { color: var(--primary); }
+  .tab.active { color: var(--primary); border-bottom-color: var(--primary); }
+  /* ===== LAYOUT ===== */
+  .container { max-width: 1100px; margin: 0 auto; padding: 24px 20px 60px; }
+  .section { display: none; }
+  .section.active { display: block; }
+  /* ===== CARDS ===== */
+  .card {
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+    margin-bottom: 22px;
+    overflow: hidden;
+  }
+  .card-header {
+    padding: 14px 20px;
+    font-size: 1rem; font-weight: 700;
+    display: flex; align-items: center; gap: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  .card-header.sc { background: var(--tag-sc); color: var(--primary); }
+  .card-header.hc { background: var(--tag-hc); color: var(--accent2); }
+  .card-header.art { background: var(--tag-art); color: var(--accent); }
+  .card-header.case { background: #f3e5f5; color: var(--accent3); }
+  .card-header.recent { background: #fce4ec; color: #c62828; }
+  .card-body { padding: 18px 20px; }
+  /* ===== GRID ===== */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  @media(max-width:700px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } }
+  /* ===== TABLES ===== */
+  .tbl { width: 100%; border-collapse: collapse; font-size: .88rem; }
+  .tbl th {
+    background: var(--primary); color: #fff;
+    padding: 9px 12px; text-align: left; font-weight: 700;
+  }
+  .tbl td { padding: 8px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .tbl tr:last-child td { border-bottom: none; }
+  .tbl tr:nth-child(even) td { background: #f4f6fb; }
+  /* ===== TAGS ===== */
+  .tag {
+    display: inline-block;
+    padding: 2px 9px; border-radius: 12px;
+    font-size: .74rem; font-weight: 700;
+    margin: 2px 2px;
+  }
+  .tag.sc { background: #e8eaf6; color: #1a237e; }
+  .tag.hc { background: #e8f5e9; color: #2e7d32; }
+  .tag.art { background: #fff3e0; color: #e65100; }
+  .tag.year { background: #e0f7fa; color: #006064; }
+  .tag.new { background: #fce4ec; color: #b71c1c; }
+  .tag.imp { background: #f3e5f5; color: #4a148c; }
+  /* ===== CASE BOX ===== */
+  .case-box {
+    border-left: 4px solid var(--accent3);
+    background: #faf5ff;
+    border-radius: 0 8px 8px 0;
+    padding: 14px 16px;
+    margin-bottom: 14px;
+  }
+  .case-box.red { border-color: #c62828; background: #fff5f5; }
+  .case-box.green { border-color: #2e7d32; background: #f1faf3; }
+  .case-box.blue { border-color: #1565c0; background: #f0f4ff; }
+  .case-box.orange { border-color: #e65100; background: #fff8f0; }
+  .case-title { font-weight: 800; font-size: .95rem; color: var(--text); }
+  .case-meta { font-size: .8rem; color: var(--muted); margin: 3px 0 6px; }
+  .case-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px; }
+  @media(max-width:600px) { .case-grid { grid-template-columns: 1fr; } }
+  .case-field { font-size: .83rem; }
+  .case-field span { font-weight: 700; color: var(--primary); }
+  /* ===== INFO BOXES ===== */
+  .info-box {
+    border-radius: 8px;
+    padding: 13px 16px;
+    margin-bottom: 14px;
+    font-size: .88rem;
+  }
+  .info-box.blue { background: var(--highlight4); border-left: 4px solid #1565c0; }
+  .info-box.yellow { background: var(--highlight); border-left: 4px solid #f9a825; }
+  .info-box.green { background: var(--highlight2); border-left: 4px solid #2e7d32; }
+  .info-box.red { background: var(--highlight3); border-left: 4px solid #c62828; }
+  .info-box b { display: block; margin-bottom: 4px; font-size: .9rem; }
+  /* ===== MCQ ===== */
+  .mcq-item {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 14px;
+    overflow: hidden;
+  }
+  .mcq-q {
+    padding: 13px 16px;
+    font-weight: 600; font-size: .9rem;
+    background: #f8f9fc;
+    border-bottom: 1px solid var(--border);
+  }
+  .mcq-opts { padding: 10px 16px 6px; }
+  .mcq-opt {
+    display: flex; align-items: flex-start; gap: 10px;
+    padding: 6px 0;
+    font-size: .88rem; cursor: pointer;
+    border-radius: 5px;
+    transition: background .15s;
+  }
+  .mcq-opt:hover { background: #f0f2ff; }
+  .mcq-opt .opt-key {
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    background: var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: .78rem; font-weight: 700; flex-shrink: 0;
+    transition: background .15s, color .15s;
+  }
+  .mcq-opt.correct .opt-key { background: #2e7d32; color: #fff; }
+  .mcq-opt.wrong .opt-key { background: #c62828; color: #fff; }
+  .mcq-opt.revealed.correct-ans .opt-key { background: #2e7d32; color: #fff; }
+  .mcq-answer {
+    padding: 10px 16px;
+    background: #e8f5e9;
+    border-top: 1px solid #c8e6c9;
+    font-size: .85rem;
+    display: none;
+  }
+  .mcq-answer.show { display: block; }
+  .mcq-answer strong { color: #1b5e20; }
+  /* ===== STRUCTURE TREE ===== */
+  .tree { font-size: .88rem; }
+  .tree-node {
+    padding: 7px 12px;
+    border-left: 3px solid var(--primary-light);
+    margin-left: 16px;
+    margin-bottom: 6px;
+    background: #f4f6fb;
+    border-radius: 0 6px 6px 0;
+  }
+  .tree-node.l2 { margin-left: 36px; border-color: var(--accent2); background: #f1faf3; }
+  .tree-node.l3 { margin-left: 56px; border-color: var(--accent); background: #fff8f0; font-size: .83rem; }
+  .tree-root {
+    background: var(--primary);
+    color: #fff;
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    display: inline-block;
+  }
+  /* ===== ARTICLE BOX ===== */
+  .art-box {
+    display: flex; gap: 12px;
+    background: #f8f9fc;
+    border-radius: 8px;
+    padding: 12px 14px;
+    margin-bottom: 10px;
+    border: 1px solid var(--border);
+  }
+  .art-num {
+    font-size: 1.1rem; font-weight: 900;
+    color: var(--primary);
+    min-width: 60px;
+    display: flex; align-items: center; justify-content: center;
+    background: #e8eaf6;
+    border-radius: 6px;
+    padding: 4px 8px;
+    text-align: center; line-height: 1.3;
+  }
+  .art-desc { font-size: .87rem; flex: 1; }
+  .art-desc strong { color: var(--accent); display: block; margin-bottom: 3px; }
+  /* ===== STAT PILLS ===== */
+  .stat-row { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
+  .stat-pill {
+    background: var(--primary);
+    color: #fff;
+    border-radius: 8px;
+    padding: 10px 16px;
+    text-align: center;
+    flex: 1; min-width: 110px;
+  }
+  .stat-pill .val { font-size: 1.4rem; font-weight: 900; }
+  .stat-pill .lbl { font-size: .74rem; opacity: .85; }
+  .stat-pill.orange { background: var(--accent); }
+  .stat-pill.green { background: var(--accent2); }
+  .stat-pill.purple { background: var(--accent3); }
+  /* ===== TIMELINE ===== */
+  .timeline { position: relative; padding-left: 28px; }
+  .timeline::before {
+    content: '';
+    position: absolute; left: 10px; top: 0; bottom: 0;
+    width: 2px; background: var(--border);
+  }
+  .tl-item { position: relative; margin-bottom: 16px; }
+  .tl-dot {
+    position: absolute; left: -22px; top: 4px;
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: var(--primary);
+    border: 2px solid #fff;
+    box-shadow: 0 0 0 2px var(--primary);
+  }
+  .tl-year { font-size: .78rem; font-weight: 800; color: var(--primary); margin-bottom: 2px; }
+  .tl-content { font-size: .87rem; }
+  /* ===== PRINT ===== */
+  @media print {
+    .header { position: static; }
+    .tab-bar { display: none; }
+    .section { display: block !important; page-break-after: always; }
+    .badge { display: none; }
+    body { font-size: 12px; }
+    .card { box-shadow: none; border: 1px solid #ccc; }
+    .mcq-answer { display: block !important; }
+    .tbl { font-size: 10px; }
+  }
+  /* ===== MISC ===== */
+  ul.check li { list-style: none; padding-left: 22px; position: relative; margin-bottom: 4px; font-size: .88rem; }
+  ul.check li::before { content: '✓'; position: absolute; left: 0; color: var(--accent2); font-weight: 900; }
+  .emoji { font-size: 1.2rem; }
+  .section-title { font-size: 1.2rem; font-weight: 800; color: var(--primary); margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+  .progress-bar-bg { background: #e0e4ef; border-radius: 6px; height: 6px; margin: 4px 0; }
+  .progress-bar { height: 6px; border-radius: 6px; background: linear-gradient(90deg, var(--primary), var(--primary-light)); }
+  .sticky-note {
+    background: #fffde7;
+    border: 1px dashed #f9a825;
+    border-radius: 6px;
+    padding: 10px 14px;
+    font-size: .85rem;
+    margin-bottom: 14px;
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-inner">
+    <h1>⚖️ UPPSC 2026 — Indian Judiciary Complete Toolkit</h1>
+    <div class="header-sub">SDM/PCS Pre Target | Top-10 Rank Preparation | Quality Over Quantity</div>
+    <div class="badge-row">
+      <span class="badge" onclick="showTab('structure')">🏛 Court Structure</span>
+      <span class="badge" onclick="showTab('articles')">📜 Key Articles</span>
+      <span class="badge" onclick="showTab('doctrines')">🔬 Doctrines</span>
+      <span class="badge" onclick="showTab('landmark')">⚡ Landmark Cases</span>
+      <span class="badge" onclick="showTab('recent')">🆕 2024-25 Judgments</span>
+      <span class="badge" onclick="showTab('allahabadhc')">🏢 Allahabad HC</span>
+      <span class="badge" onclick="showTab('pil')">📢 PIL & Tribunals</span>
+      <span class="badge" onclick="showTab('mcq')">📝 20 MCQs</span>
+    </div>
+  </div>
+</div>
+
+<!-- TAB BAR -->
+<div class="tab-bar">
+  <div class="tab-bar-inner">
+    <div class="tab active" onclick="showTab('structure')">🏛 Court Structure</div>
+    <div class="tab" onclick="showTab('articles')">📜 Articles</div>
+    <div class="tab" onclick="showTab('doctrines')">🔬 Doctrines</div>
+    <div class="tab" onclick="showTab('landmark')">⚡ Landmark Cases</div>
+    <div class="tab" onclick="showTab('recent')">🆕 2024-25</div>
+    <div class="tab" onclick="showTab('allahabadhc')">🏢 Allahabad HC</div>
+    <div class="tab" onclick="showTab('pil')">📢 PIL & Tribunals</div>
+    <div class="tab" onclick="showTab('mcq')">📝 MCQs</div>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- ==================== SECTION 1: COURT STRUCTURE ==================== -->
+<div class="section active" id="section-structure">
+  <div class="section-title">🏛️ Indian Judiciary — Hierarchical Structure</div>
+  
+  <div class="stat-row">
+    <div class="stat-pill"><div class="val">34</div><div class="lbl">SC Judges (Max)</div></div>
+    <div class="stat-pill orange"><div class="val">25</div><div class="lbl">High Courts</div></div>
+    <div class="stat-pill green"><div class="val">Art. 124</div><div class="lbl">SC Established</div></div>
+    <div class="stat-pill purple"><div class="val">26 Jan 1950</div><div class="lbl">SC Inaugurated</div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header sc">🌳 Judicial Hierarchy Tree</div>
+    <div class="card-body">
+      <div class="tree">
+        <div class="tree-root">🇮🇳 SUPREME COURT OF INDIA (Art. 124-147)</div>
+        <div class="tree-node">⚖️ <b>Supreme Court</b> — Apex Court | New Delhi | CJI + 33 Judges (Max 34)</div>
+        <div class="tree-node l2">🏛️ <b>High Courts (25)</b> — Art. 214-231 | Each State/UT</div>
+        <div class="tree-node l3">📋 District Courts (Sessions + Civil) — Art. 233</div>
+        <div class="tree-node l3">⚡ Fast Track Courts | Family Courts | Motor Accident Claims Tribunals</div>
+        <div class="tree-node l3">🏘️ Munsiff Courts | Executive Magistrate Courts</div>
+        <div class="tree-node l3">⚙️ Gram Nyayalayas (Village Courts) — Gram Nyayalayas Act 2008</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-header sc">⚖️ Supreme Court — Key Facts</div>
+      <div class="card-body">
+        <table class="tbl">
+          <tr><th>Parameter</th><th>Detail</th></tr>
+          <tr><td>Established</td><td>Art. 124 | Jan 26, 1950</td></tr>
+          <tr><td>CJI Appointment</td><td>President on advice of outgoing CJI</td></tr>
+          <tr><td>Judges</td><td>CJI + Max 33 other judges</td></tr>
+          <tr><td>Tenure</td><td>Age 65 years (retirement)</td></tr>
+          <tr><td>Quorum</td><td>Minimum 5 Judges for Constitution Bench</td></tr>
+          <tr><td>Seat</td><td>New Delhi (also sits at other places)</td></tr>
+          <tr><td>Removal</td><td>Art. 124(4) — Impeachment by Parliament</td></tr>
+          <tr><td>Salary</td><td>Charged to Consolidated Fund of India</td></tr>
+          <tr><td>Current CJI</td><td>Justice Sanjiv Khanna (Nov 2024 – May 2025) → Justice B.R. Gavai (May 2025–)</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header sc">🎯 SC Jurisdiction (UPPSC Favourite)</div>
+      <div class="card-body">
+        <div class="info-box blue">
+          <b>1️⃣ Original Jurisdiction (Art. 131)</b>
+          Centre vs State disputes | State vs State | Centre + State vs State — EXCLUSIVE jurisdiction
+        </div>
+        <div class="info-box yellow">
+          <b>2️⃣ Writ Jurisdiction (Art. 32)</b>
+          Fundamental Rights protection — "Heart & Soul of Constitution" — Dr. B.R. Ambedkar<br>
+          5 Writs: Habeas Corpus | Mandamus | Prohibition | Certiorari | Quo Warranto
+        </div>
+        <div class="info-box green">
+          <b>3️⃣ Appellate Jurisdiction (Art. 132-136)</b>
+          Constitutional matters (Art. 132) | Civil (Art. 133) | Criminal (Art. 134) | SLP (Art. 136)
+        </div>
+        <div class="info-box red">
+          <b>4️⃣ Advisory Jurisdiction (Art. 143)</b>
+          President may seek SC opinion | NOT binding on President
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header sc">📋 5 Writs — Quick Reference (Art. 32 + 226)</div>
+    <div class="card-body">
+      <table class="tbl">
+        <tr><th>Writ</th><th>Meaning</th><th>Purpose</th><th>Against Whom</th><th>Example</th></tr>
+        <tr>
+          <td><b>Habeas Corpus</b><br><span class="tag art">Most Important</span></td>
+          <td>"You have the body"</td>
+          <td>Unlawful detention; produce person before court</td>
+          <td>State or private person</td>
+          <td>Illegal arrest by police</td>
+        </tr>
+        <tr>
+          <td><b>Mandamus</b></td>
+          <td>"We command"</td>
+          <td>Compel public authority to perform legal duty</td>
+          <td>Public authority only (NOT President/Governor)</td>
+          <td>Officer refuses to issue caste certificate</td>
+        </tr>
+        <tr>
+          <td><b>Prohibition</b></td>
+          <td>"To forbid"</td>
+          <td>Prevent lower court from exceeding jurisdiction</td>
+          <td>Judicial/quasi-judicial bodies only</td>
+          <td>Stop inferior court acting beyond power</td>
+        </tr>
+        <tr>
+          <td><b>Certiorari</b></td>
+          <td>"To certify"</td>
+          <td>Quash order of lower court/tribunal</td>
+          <td>Judicial/quasi-judicial bodies</td>
+          <td>Quash biased tribunal order</td>
+        </tr>
+        <tr>
+          <td><b>Quo Warranto</b></td>
+          <td>"By what authority"</td>
+          <td>Challenge right to hold public office</td>
+          <td>Person holding public office</td>
+          <td>Illegal appointment to constitutional post</td>
+        </tr>
+      </table>
+      <div class="info-box yellow" style="margin-top:12px">
+        <b>⚠️ Key Difference: Art. 32 vs Art. 226</b>
+        Art. 32 — SC only, for FR violations only, itself a Fundamental Right (Art. 32) | 
+        Art. 226 — HC, for FR + any legal right, wider scope, discretionary
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header hc">🏛️ High Courts — Structure & Powers</div>
+    <div class="card-body">
+      <div class="grid-2">
+        <div>
+          <table class="tbl">
+            <tr><th>Parameter</th><th>Detail</th></tr>
+            <tr><td>Constitutional Basis</td><td>Art. 214 — Each State to have HC</td></tr>
+            <tr><td>Established by</td><td>Art. 214 | Oldest: Calcutta HC (1862)</td></tr>
+            <tr><td>Chief Justice</td><td>Appointed by President (Art. 217)</td></tr>
+            <tr><td>Judges Appointment</td><td>Collegium System</td></tr>
+            <tr><td>Retirement Age</td><td>62 years</td></tr>
+            <tr><td>Jurisdiction</td><td>Original + Appellate + Supervisory</td></tr>
+            <tr><td>Writ Power</td><td>Art. 226 — Wider than SC</td></tr>
+            <tr><td>Supervision</td><td>Art. 227 — All subordinate courts</td></tr>
+          </table>
+        </div>
+        <div>
+          <div class="info-box blue"><b>HC Original Jurisdiction:</b> Matrimonial disputes, company cases, contempt of court cases, Election petitions (after 2003 amendment — withdrawn)</div>
+          <div class="info-box green"><b>HC Appellate Jurisdiction:</b> Appeals from District Court civil/criminal decisions; Sessions Court decisions</div>
+          <div class="info-box yellow"><b>Art. 227 — Supervisory Jurisdiction:</b> HC superintends ALL courts & tribunals in its jurisdiction. Can call records, give directions. NOT subject to appeal.</div>
+          <div class="info-box red"><b>Art. 226 vs Art. 32:</b> HC writs can be issued against ANY legal violation (not just FRs). HC discretion can be refused if alternative remedy available.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">📊 Subordinate Court Structure (Art. 233-237)</div>
+    <div class="card-body">
+      <div class="grid-3">
+        <div>
+          <div class="info-box blue">
+            <b>Civil Courts</b>
+            District Judge (Highest) → Additional District Judge → Civil Judge (Senior Div.) → Civil Judge (Junior Div.) / Munsiff
+          </div>
+        </div>
+        <div>
+          <div class="info-box green">
+            <b>Criminal Courts (CrPC)</b>
+            Sessions Judge → Addl. Sessions Judge → Chief Judicial Magistrate → Judicial Magistrate → Executive Magistrate
+          </div>
+        </div>
+        <div>
+          <div class="info-box yellow">
+            <b>Appointment</b>
+            District Judge: Governor + HC<br>
+            Other Judges: Governor + HC + UP PSC<br>
+            Art. 233: District judges appointed by Gov. in consultation with HC
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SECTION 2: ARTICLES ==================== -->
+<div class="section" id="section-articles">
+  <div class="section-title">📜 Important Constitutional Articles — Judiciary</div>
+
+  <div class="card">
+    <div class="card-header art">🔑 Supreme Court — Critical Articles (UPPSC MCQ Hotspot)</div>
+    <div class="card-body">
+      <div class="art-box">
+        <div class="art-num">Art.<br>32</div>
+        <div class="art-desc">
+          <strong>Right to Constitutional Remedies — "Heart & Soul of Constitution"</strong>
+          SC has power to issue writs for enforcement of Fundamental Rights. This right itself is a Fundamental Right. Cannot be suspended except during Emergency (Art. 359). Dr. Ambedkar called it "most important article."
+        </div>
+      </div>
+      <div class="art-box">
+        <div class="art-num">Art.<br>124</div>
+        <div class="art-desc">
+          <strong>Establishment of Supreme Court</strong>
+          SC shall consist of CJI + not more than 33 other Judges. President appoints after consultation with SC judges. Judges retire at 65.
+        </div>
+      </div>
+      <div class="art-box">
+        <div class="art-num">Art.<br>131</div>
+        <div class="art-desc">
+          <strong>Original Jurisdiction of SC — EXCLUSIVE</strong>
+          Disputes between Centre vs State | Between two or more States. NOTE: Not applicable to disputes arising from pre-Constitution treaties.
+        </div>
+      </div>
+      <div class="art-box">
+        <div class="art-num">Art.<br>132</div>
+        <div class="art-desc">
+          <strong>Appellate Jurisdiction — Constitutional Cases</strong>
+          Appeal to SC from HC if HC certifies substantial question of constitutional law. 
+        </div>
+      </div>
+      <div class="art-box">
+        <div class="art-num">Art.<br>136</div>
+        <div class="art-desc">
+          <strong>Special Leave Petition (SLP) — Residuary Appellate Power</strong>
+          SC may grant special leave to appeal from ANY judgment/order/decree of ANY court or tribunal in India. DISCRETIONARY. Cannot be filed against Armed Forces Tribunals.
+        </div>
+      </div>
+      <div class="art-box">
+        <div class="art-num">Art.<br>137</div>
+        <div class="art-desc">
+          <strong>Review of SC Judgments</strong>
+          SC can review its own judgments. Review petition to be filed within 30 days. Grounds: Error apparent on face of record; new evidence; any sufficient reason.
+        </div>
+      </div>
+      <div class="art-box">
+        <div class="art-num">Art.<br>141</div>
+        <div class="art-desc">
+          <strong>Law Declared by SC — Binding on ALL Courts</strong>
+          SC decisions binding on ALL courts in India territory. Not binding on SC itself (can depart by larger bench).
+        </div>
+      </div>
+      <div class="art-box">
+        <div class="art-num">Art.<br>142</div>
+        <div class="art-desc">
+          <strong>SC Power to Do Complete Justice</strong>
+          SC may pass such decree/order as necessary for doing complete justice in any cause/matter. THIS IS VERY WIDE — can override statutory laws in some cases. Used in Bhopal Gas case, etc.
+        </div>
+      </div>
+      <div class="art-box">
+        <div class="art-num">Art.<br>143</div>
+        <div class="art-desc">
+          <strong>Advisory Jurisdiction — President's Reference</strong>
+          President may refer questions of law/fact to SC. SC may refuse advisory opinion. Opinion is NOT binding on President. Used: Ram Janmabhoomi, Cauvery Water Dispute etc.
+        </div>
+      </div>
+      <div class="art-box">
+        <div class="art-num">Art.<br>145</div>
+        <div class="art-desc">
+          <strong>Rules of SC — Procedure</strong>
+          SC can make rules for its practice and procedure with President's approval. Minimum 5 judges for substantive questions of constitutional interpretation.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header hc">🏛️ High Court — Critical Articles</div>
+    <div class="card-body">
+      <div class="art-box">
+        <div class="art-num">Art.<br>214</div>
+        <div class="art-desc"><strong>High Court for every State</strong> — Each State shall have a HC. Parliament can establish common HC for two or more states.</div>
+      </div>
+      <div class="art-box">
+        <div class="art-num">Art.<br>217</div>
+        <div class="art-desc"><strong>HC Judges Appointment</strong> — President appoints every HC Judge in consultation with CJI + Governor of State + Chief Justice of HC. Collegium system now applies.</div>
+      </div>
+      <div class="art-box">
+        <div class="art-num">Art.<br>226</div>
+        <div class="art-desc"><strong>HC Power to Issue Writs</strong> — For enforcement of FRs OR any other purpose. Wider than Art. 32. Can issue writs against both state and private persons for FRs. Discretionary remedy.</div>
+      </div>
+      <div class="art-box">
+        <div class="art-num">Art.<br>227</div>
+        <div class="art-desc"><strong>HC Superintendence over subordinate courts</strong> — HC superintends all civil, criminal courts and tribunals throughout the state. Can call records, give directions, frame rules of practice. NOT subject to Art. 136 appeal.</div>
+      </div>
+      <div class="art-box">
+        <div class="art-num">Art.<br>228</div>
+        <div class="art-desc"><strong>Transfer of Cases to HC</strong> — If HC satisfied substantial constitutional question is involved, can withdraw case from subordinate court and decide itself.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header art">⚡ Judicial Review — Key Articles</div>
+    <div class="card-body">
+      <div class="grid-2">
+        <div>
+          <div class="info-box blue">
+            <b>Art. 13 — Laws inconsistent with FRs are void</b><br>
+            Pre-constitutional laws + Post-constitutional laws | Definition of "law" includes ordinances, orders, rules etc. | Basis of Judicial Review in India
+          </div>
+          <div class="info-box yellow">
+            <b>Art. 368 — Power to amend Constitution</b><br>
+            Parliament's amending power. Checked by Basic Structure Doctrine. Cannot abrogate basic features (Kesavananda Bharati 1973).
+          </div>
+        </div>
+        <div>
+          <div class="info-box green">
+            <b>Art. 21 — Right to Life (Expanded Scope)</b><br>
+            Originally: "No person shall be deprived of life or personal liberty except according to procedure established by law."<br>
+            After Maneka Gandhi (1978): Includes RIGHT TO LIVE WITH DIGNITY, livelihood, privacy, health, education, environment etc.
+          </div>
+          <div class="info-box red">
+            <b>Art. 19 — 6 Freedoms</b><br>
+            (a) Speech & Expression | (b) Assembly | (c) Association | (d) Movement | (e) Residence | (g) Profession/Trade<br>
+            Reasonable restrictions: Art. 19(2)-(6)
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SECTION 3: DOCTRINES ==================== -->
+<div class="section" id="section-doctrines">
+  <div class="section-title">🔬 Key Doctrines & Concepts</div>
+
+  <div class="card">
+    <div class="card-header case">🏛️ Basic Structure Doctrine — Kesavananda Bharati (1973)</div>
+    <div class="card-body">
+      <div class="info-box blue">
+        <b>Case: Kesavananda Bharati v. State of Kerala | 1973 | 13-Judge Bench (7:6)</b><br>
+        Longest bench in SC history | 703 pages judgment | Decided April 24, 1973
+      </div>
+      <div class="grid-2">
+        <div>
+          <div class="info-box yellow">
+            <b>🔑 Holding:</b> Parliament can amend ANY provision of Constitution under Art. 368 BUT cannot destroy/abrogate its BASIC STRUCTURE.
+          </div>
+          <div class="info-box green">
+            <b>Elements of Basic Structure (identified over time):</b><br>
+            ✓ Supremacy of Constitution<br>
+            ✓ Republican & Democratic form of government<br>
+            ✓ Secular character<br>
+            ✓ Federal character<br>
+            ✓ Separation of Powers<br>
+            ✓ Fundamental Rights<br>
+            ✓ Rule of Law<br>
+            ✓ Judicial Review<br>
+            ✓ Free & Fair elections<br>
+            ✓ Unity & Integrity of nation<br>
+            ✓ Parliamentary system<br>
+            ✓ Independence of Judiciary<br>
+            ✓ Limited power of Parliament to amend
+          </div>
+        </div>
+        <div>
+          <div class="info-box red">
+            <b>Background — Golak Nath (1967):</b><br>
+            SC held Parliament CANNOT amend FR at all. Led to 24th Constitutional Amendment (Art. 368 amended) + 25th Amendment (Art. 31C added) by Indira Gandhi govt.
+          </div>
+          <div class="info-box blue">
+            <b>Why Important for UPPSC:</b><br>
+            • Overruled Golak Nath — gave Parliament power to amend FRs<br>
+            • BUT added "Basic Structure" limit<br>
+            • Led to Emergency (1975) & 42nd Amendment controversy<br>
+            • Affirmed in Indira Nehru Gandhi v. Raj Narain (1975) — added "free & fair elections" to basic structure
+          </div>
+          <div class="timeline" style="margin-top:12px">
+            <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">1967</div><div class="tl-content">Golak Nath — Parliament cannot amend FRs</div></div>
+            <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">1971</div><div class="tl-content">24th Amendment — Parliament CAN amend FRs (Art. 368 amended)</div></div>
+            <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">1973</div><div class="tl-content">Kesavananda — Basic Structure doctrine; Parliament can amend but not destroy</div></div>
+            <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">1975</div><div class="tl-content">39th Amendment — Election disputes of PM immune from judicial review → struck down</div></div>
+            <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">1980</div><div class="tl-content">Minerva Mills — Art. 368 amended: Basic structure = balance between FRs and DPSPs</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header case">⚖️ Judicial Review — Concept & Scope</div>
+    <div class="card-body">
+      <div class="grid-2">
+        <div>
+          <div class="info-box blue">
+            <b>Definition:</b> Power of courts to examine legislative enactments and executive orders to determine if they violate the Constitution. If unconstitutional → VOID.
+          </div>
+          <div class="info-box yellow">
+            <b>Basis:</b> Art. 13 (laws inconsistent with FRs void) + Art. 32 + Art. 226 + Art. 246 (Subject matter distribution)
+          </div>
+          <div class="info-box green">
+            <b>Indian vs USA Review:</b><br>
+            India: Limited (scope of Constitution) | USA: Broader (Judge-made law — Marbury v. Madison 1803) | India does NOT have "due process of law" (has "procedure established by law" — Art. 21)
+          </div>
+        </div>
+        <div>
+          <div class="info-box red">
+            <b>What can be reviewed:</b><br>
+            ✓ Parliamentary Acts<br>
+            ✓ State Legislature Acts<br>
+            ✓ Constitutional Amendments (if violate basic structure)<br>
+            ✓ Executive actions / Ordinances<br>
+            ✗ Policies of government (unless arbitrary/violate FRs)
+          </div>
+          <div class="info-box blue">
+            <b>Key Case: L. Chandra Kumar (1997)</b><br>
+            Judicial review is part of BASIC STRUCTURE of Constitution. Tribunals cannot exclude HC's supervisory jurisdiction under Art. 226/227.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header case">👥 Collegium System — Judicial Appointments</div>
+    <div class="card-body">
+      <div class="grid-2">
+        <div>
+          <div class="timeline">
+            <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">First Judges Case (1981)</div><div class="tl-content">S.P. Gupta v. Union of India — Executive primacy in judicial appointments</div></div>
+            <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">Second Judges Case (1993)</div><div class="tl-content">SC Advocates-on-Record v. Union of India — CJI's recommendation binding; collegium born</div></div>
+            <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">Third Judges Case (1998)</div><div class="tl-content">Presidential Reference — Collegium = CJI + 4 senior-most SC judges</div></div>
+            <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">NJAC Judgment (2015)</div><div class="tl-content">99th Amendment + NJAC Act struck down — collegium system reaffirmed</div></div>
+          </div>
+        </div>
+        <div>
+          <div class="info-box yellow">
+            <b>Current Collegium System:</b><br>
+            SC Judges: Recommended by CJI + 4 senior-most SC Judges<br>
+            HC Judges: Recommended by Chief Justice of HC + 2 senior-most HC Judges + consulted by SC Collegium<br>
+            Transfer of HC Judges: SC Collegium recommendation
+          </div>
+          <div class="info-box red">
+            <b>NJAC (2015) — Why Struck Down:</b><br>
+            National Judicial Appointments Commission included: CJI + 2 senior SC judges + Law Minister + 2 eminent persons. SC held: Independence of Judiciary = Basic Structure; executive in appointments = threat to independence.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header case">🛡️ Independence of Judiciary — Safeguards</div>
+    <div class="card-body">
+      <table class="tbl">
+        <tr><th>Safeguard</th><th>Constitutional Provision</th><th>Significance</th></tr>
+        <tr><td>Security of Tenure</td><td>Art. 124(4) — Removal only by impeachment</td><td>No judge removed till date</td></tr>
+        <tr><td>Salary from CFI</td><td>Art. 112 — Not subject to Parliamentary vote</td><td>Free from legislative pressure</td></tr>
+        <tr><td>No practice after retirement</td><td>Art. 124(7) — SC judge cannot plead in any court</td><td>Prevents post-retirement bias</td></tr>
+        <tr><td>Power to punish contempt</td><td>Art. 129 & 215</td><td>Protects dignity of courts</td></tr>
+        <tr><td>Judicial Review</td><td>Art. 13 + Basic Structure</td><td>Cannot be curtailed</td></tr>
+        <tr><td>Conduct not in Parliament</td><td>Art. 121</td><td>Discussion on judges restricted in Parliament</td></tr>
+        <tr><td>Distinction from Executive</td><td>Art. 50 DPSP</td><td>Separation of powers</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SECTION 4: LANDMARK CASES ==================== -->
+<div class="section" id="section-landmark">
+  <div class="section-title">⚡ Landmark Cases — Must Remember with Year</div>
+
+  <div class="sticky-note">📌 <b>UPPSC Exam Strategy:</b> Year + Case name + One-liner decision = Full marks. Focus on cases marked <span class="tag new">TOP PRIORITY</span></div>
+
+  <div class="card">
+    <div class="card-header case">🏆 Tier-1: Absolutely Must Know</div>
+    <div class="card-body">
+
+      <div class="case-box blue">
+        <div class="case-title">🔵 Kesavananda Bharati v. State of Kerala</div>
+        <div class="case-meta">1973 | 13-Judge Bench | Art. 368 | <span class="tag new">TOP PRIORITY</span></div>
+        <div class="case-grid">
+          <div class="case-field"><span>Issue:</span> Can Parliament amend any part of Constitution including FRs?</div>
+          <div class="case-field"><span>Decision:</span> Yes, but Basic Structure cannot be destroyed/abrogated</div>
+          <div class="case-field"><span>Significance:</span> Foundation of constitutionalism; limits Parliamentary sovereignty</div>
+          <div class="case-field"><span>Legacy:</span> NJAC (2015) struck down using this doctrine</div>
+        </div>
+      </div>
+
+      <div class="case-box orange">
+        <div class="case-title">🟠 Maneka Gandhi v. Union of India</div>
+        <div class="case-meta">1978 | 7-Judge Bench | Art. 21 | <span class="tag new">TOP PRIORITY</span></div>
+        <div class="case-grid">
+          <div class="case-field"><span>Issue:</span> Passport impounded without hearing — Art. 21 violated?</div>
+          <div class="case-field"><span>Decision:</span> "Procedure established by law" must be fair, just & reasonable (not just any procedure)</div>
+          <div class="case-field"><span>Significance:</span> Expanded Art. 21; linked Art. 14, 19, 21 together; brought "due process" principle</div>
+          <div class="case-field"><span>Overruled:</span> A.K. Gopalan (1950) which read articles in isolation</div>
+        </div>
+      </div>
+
+      <div class="case-box green">
+        <div class="case-title">🟢 Vishaka v. State of Rajasthan</div>
+        <div class="case-meta">1997 | SC | Sexual Harassment | <span class="tag new">TOP PRIORITY</span></div>
+        <div class="case-grid">
+          <div class="case-field"><span>Issue:</span> Bhanwari Devi gang rape; no law for workplace sexual harassment</div>
+          <div class="case-field"><span>Decision:</span> SC laid down Vishaka Guidelines — employer duty to prevent sexual harassment</div>
+          <div class="case-field"><span>Significance:</span> Guidelines had force of law till POSH Act 2013 was enacted</div>
+          <div class="case-field"><span>Legacy:</span> Prevention of Sexual Harassment at Workplace Act, 2013</div>
+        </div>
+      </div>
+
+      <div class="case-box red">
+        <div class="case-title">🔴 SR Bommai v. Union of India</div>
+        <div class="case-meta">1994 | 9-Judge Bench | Art. 356 | <span class="tag new">TOP PRIORITY</span></div>
+        <div class="case-grid">
+          <div class="case-field"><span>Issue:</span> Validity of President's Rule in various states (Karnataka, MP, HP, Rajasthan)</div>
+          <div class="case-field"><span>Decision:</span> President's Rule is SUBJECT to judicial review; floor test must be held; majority test = democracy</div>
+          <div class="case-field"><span>Significance:</span> Curbed misuse of Art. 356; Secularism = Basic Structure; states are NOT merely agents of Centre</div>
+          <div class="case-field"><span>Legacy:</span> Reduced arbitrary use of Art. 356 from 90+ times to rare occasions</div>
+        </div>
+      </div>
+
+      <div class="case-box blue">
+        <div class="case-title">🔵 Indira Sawhney v. Union of India (Mandal Case)</div>
+        <div class="case-meta">1992 | 9-Judge Bench | OBC Reservation | Art. 16(4)</div>
+        <div class="case-grid">
+          <div class="case-field"><span>Issue:</span> 27% OBC reservation validity; creamy layer; 50% ceiling</div>
+          <div class="case-field"><span>Decision:</span> 27% OBC reservation valid; 50% ceiling on reservations (except extraordinary circumstances); creamy layer to be excluded; no reservation in promotions</div>
+          <div class="case-field"><span>Significance:</span> Established 50% ceiling rule followed till date</div>
+          <div class="case-field"><span>2024 Update:</span> Sub-classification within SC/ST now permitted (State of Punjab v. Davinder Singh 2024)</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header case">📚 Tier-2: Important Landmark Cases</div>
+    <div class="card-body">
+      <table class="tbl">
+        <tr><th>Case</th><th>Year</th><th>Key Holding</th><th>Article</th></tr>
+        <tr><td><b>A.K. Gopalan v. State of Madras</b></td><td>1950</td><td>FRs read in isolation; "procedure established by law" = any procedure prescribed by State</td><td>Art. 21</td></tr>
+        <tr><td><b>Shankari Prasad v. Union of India</b></td><td>1951</td><td>Parliament can amend FRs under Art. 368; "law" in Art. 13 = ordinary law, not constitutional amendments</td><td>Art. 13, 368</td></tr>
+        <tr><td><b>Golak Nath v. State of Punjab</b></td><td>1967</td><td>Parliament cannot amend Part III (FRs) at all → Later overruled by Kesavananda</td><td>Art. 368</td></tr>
+        <tr><td><b>Minerva Mills v. Union of India</b></td><td>1980</td><td>42nd Amendment (gave primacy to DPSPs over FRs) struck down; balance between FRs and DPSPs = basic structure</td><td>Art. 31C, 368</td></tr>
+        <tr><td><b>Bandhua Mukti Morcha v. Union of India</b></td><td>1984</td><td>PIL; SC directed release of bonded labourers; Art. 21 = dignified life</td><td>Art. 21, 32</td></tr>
+        <tr><td><b>Olga Tellis v. Bombay Municipal Corp.</b></td><td>1985</td><td>Right to livelihood = part of Art. 21; pavement dwellers cannot be evicted without alternative</td><td>Art. 21</td></tr>
+        <tr><td><b>M.C. Mehta v. Union of India</b></td><td>1987</td><td>Absolute liability doctrine; Shriram Gas Leak case; polluter pays principle</td><td>Art. 32, 21</td></tr>
+        <tr><td><b>Unni Krishnan v. State of AP</b></td><td>1993</td><td>Right to education (up to 14 years) = Part of Art. 21 → Led to Art. 21A (86th Amendment 2002)</td><td>Art. 21</td></tr>
+        <tr><td><b>L. Chandra Kumar v. Union of India</b></td><td>1997</td><td>Judicial review is part of basic structure; tribunal orders subject to HC review under Art. 226/227</td><td>Art. 226, 227</td></tr>
+        <tr><td><b>People's Union for Civil Liberties v. UOI</b></td><td>2003</td><td>Right to food as part of Art. 21; midday meal scheme ordered</td><td>Art. 21</td></tr>
+        <tr><td><b>I.R. Coelho v. State of Tamil Nadu</b></td><td>2007</td><td>9th Schedule protection not absolute; laws included after Kesavananda subject to basic structure review</td><td>Art. 31B, 9th Sch.</td></tr>
+        <tr><td><b>Navtej Singh Johar v. Union of India</b></td><td>2018</td><td>Decriminalized homosexuality; Section 377 IPC (partly); sexual orientation = identity under Art. 21</td><td>Art. 14, 15, 19, 21</td></tr>
+        <tr><td><b>K.S. Puttaswamy (Privacy) v. UOI</b></td><td>2017</td><td>Right to Privacy is a Fundamental Right under Art. 21 (9-judge bench); overruled M.P. Sharma & Kharak Singh</td><td>Art. 21</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SECTION 5: RECENT 2024-25 ==================== -->
+<div class="section" id="section-recent">
+  <div class="section-title">🆕 Important SC Judgments 2024-2025 (Web Searched)</div>
+  
+  <div class="info-box yellow" style="margin-bottom:16px">
+    <b>⚡ UPPSC 2026 High Value Zone:</b> These judgments are most likely to appear in 2026 prelims. UP-connected cases marked 🔴
+  </div>
+
+  <div class="card">
+    <div class="card-header recent">📅 2024 — Major Judgments</div>
+    <div class="card-body">
+
+      <div class="case-box blue">
+        <div class="case-title">🔵 Association for Democratic Reforms v. Union of India — Electoral Bonds Case</div>
+        <div class="case-meta">February 15, 2024 | 5-Judge Constitution Bench | <span class="tag new">HIGH PRIORITY</span> <span class="tag year">2024</span></div>
+        <div class="case-grid">
+          <div class="case-field"><span>Issue:</span> Constitutional validity of Electoral Bond Scheme (2017)</div>
+          <div class="case-field"><span>Decision:</span> UNANIMOUSLY struck down — violates Art. 19(1)(a) Right to Information about political funding</div>
+          <div class="case-field"><span>Bench:</span> CJI DY Chandrachud + Justices Sanjiv Khanna, BR Gavai, JB Pardiwala, Manoj Misra</div>
+          <div class="case-field"><span>Direction:</span> SBI to submit bond data to ECI; ECI to publish on website by March 2024</div>
+        </div>
+        <div style="margin-top:8px; font-size:.83rem; color:var(--accent3)">📌 Significance: Voters' Right to know political funding = Fundamental Right under Art. 19(1)(a)</div>
+      </div>
+
+      <div class="case-box orange">
+        <div class="case-title">🟠 State of Punjab v. Davinder Singh — SC/ST Sub-Classification</div>
+        <div class="case-meta">August 1, 2024 | 7-Judge Bench | 6:1 Majority | <span class="tag new">HIGH PRIORITY</span></div>
+        <div class="case-grid">
+          <div class="case-field"><span>Issue:</span> Can States sub-classify within SC/ST categories for separate reservation quotas?</div>
+          <div class="case-field"><span>Decision:</span> YES — States CAN sub-classify; overruled EV Chinnaiah (2004)</div>
+          <div class="case-field"><span>Condition:</span> Sub-classification must be based on empirical data; state cannot earmark 100% for sub-class</div>
+          <div class="case-field"><span>Dissent:</span> Justice Bela Trivedi (sole dissent)</div>
+        </div>
+        <div style="margin-top:8px; font-size:.83rem; color:var(--accent3)">📌 UP Angle: Impacts UP's SC reservation policy; creamy layer within SC flagged by Justice Gavai</div>
+      </div>
+
+      <div class="case-box green">
+        <div class="case-title">🟢 Aligarh Muslim University (AMU) Minority Status Case 🔴</div>
+        <div class="case-meta">November 8, 2024 | 7-Judge Bench | 4:3 Majority | <span class="tag new">UP ANGLE</span></div>
+        <div class="case-grid">
+          <div class="case-field"><span>Issue:</span> Is AMU a minority institution under Art. 30?</div>
+          <div class="case-field"><span>Decision:</span> Overruled Azeez Basha (1967); statutory incorporation does NOT negate minority character</div>
+          <div class="case-field"><span>Test:</span> "Who established the institution" — if minority = minority status</div>
+          <div class="case-field"><span>Next Step:</span> Actual determination of AMU's minority status sent to regular bench</div>
+        </div>
+        <div style="margin-top:8px; font-size:.83rem; color:var(--accent3)">📌 Allahabad HC 2006 judgment on AMU Act also needs revision per this ruling</div>
+      </div>
+
+      <div class="case-box red">
+        <div class="case-title">🔴 UP Madarsa Education Board Act Case 🔴</div>
+        <div class="case-meta">November 5, 2024 | SC | <span class="tag new">UP ANGLE</span> <span class="tag year">2024</span></div>
+        <div class="case-grid">
+          <div class="case-field"><span>Issue:</span> Allahabad HC struck down UP Board of Madarsa Education Act 2004 as violating secularism</div>
+          <div class="case-field"><span>Decision:</span> SC OVERTURNED Allahabad HC; Madarsa Act is CONSTITUTIONAL</div>
+          <div class="case-field"><span>Rationale:</span> State can regulate Madarsa education for quality; does not violate secularism; striking down would affect 12 lakh students</div>
+          <div class="case-field"><span>Articles:</span> Art. 21A, Art. 30 (minority rights)</div>
+        </div>
+        <div style="margin-top:8px; font-size:.83rem; color:var(--accent3)">📌 Key: Regulation ≠ Interference; Madarsa Fazil/Kamil degrees still not equivalent to UG/PG degrees</div>
+      </div>
+
+      <div class="case-box blue">
+        <div class="case-title">🔵 Bulldozer Justice Case — Re: Demolition of Structures 🔴</div>
+        <div class="case-meta">November 2024 | Justices BR Gavai & KV Viswanathan | <span class="tag new">UP ANGLE</span></div>
+        <div class="case-grid">
+          <div class="case-field"><span>Issue:</span> Property demolitions as punitive action against accused persons ("Bulldozer Justice")</div>
+          <div class="case-field"><span>Decision:</span> UNCONSTITUTIONAL; cannot demolish property merely because person is accused of crime</div>
+          <div class="case-field"><span>Violated:</span> Art. 14, Art. 21 (Right to shelter), Art. 300A (Right to Property), Rule of Law, Separation of Powers</div>
+          <div class="case-field"><span>Guidelines:</span> 15-day notice mandatory; opportunity of hearing; written order required; no overnight demolitions</div>
+        </div>
+        <div style="margin-top:8px; font-size:.83rem; color:var(--accent3)">📌 UP Angle: UP was major source of complaints; Prayagraj Development Authority fined ₹10 lakh (2025, Zulfiquar Haider case)</div>
+      </div>
+
+      <div class="case-box orange">
+        <div class="case-title">🟠 Sita Soren v. Union of India — Bribery & Parliamentary Immunity</div>
+        <div class="case-meta">2024 | 7-Judge Bench | <span class="tag year">2024</span></div>
+        <div class="case-grid">
+          <div class="case-field"><span>Issue:</span> Does Art. 105 immunity cover bribery to vote/speak in Parliament?</div>
+          <div class="case-field"><span>Decision:</span> NO — parliamentary immunity does NOT cover bribery; overruled PV Narasimha Rao (1998)</div>
+          <div class="case-field"><span>Significance:</span> Strengthened anti-corruption framework for legislators</div>
+          <div class="case-field"><span>Art:</span> Art. 105(2) — Immunity only for acts WITHIN legislative proceedings</div>
+        </div>
+      </div>
+
+      <div class="case-box green">
+        <div class="case-title">🟢 Mineral Rights Royalty Case — State of Jharkhand v. Hindustan Copper</div>
+        <div class="case-meta">July 2024 | 9-Judge Constitution Bench | 8:1 <span class="tag year">2024</span></div>
+        <div class="case-grid">
+          <div class="case-field"><span>Issue:</span> Can states levy royalties and taxes on minerals over and above central levies?</div>
+          <div class="case-field"><span>Decision:</span> YES — Royalty is NOT a tax; states can impose additional levies on minerals; Overruled India Cement (1989)</div>
+          <div class="case-field"><span>Significance:</span> Significant fiscal federalism win for mineral-rich states; potentially ₹1.5 lakh crore+ arrears to states</div>
+          <div class="case-field"><span>Dissent:</span> Justice BV Nagarathna (only dissent)</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header recent">📅 2025 — Key Judgments</div>
+    <div class="card-body">
+
+      <div class="case-box blue">
+        <div class="case-title">🔵 Harish Rana v. Union of India — Passive Euthanasia</div>
+        <div class="case-meta">March 11, 2026 (decided) | Justices JB Pardiwala & KV Viswanathan | <span class="tag year">2026</span></div>
+        <div class="case-grid">
+          <div class="case-field"><span>Issue:</span> Withdrawal of life-sustaining treatment for patient in Permanent Vegetative State (13 years)</div>
+          <div class="case-field"><span>Decision:</span> Permitted withdrawal; upheld Common Cause (2018) guidelines on passive euthanasia</div>
+          <div class="case-field"><span>Article:</span> Art. 21 — Right to Die with Dignity</div>
+          <div class="case-field"><span>Legacy:</span> Affirms that right to dignified death is part of Art. 21</div>
+        </div>
+      </div>
+
+      <div class="case-box orange">
+        <div class="case-title">🟠 Ravindra Pratap Shahi v. State of UP — Delayed Judgments 🔴</div>
+        <div class="case-meta">2025 | SC | <span class="tag new">UP ANGLE</span></div>
+        <div class="case-grid">
+          <div class="case-field"><span>Issue:</span> Chronic problem of delayed pronouncement of judgments after hearings concluded</div>
+          <div class="case-field"><span>Decision:</span> Landmark ruling on timely delivery of judgments; issued mandatory guidelines</div>
+          <div class="case-field"><span>Significance:</span> Access to justice; Art. 21 includes right to speedy trial and timely justice</div>
+          <div class="case-field"><span>UP Angle:</span> UP courts notorious for delays; directly impacts UP judiciary</div>
+        </div>
+      </div>
+
+      <div class="case-box green">
+        <div class="case-title">🟢 Allahabad HC in Criminal Revision — Sensitivity Guidelines (SC intervened)</div>
+        <div class="case-meta">February 10, 2026 | SC SMW (Crl) No. 1/2025</div>
+        <div class="case-grid">
+          <div class="case-field"><span>Issue:</span> SC suo motu took cognizance of insensitive Allahabad HC order in sexual offence case</div>
+          <div class="case-field"><span>Decision:</span> SC constituted Expert Committee to develop judicial sensitivity guidelines for sexual offence cases</div>
+          <div class="case-field"><span>Significance:</span> Judicial accountability; POCSO + IPC sensitive matters require compassionate approach</div>
+          <div class="case-field"><span>UP Angle:</span> Directly concerns Allahabad HC judicial conduct</div>
+        </div>
+      </div>
+
+      <div class="case-box red">
+        <div class="case-title">🔴 All India Judges Association v. Union of India — Judicial Seniority</div>
+        <div class="case-meta">November 2025 | 5-Judge Bench | CJI BR Gavai</div>
+        <div class="case-grid">
+          <div class="case-field"><span>Issue:</span> Inter-se seniority rules for Higher Judicial Services officers from different sources</div>
+          <div class="case-field"><span>Decision:</span> Mandatory guidelines issued for seniority determination; to be incorporated in statutory rules</div>
+          <div class="case-field"><span>Significance:</span> Reforms judicial administration; transparency in HJS seniority</div>
+          <div class="case-field"><span>Art.:</span> Art. 235 — Control over subordinate courts</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SECTION 6: ALLAHABAD HC ==================== -->
+<div class="section" id="section-allahabadhc">
+  <div class="section-title">🏢 Allahabad High Court — Complete Profile</div>
+
+  <div class="stat-row">
+    <div class="stat-pill"><div class="val">1866</div><div class="lbl">Established</div></div>
+    <div class="stat-pill orange"><div class="val">2</div><div class="lbl">Benches (Prayagraj + Lucknow)</div></div>
+    <div class="stat-pill green"><div class="val">160+</div><div class="lbl">Sanctioned Judges</div></div>
+    <div class="stat-pill purple"><div class="val">4th</div><div class="lbl">Oldest HC in India</div></div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-header hc">📋 Allahabad HC — Key Facts</div>
+      <div class="card-body">
+        <table class="tbl">
+          <tr><th>Parameter</th><th>Detail</th></tr>
+          <tr><td>Established</td><td>March 17, 1866 (under Allahabad High Court Act 1866)</td></tr>
+          <tr><td>Earlier Name</td><td>High Court of Judicature at Agra (1866) → Allahabad (1875)</td></tr>
+          <tr><td>Location</td><td>Prayagraj (Allahabad), Uttar Pradesh</td></tr>
+          <tr><td>Lucknow Bench</td><td>Established under Letters Patent 1948; for Oudh/Avadh region</td></tr>
+          <tr><td>Jurisdiction</td><td>Entire state of Uttar Pradesh</td></tr>
+          <tr><td>Sanctioned Strength</td><td>160 judges (largest HC in India by strength)</td></tr>
+          <tr><td>Chief Justice</td><td>Appointed by President under collegium system</td></tr>
+          <tr><td>Oldest Serving</td><td>One of India's oldest — 158+ years in 2024</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header hc">⚖️ Allahabad HC — Jurisdiction</div>
+      <div class="card-body">
+        <div class="info-box blue">
+          <b>Original Jurisdiction</b><br>
+          Matrimonial disputes (original side abolished for most) | Company law matters | Contempt of Court | Some election petitions
+        </div>
+        <div class="info-box green">
+          <b>Appellate Jurisdiction (Art. 226)</b><br>
+          Appeals from District Courts (Civil & Criminal) | Sessions Court appeals | Revenue Court appeals
+        </div>
+        <div class="info-box yellow">
+          <b>Writ Jurisdiction (Art. 226)</b><br>
+          Habeas Corpus | Mandamus | Certiorari | Prohibition | Quo Warranto<br>
+          Against both government and private persons (for FRs)
+        </div>
+        <div class="info-box red">
+          <b>Supervisory Jurisdiction (Art. 227)</b><br>
+          Superintends ALL courts and tribunals in UP | Revenue courts | Industrial tribunals
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header hc">🏛️ Lucknow Bench — Special Feature</div>
+    <div class="card-body">
+      <div class="grid-2">
+        <div>
+          <div class="info-box blue">
+            <b>Lucknow Bench Established:</b> Under Letters Patent 1948; was seat of Chief Court of Oudh. Area covered: Districts of Avadh/Oudh region including Lucknow, Faizabad (Ayodhya), Barabanki, Sitapur, Hardoi etc.
+          </div>
+          <div class="info-box green">
+            <b>Status:</b> NOT a separate HC — it is a permanent bench of Allahabad HC. Judgments have equal authority. Cases can be transferred between Prayagraj & Lucknow benches.
+          </div>
+        </div>
+        <div>
+          <div class="info-box yellow">
+            <b>Historical Significance:</b> Chief Court of Oudh (1925-1948) was merged into Allahabad HC in 1948. Ram Janmabhoomi (Ayodhya) matters were filed in Lucknow bench — the famous December 6, 1992 + 2010 HC judgment.
+          </div>
+          <div class="info-box red">
+            <b>Recent SC Intervention on Allahabad HC (2026):</b> SC took suo motu cognizance of Allahabad HC order showing insensitivity in sexual offence case; constituted Expert Committee for judicial sensitivity training.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header hc">⚡ Important Allahabad HC Judgments (UP Angle)</div>
+    <div class="card-body">
+      <table class="tbl">
+        <tr><th>Case</th><th>Year</th><th>Issue</th><th>Decision</th></tr>
+        <tr><td><b>Ayodhya Title Dispute</b></td><td>2010</td><td>Ram Janmabhoomi-Babri Masjid land dispute</td><td>3-way split judgment; SC later gave unanimous verdict (2019)</td></tr>
+        <tr><td><b>AMU Minority Status</b></td><td>2006</td><td>AMU Act amendments restoring minority status</td><td>Struck down AMU Act amendments (based on Azeez Basha); overruled by SC Nov 2024</td></tr>
+        <tr><td><b>UP Madarsa Act</b></td><td>2024</td><td>Constitutional validity of UP Madarsa Education Board Act 2004</td><td>Struck down as violating secularism; OVERRULED by SC Nov 2024</td></tr>
+        <tr><td><b>Summoning Govt. Officials Case</b></td><td>2023</td><td>HC frequently summoning UP government officials; separation of powers</td><td>SC (2024) cautioned all judges nationwide — use restraint in summoning govt. officials</td></tr>
+        <tr><td><b>Zulfiquar Haider v. State of UP</b></td><td>2021/2025</td><td>Prayagraj Development Authority demolished property</td><td>SC (2025) set aside Allahabad HC order; PDA fined ₹10 lakh; applied Bulldozer Justice guidelines</td></tr>
+        <tr><td><b>Atiq Ahmed family case</b></td><td>2023</td><td>Demolition of properties of gangster's family</td><td>Multiple HC and SC interventions on demolition without due process</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SECTION 7: PIL & TRIBUNALS ==================== -->
+<div class="section" id="section-pil">
+  <div class="section-title">📢 PIL — Concept, Landmarks & Tribunals</div>
+
+  <div class="card">
+    <div class="card-header sc">💡 Public Interest Litigation (PIL) — Complete Coverage</div>
+    <div class="card-body">
+      <div class="grid-2">
+        <div>
+          <div class="info-box blue">
+            <b>What is PIL?</b><br>
+            Any member of public (not just aggrieved party) can file petition for public interest. Locus standi is diluted. Even a letter/postcard to SC/HC can be treated as PIL.
+          </div>
+          <div class="info-box yellow">
+            <b>Origin:</b> Justice PN Bhagwati & Justice V.R. Krishna Iyer — Early 1980s. Krishna Iyer first used PIL concept. Bhagwati institutionalized it.
+          </div>
+          <div class="info-box green">
+            <b>Who can file?</b><br>
+            Any citizen | NGO | Journalist | Social activist<br>
+            Even letter to SC (Epistolary jurisdiction)
+          </div>
+          <div class="info-box red">
+            <b>Where filed?</b><br>
+            Supreme Court → Art. 32 | High Court → Art. 226<br>
+            SC has wide PIL jurisdiction; HC also entertains PILs
+          </div>
+        </div>
+        <div>
+          <div class="info-box blue">
+            <b>Landmark PILs:</b>
+            <ul class="check">
+              <li>Hussainara Khatoon (1979) — Undertrial prisoners; speedy trial</li>
+              <li>Bandhua Mukti Morcha (1984) — Bonded labour released</li>
+              <li>Sheela Barse v. Union of India (1986) — Women in police custody</li>
+              <li>MC Mehta series (1987+) — Environment; Ganga pollution; Taj Mahal protection</li>
+              <li>Vishaka (1997) — Sexual harassment guidelines</li>
+              <li>PUCL v. Union of India (2003) — Right to food</li>
+              <li>Vineet Narain (1997) — CBI independence; Hawala case</li>
+              <li>Common Cause v. UOI (2018) — Passive euthanasia</li>
+            </ul>
+          </div>
+          <div class="info-box yellow">
+            <b>Criticism of PIL:</b><br>
+            "PIL Tourism" / "Public Interest Litigation" vs "Private Interest Litigation"<br>
+            Courts asked to observe judicial restraint | PIL on frivolous matters impose fine
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header art">🏢 Important Tribunals — Complete Table</div>
+    <div class="card-body">
+      <table class="tbl">
+        <tr><th>Tribunal</th><th>Full Name</th><th>Est.</th><th>Basis</th><th>Jurisdiction</th></tr>
+        <tr>
+          <td><b>NGT</b></td>
+          <td>National Green Tribunal</td>
+          <td>2010</td>
+          <td>NGT Act 2010; Art. 21, 48A, 51A(g)</td>
+          <td>Environmental disputes; civil cases involving environment; appeals from regulatory orders; can award compensation</td>
+        </tr>
+        <tr>
+          <td><b>CAT</b></td>
+          <td>Central Administrative Tribunal</td>
+          <td>1985</td>
+          <td>Administrative Tribunals Act 1985; Art. 323A</td>
+          <td>Service matters of central govt. employees; disputes relating to recruitment, conditions of service</td>
+        </tr>
+        <tr>
+          <td><b>SAT</b></td>
+          <td>State Administrative Tribunal</td>
+          <td>1985+</td>
+          <td>Art. 323B; State Legislatures</td>
+          <td>Service matters of State govt. employees; UP has its own SAT</td>
+        </tr>
+        <tr>
+          <td><b>NCLT</b></td>
+          <td>National Company Law Tribunal</td>
+          <td>2016</td>
+          <td>Companies Act 2013</td>
+          <td>Company law disputes, insolvency proceedings, mergers; replaced Company Law Board + CLT</td>
+        </tr>
+        <tr>
+          <td><b>NCLAT</b></td>
+          <td>National Company Law Appellate Tribunal</td>
+          <td>2016</td>
+          <td>Companies Act 2013</td>
+          <td>Appeals from NCLT orders; IBC related appeals also go here</td>
+        </tr>
+        <tr>
+          <td><b>ITAT</b></td>
+          <td>Income Tax Appellate Tribunal</td>
+          <td>1941</td>
+          <td>Income Tax Act 1961</td>
+          <td>Appeals from Commissioner of Income Tax (Appeals); final fact-finding tribunal in IT matters</td>
+        </tr>
+        <tr>
+          <td><b>DRAT</b></td>
+          <td>Debt Recovery Appellate Tribunal</td>
+          <td>1993</td>
+          <td>RDDBFI Act 1993</td>
+          <td>Appeals from DRT orders; bank loan recovery disputes above ₹20 lakh</td>
+        </tr>
+        <tr>
+          <td><b>AFT</b></td>
+          <td>Armed Forces Tribunal</td>
+          <td>2007</td>
+          <td>AFT Act 2007</td>
+          <td>Service matters of defence personnel; court martial appeals. NOT subject to Art. 136 SLP directly to SC
+        </tr>
+        <tr>
+          <td><b>CESTAT</b></td>
+          <td>Customs, Excise & Service Tax Appellate Tribunal</td>
+          <td>1982</td>
+          <td>Customs Act 1962</td>
+          <td>Indirect tax disputes; appeals from Commissioners</td>
+        </tr>
+        <tr>
+          <td><b>NCDRC</b></td>
+          <td>National Consumer Disputes Redressal Commission</td>
+          <td>1988</td>
+          <td>Consumer Protection Act 2019</td>
+          <td>Consumer complaints above ₹1 crore; appeals from State Consumer Commissions</td>
+        </tr>
+      </table>
+      <div class="info-box yellow" style="margin-top:12px">
+        <b>⚠️ L. Chandra Kumar (1997) Rule:</b> All tribunal orders subject to HC review under Art. 226/227. Tribunals cannot exclude HC jurisdiction — part of Basic Structure.
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- end container -->
+
+<script>
+let answered = 0;
+let correct = 0;
+
+function showTab(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  const section = document.getElementById('section-' + id);
+  if (section) section.classList.add('active');
+  document.querySelectorAll('.tab').forEach(t => {
+    if (t.getAttribute('onclick') && t.getAttribute('onclick').includes(id)) t.classList.add('active');
+  });
+  window.scrollTo({top: 0, behavior:'smooth'});
+}
+
+function checkAns(optEl, chosen) {
+  const item = optEl.closest('.mcq-item');
+  if (item.dataset.done === '1') return;
+  item.dataset.done = '1';
+  answered++;
+  const correct_ans = item.dataset.ans;
+  const allOpts = item.querySelectorAll('.mcq-opt');
+  allOpts.forEach(o => {
+    o.style.pointerEvents = 'none';
+    o.classList.add('revealed');
+  });
+  if (chosen === correct_ans) {
+    optEl.classList.add('correct');
+    correct++;
+  } else {
+    optEl.classList.add('wrong');
+    allOpts.forEach(o => {
+      if (o.getAttribute('onclick') && o.getAttribute('onclick').includes("'" + correct_ans + "'")) {
+        o.querySelector('.opt-key').style.background = '#2e7d32';
+        o.querySelector('.opt-key').style.color = '#fff';
+      }
+    });
+  }
+  const ans = item.querySelector('.mcq-answer');
+  if (ans) ans.classList.add('show');
+  updateScore();
+}
+
+function updateScore() {
+  const score = document.getElementById('mcq-score');
+  if(score){ score.style.display = 'block'; score.innerHTML = `📊 Score: ${correct}/${answered} correct | ${20-answered} remaining`; }
+}
+
+function showAllAnswers() {
+  document.querySelectorAll('.mcq-answer').forEach(a => a.classList.add('show'));
+  document.querySelectorAll('.mcq-item').forEach(item => {
+    if (item.dataset.done !== '1') {
+      item.dataset.done = '1'; answered++;
+      const ca = item.dataset.ans;
+      item.querySelectorAll('.mcq-opt').forEach(o => {
+        o.style.pointerEvents = 'none';
+        if (o.getAttribute('onclick') && o.getAttribute('onclick').includes("'" + ca + "'")) {
+          o.querySelector('.opt-key').style.background = '#2e7d32';
+          o.querySelector('.opt-key').style.color = '#fff';
+        }
+      });
+    }
+  });
+  const fs = document.getElementById('final-score');
+  if(fs){ fs.style.display='block'; fs.innerHTML = `🏆 Final Score: ${correct}/20 — ${correct>=16?'Excellent! Top-10 Rank Ready 🎯':correct>=12?'Good! Keep Revising 📚':'Need More Practice 💪'}`; }
+}
+
+function resetMCQ() {
+  answered = 0; correct = 0;
+  document.querySelectorAll('.mcq-item').forEach(item => {
+    item.dataset.done = '';
+    item.querySelectorAll('.mcq-opt').forEach(o => {
+      o.classList.remove('correct','wrong','correct-ans','revealed');
+      o.style.pointerEvents = '';
+      o.querySelector('.opt-key').style.background = '';
+      o.querySelector('.opt-key').style.color = '';
+    });
+    const ans = item.querySelector('.mcq-answer');
+    if (ans) ans.classList.remove('show');
+  });
+  const sc = document.getElementById('mcq-score');
+  const fs = document.getElementById('final-score');
+  if(sc) sc.style.display='none';
+  if(fs) fs.style.display='none';
+}
+</script>
+</body>
+</html>
