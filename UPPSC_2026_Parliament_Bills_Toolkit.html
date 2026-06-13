@@ -1,0 +1,1669 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UPPSC 2026 | Parliament & Bills — SDM Toolkit</title>
+<style>
+  /* ===== DESIGN TOKENS ===== */
+  :root {
+    --ink:        #1a1f2e;
+    --ink-soft:   #3d4455;
+    --ink-muted:  #6b7280;
+    --bg:         #f8f7f2;
+    --bg-card:    #ffffff;
+    --bg-soft:    #f1f0eb;
+    --accent-saffron: #e8620a;
+    --accent-green:   #187a3c;
+    --accent-blue:    #1a4fa0;
+    --accent-purple:  #6d28d9;
+    --accent-red:     #c1121f;
+    --accent-gold:    #b5830a;
+    --border:     #ddd8cf;
+    --shadow:     0 2px 10px rgba(0,0,0,0.07);
+    --radius:     10px;
+    --font-body:  'Georgia', serif;
+    --font-ui:    'Segoe UI', system-ui, sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: var(--font-ui);
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.65;
+    font-size: 15px;
+  }
+
+  /* ===== PRINT ===== */
+  @media print {
+    body { background: #fff; font-size: 12px; }
+    .no-print { display: none !important; }
+    .section { page-break-inside: avoid; }
+    .card { box-shadow: none; border: 1px solid #ccc; }
+    header { background: #1a4fa0 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .badge { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .tab-btn { display: none; }
+    .tab-pane { display: block !important; opacity: 1 !important; }
+    .mcq-option.correct { background: #d1fae5 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    @page { margin: 1.5cm; }
+  }
+
+  /* ===== HEADER ===== */
+  header {
+    background: linear-gradient(135deg, #1a4fa0 0%, #0f3478 60%, #1a1f2e 100%);
+    color: #fff;
+    padding: 28px 32px 22px;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 200px; height: 200px;
+    background: rgba(232,98,10,0.18);
+    border-radius: 50%;
+  }
+  header::after {
+    content: '';
+    position: absolute;
+    bottom: -30px; left: 30%;
+    width: 140px; height: 140px;
+    background: rgba(24,122,60,0.12);
+    border-radius: 50%;
+  }
+  .header-inner { position: relative; z-index: 1; }
+  .header-eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 6px;
+  }
+  header h1 {
+    font-family: var(--font-body);
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.25;
+    margin-bottom: 8px;
+  }
+  header h1 span { color: #f8b820; }
+  .header-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 12px;
+  }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11.5px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.15);
+    color: #fff;
+    backdrop-filter: blur(4px);
+  }
+  .badge.saffron { background: rgba(232,98,10,0.35); }
+  .badge.green   { background: rgba(24,122,60,0.35); }
+
+  /* ===== NAV TABS ===== */
+  .tab-nav {
+    background: var(--bg-card);
+    border-bottom: 2px solid var(--border);
+    padding: 0 20px;
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+  }
+  .tab-btn {
+    padding: 14px 18px;
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    font-family: var(--font-ui);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink-muted);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color .2s, border-color .2s;
+    margin-bottom: -2px;
+  }
+  .tab-btn:hover { color: var(--accent-blue); }
+  .tab-btn.active { color: var(--accent-blue); border-bottom-color: var(--accent-blue); }
+
+  /* ===== LAYOUT ===== */
+  .container { max-width: 980px; margin: 0 auto; padding: 28px 20px 60px; }
+  .tab-pane { display: none; }
+  .tab-pane.active { display: block; animation: fadeIn .25s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* ===== SECTION ===== */
+  .section { margin-bottom: 32px; }
+  .section-title {
+    font-family: var(--font-body);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--border);
+  }
+  .section-title .icon {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+  .icon-blue   { background: #dbeafe; }
+  .icon-orange { background: #fef3c7; }
+  .icon-green  { background: #d1fae5; }
+  .icon-purple { background: #ede9fe; }
+  .icon-red    { background: #fee2e2; }
+
+  /* ===== CARDS ===== */
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px 22px;
+    box-shadow: var(--shadow);
+    margin-bottom: 16px;
+  }
+  .card-title {
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--accent-blue);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+
+  /* ===== GRID ===== */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; }
+  @media (max-width:700px) {
+    .grid-2,.grid-3,.grid-4 { grid-template-columns: 1fr; }
+  }
+
+  /* ===== STAT BOXES ===== */
+  .stat-box {
+    background: var(--bg-card);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
+    text-align: center;
+  }
+  .stat-num {
+    font-size: 28px;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .stat-label { font-size: 12px; color: var(--ink-muted); font-weight: 600; }
+  .stat-sub { font-size: 11px; color: var(--ink-muted); margin-top: 2px; }
+
+  /* ===== BILL CARDS ===== */
+  .bill-type {
+    border-left: 4px solid;
+    background: var(--bg-card);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    padding: 18px 20px;
+    box-shadow: var(--shadow);
+    margin-bottom: 14px;
+  }
+  .bill-type.ordinary  { border-color: var(--accent-blue); }
+  .bill-type.money     { border-color: var(--accent-gold); }
+  .bill-type.financial { border-color: var(--accent-green); }
+  .bill-type.amend     { border-color: var(--accent-purple); }
+  .bill-type h3 { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
+  .bill-type.ordinary  h3 { color: var(--accent-blue); }
+  .bill-type.money     h3 { color: var(--accent-gold); }
+  .bill-type.financial h3 { color: var(--accent-green); }
+  .bill-type.amend     h3 { color: var(--accent-purple); }
+
+  /* ===== PROCESS STEPS ===== */
+  .steps { position: relative; padding-left: 28px; }
+  .steps::before {
+    content: '';
+    position: absolute;
+    left: 9px; top: 14px; bottom: 14px;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--accent-blue), var(--accent-green));
+  }
+  .step {
+    position: relative;
+    padding: 10px 12px 10px 16px;
+    margin-bottom: 8px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+  }
+  .step::before {
+    content: attr(data-n);
+    position: absolute;
+    left: -28px;
+    top: 50%; transform: translateY(-50%);
+    width: 20px; height: 20px;
+    background: var(--accent-blue);
+    color: #fff;
+    border-radius: 50%;
+    font-size: 11px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+  }
+  .step-title { font-weight: 700; font-size: 13.5px; color: var(--ink); }
+  .step-detail { font-size: 12.5px; color: var(--ink-soft); margin-top: 3px; }
+
+  /* ===== COMPARISON TABLE ===== */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+  th {
+    background: var(--accent-blue);
+    color: #fff;
+    padding: 10px 14px;
+    text-align: left;
+    font-size: 12.5px;
+    font-weight: 700;
+  }
+  td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) td { background: var(--bg-soft); }
+  .check { color: var(--accent-green); font-weight: 700; }
+  .cross  { color: var(--accent-red); font-weight: 700; }
+
+  /* ===== AMENDMENT CARDS ===== */
+  .amend-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px 18px;
+    box-shadow: var(--shadow);
+  }
+  .amend-num {
+    font-size: 22px;
+    font-weight: 900;
+    color: var(--accent-purple);
+    line-height: 1;
+  }
+  .amend-year { font-size: 11px; color: var(--ink-muted); font-weight: 600; }
+  .amend-title { font-weight: 700; font-size: 13px; margin: 4px 0; }
+  .amend-desc { font-size: 12px; color: var(--ink-soft); }
+
+  /* ===== HIGHLIGHT BOX ===== */
+  .highlight {
+    background: #fffbeb;
+    border: 1.5px solid #fbbf24;
+    border-radius: var(--radius);
+    padding: 14px 18px;
+    margin-bottom: 14px;
+  }
+  .highlight.blue {
+    background: #eff6ff;
+    border-color: #93c5fd;
+  }
+  .highlight.green {
+    background: #f0fdf4;
+    border-color: #86efac;
+  }
+  .highlight.red {
+    background: #fff1f2;
+    border-color: #fca5a5;
+  }
+  .highlight-title {
+    font-weight: 700;
+    font-size: 13px;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* ===== ANTI-DEFECTION ===== */
+  .defect-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .defect-card {
+    border-radius: var(--radius);
+    padding: 16px;
+    border: 1px solid var(--border);
+  }
+  .defect-card.disq { background: #fff1f2; border-color: #fca5a5; }
+  .defect-card.save { background: #f0fdf4; border-color: #86efac; }
+
+  /* ===== MCQ ===== */
+  .mcq-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    margin-bottom: 14px;
+    box-shadow: var(--shadow);
+  }
+  .mcq-q {
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 12px;
+    line-height: 1.5;
+  }
+  .mcq-qnum {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px; height: 26px;
+    background: var(--accent-blue);
+    color: #fff;
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: 700;
+    margin-right: 8px;
+    flex-shrink: 0;
+  }
+  .mcq-options { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .mcq-option {
+    padding: 9px 12px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all .2s;
+    background: var(--bg-soft);
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+  }
+  .mcq-option:hover { border-color: var(--accent-blue); background: #eff6ff; }
+  .mcq-option.correct { background: #d1fae5; border-color: var(--accent-green); color: #065f46; }
+  .mcq-option.wrong   { background: #fee2e2; border-color: var(--accent-red); color: #7f1d1d; }
+  .mcq-opt-key { font-weight: 700; flex-shrink: 0; }
+  .mcq-explain {
+    display: none;
+    margin-top: 12px;
+    padding: 12px 14px;
+    background: #fffbeb;
+    border: 1px solid #fbbf24;
+    border-radius: 8px;
+    font-size: 12.5px;
+    color: var(--ink-soft);
+  }
+  .mcq-explain.show { display: block; }
+  .mcq-score {
+    background: linear-gradient(135deg, #1a4fa0, #0f3478);
+    color: #fff;
+    border-radius: var(--radius);
+    padding: 20px;
+    text-align: center;
+    margin-top: 20px;
+  }
+  .score-num { font-size: 40px; font-weight: 900; }
+  .score-label { font-size: 14px; opacity: 0.8; }
+
+  /* ===== CURRENT HOLDERS ===== */
+  .holder-card {
+    background: var(--bg-card);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px 18px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    box-shadow: var(--shadow);
+  }
+  .holder-avatar {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent-saffron), var(--accent-gold));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+  .holder-role { font-size: 11px; color: var(--ink-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+  .holder-name { font-weight: 700; font-size: 15px; }
+  .holder-since { font-size: 12px; color: var(--ink-soft); }
+
+  /* ===== INFOGRAPHIC ===== */
+  .infographic {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    box-shadow: var(--shadow);
+  }
+  .flow-row {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    margin: 10px 0;
+    flex-wrap: wrap;
+  }
+  .flow-box {
+    flex: 1;
+    min-width: 100px;
+    background: #eff6ff;
+    border: 1.5px solid #93c5fd;
+    border-radius: 8px;
+    padding: 10px 12px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--accent-blue);
+    position: relative;
+  }
+  .flow-box.orange { background: #fff7ed; border-color: #fdba74; color: var(--accent-saffron); }
+  .flow-box.green  { background: #f0fdf4; border-color: #86efac; color: var(--accent-green); }
+  .flow-box.purple { background: #f5f3ff; border-color: #c4b5fd; color: var(--accent-purple); }
+  .flow-arrow {
+    display: flex;
+    align-items: center;
+    padding: 0 6px;
+    font-size: 18px;
+    color: var(--ink-muted);
+    font-weight: 700;
+  }
+
+  /* ===== PILL TAGS ===== */
+  .pill {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    margin: 2px;
+  }
+  .pill-blue   { background: #dbeafe; color: #1e3a8a; }
+  .pill-orange { background: #ffedd5; color: #9a3412; }
+  .pill-green  { background: #d1fae5; color: #065f46; }
+  .pill-purple { background: #ede9fe; color: #4c1d95; }
+  .pill-red    { background: #fee2e2; color: #7f1d1d; }
+  .pill-gold   { background: #fef9c3; color: #78350f; }
+
+  /* ===== LISTS ===== */
+  ul.styled, ol.styled { padding-left: 18px; }
+  ul.styled li, ol.styled li {
+    margin-bottom: 6px;
+    font-size: 13.5px;
+    color: var(--ink-soft);
+  }
+  ul.styled li strong, ol.styled li strong { color: var(--ink); }
+
+  /* ===== UP ANGLE ===== */
+  .up-bar {
+    background: linear-gradient(90deg, #187a3c 0%, #2db35e 100%);
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: var(--radius) var(--radius) 0 0;
+    font-weight: 700;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .up-body {
+    background: var(--bg-card);
+    border: 1.5px solid var(--border);
+    border-top: none;
+    border-radius: 0 0 var(--radius) var(--radius);
+    padding: 16px 18px;
+  }
+
+  /* ===== RECENT BILLS ===== */
+  .recent-bill {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 14px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }
+  .rb-year {
+    font-weight: 800;
+    font-size: 12px;
+    color: var(--accent-blue);
+    background: #dbeafe;
+    padding: 3px 8px;
+    border-radius: 5px;
+    flex-shrink: 0;
+  }
+  .rb-title { font-weight: 700; font-size: 13.5px; }
+  .rb-desc  { font-size: 12px; color: var(--ink-soft); margin-top: 2px; }
+
+  /* ===== PRINT BTN ===== */
+  .print-btn {
+    position: fixed;
+    bottom: 24px; right: 24px;
+    background: var(--accent-saffron);
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    padding: 12px 22px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(232,98,10,0.4);
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    transition: transform .2s;
+  }
+  .print-btn:hover { transform: scale(1.04); }
+
+  /* ===== TAGS ===== */
+  .tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+
+  /* responsive table */
+  .table-wrap { overflow-x: auto; }
+
+  hr.divider { border: none; border-top: 1px solid var(--border); margin: 18px 0; }
+</style>
+</head>
+<body>
+
+<!-- ======================== HEADER ======================== -->
+<header>
+  <div class="header-inner">
+    <div class="header-eyebrow">🎯 UPPSC 2026 — SDM Rank Target</div>
+    <h1>🏛️ Parliament & <span>Bills</span> — Complete Toolkit</h1>
+    <p style="font-size:13px;opacity:.75;margin-top:4px;">Union Legislature · Legislative Process · Constitutional Amendments · Anti-Defection · UP Angle</p>
+    <div class="header-meta">
+      <span class="badge">📋 Art. 79–123 Cover</span>
+      <span class="badge saffron">⚡ 368 Amendment Deep Dive</span>
+      <span class="badge green">🗺️ UP Vidhan Sabha Compare</span>
+      <span class="badge">🔥 2025–26 Recent Bills</span>
+      <span class="badge">📝 10 UPPSC MCQs</span>
+    </div>
+  </div>
+</header>
+
+<!-- ======================== CURRENT HOLDERS ======================== -->
+<div style="background:var(--bg-card);border-bottom:2px solid var(--border);padding:12px 20px;">
+  <div style="max-width:980px;margin:0 auto;">
+    <div style="font-size:11px;font-weight:700;color:var(--ink-muted);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;">🔴 Current Constitutional Holders (June 2026)</div>
+    <div class="grid-4" style="gap:10px;">
+      <div class="holder-card">
+        <div class="holder-avatar">🇮🇳</div>
+        <div>
+          <div class="holder-role">President</div>
+          <div class="holder-name">Droupadi Murmu</div>
+          <div class="holder-since">Since July 25, 2022 · 15th President</div>
+        </div>
+      </div>
+      <div class="holder-card">
+        <div class="holder-avatar">⚖️</div>
+        <div>
+          <div class="holder-role">Vice President</div>
+          <div class="holder-name">C.P. Radhakrishnan</div>
+          <div class="holder-since">Since Sep 12, 2025 · 15th VP</div>
+        </div>
+      </div>
+      <div class="holder-card">
+        <div class="holder-avatar">🏅</div>
+        <div>
+          <div class="holder-role">Prime Minister</div>
+          <div class="holder-name">Narendra Modi</div>
+          <div class="holder-since">Since May 2014 · 18th Lok Sabha</div>
+        </div>
+      </div>
+      <div class="holder-card">
+        <div class="holder-avatar">🌿</div>
+        <div>
+          <div class="holder-role">UP Chief Minister</div>
+          <div class="holder-name">Yogi Adityanath</div>
+          <div class="holder-since">Since March 2017 · Longest UP CM</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ======================== TABS NAV ======================== -->
+<div class="tab-nav no-print">
+  <button class="tab-btn active" onclick="showTab('bills')">📜 Bill Types</button>
+  <button class="tab-btn" onclick="showTab('process')">⚙️ Legislative Process</button>
+  <button class="tab-btn" onclick="showTab('joint')">🤝 Joint Sitting</button>
+  <button class="tab-btn" onclick="showTab('amend')">📋 Art. 368 Amendments</button>
+  <button class="tab-btn" onclick="showTab('defection')">🚫 Anti-Defection</button>
+  <button class="tab-btn" onclick="showTab('recent')">🔥 Recent Bills</button>
+  <button class="tab-btn" onclick="showTab('up')">🗺️ UP Angle</button>
+  <button class="tab-btn" onclick="showTab('mcq')">📝 MCQs</button>
+</div>
+
+<div class="container">
+
+<!-- ======================== TAB 1: BILL TYPES ======================== -->
+<div id="tab-bills" class="tab-pane active">
+
+  <div class="section">
+    <div class="section-title">
+      <div class="icon icon-blue">📜</div>
+      Types of Bills — UPPSC Master Chart
+    </div>
+
+    <!-- ORDINARY BILL -->
+    <div class="bill-type ordinary">
+      <h3>① Ordinary Bill (साधारण विधेयक) — Article 107–108</h3>
+      <div class="grid-2" style="gap:12px;margin-top:8px;">
+        <div>
+          <div style="font-weight:700;font-size:12px;color:var(--ink-muted);margin-bottom:6px;">DEFINITION</div>
+          <p style="font-size:13px;">Any bill that is NOT a Money Bill or Constitutional Amendment Bill. Deals with ordinary legislation — law, order, administration.</p>
+          <div class="tag-row" style="margin-top:8px;">
+            <span class="pill pill-blue">Can introduce in either House</span>
+            <span class="pill pill-blue">No President recommendation needed</span>
+            <span class="pill pill-orange">Joint Sitting possible on deadlock</span>
+          </div>
+        </div>
+        <div>
+          <div style="font-weight:700;font-size:12px;color:var(--ink-muted);margin-bottom:6px;">KEY PROCEDURE</div>
+          <ul class="styled">
+            <li>Can be introduced in <strong>Lok Sabha OR Rajya Sabha</strong></li>
+            <li>Can be introduced by <strong>Minister OR Private Member</strong></li>
+            <li>If RS rejects → Deadlock → <strong>Joint Sitting (Art. 108)</strong></li>
+            <li>President can return for <strong>reconsideration once</strong></li>
+            <li>If Parliament passes again → President <strong>must give assent</strong></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- MONEY BILL -->
+    <div class="bill-type money">
+      <h3>② Money Bill (धन विधेयक) — Article 110</h3>
+      <div class="grid-2" style="gap:12px;margin-top:8px;">
+        <div>
+          <div style="font-weight:700;font-size:12px;color:var(--ink-muted);margin-bottom:6px;">DEFINITION — Art. 110</div>
+          <p style="font-size:13px;">A bill is a Money Bill if it deals <strong>solely</strong> with:</p>
+          <ul class="styled" style="margin-top:6px;">
+            <li><strong>Tax</strong> — imposition, abolition, alteration, regulation</li>
+            <li><strong>Borrowing</strong> by Government of India</li>
+            <li><strong>Consolidated Fund of India</strong> — custody, payment</li>
+            <li><strong>Contingency Fund of India</strong></li>
+            <li><strong>Appropriation of money</strong> from Consolidated Fund</li>
+            <li><strong>Audit</strong> of accounts of Government</li>
+          </ul>
+        </div>
+        <div>
+          <div style="font-weight:700;font-size:12px;color:var(--ink-muted);margin-bottom:6px;">CRITICAL FACTS</div>
+          <ul class="styled">
+            <li>Introduced <strong>ONLY in Lok Sabha</strong></li>
+            <li>Requires <strong>prior recommendation of President</strong></li>
+            <li>Rajya Sabha can only <strong>suggest amendments</strong> (within 14 days)</li>
+            <li>Lok Sabha <strong>MAY or MAY NOT accept</strong> RS suggestions</li>
+            <li><strong>NO Joint Sitting</strong> — Lok Sabha is supreme</li>
+            <li>Speaker certifies a bill as Money Bill — <strong>final & binding</strong></li>
+            <li>President <strong>cannot withhold assent</strong> (no return for reconsideration)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="highlight" style="margin-top:12px;">
+        <div class="highlight-title">⚠️ Speaker's Certification — UPPSC Favourite</div>
+        <p style="font-size:13px;">If any question arises whether a bill is a Money Bill or not, the decision of the Speaker of Lok Sabha is <strong>final</strong>. This decision <strong>cannot be challenged in any court</strong>. (Art. 110(3))</p>
+      </div>
+    </div>
+
+    <!-- FINANCIAL BILL -->
+    <div class="bill-type financial">
+      <h3>③ Financial Bill (वित्त विधेयक) — Two Types</h3>
+      <div class="grid-2" style="gap:12px;margin-top:8px;">
+        <div>
+          <div style="font-weight:700;font-size:12px;color:var(--ink-muted);margin-bottom:6px;">TYPE A — Financial Bill (Category I) — Art. 117(1)</div>
+          <ul class="styled">
+            <li>Contains Money Bill provisions <strong>+</strong> other matters</li>
+            <li>Introduced <strong>ONLY in Lok Sabha</strong></li>
+            <li>Requires <strong>President's prior recommendation</strong></li>
+            <li>But NOT certified as Money Bill by Speaker</li>
+            <li><strong>Joint Sitting IS possible</strong> on deadlock</li>
+          </ul>
+        </div>
+        <div>
+          <div style="font-weight:700;font-size:12px;color:var(--ink-muted);margin-bottom:6px;">TYPE B — Financial Bill (Category II) — Art. 117(3)</div>
+          <ul class="styled">
+            <li>Involves <strong>expenditure from Consolidated Fund</strong> (not taxes)</li>
+            <li>Can be introduced in <strong>either House</strong></li>
+            <li>Requires <strong>President's recommendation</strong> only when taken up for consideration (not at introduction)</li>
+            <li>Otherwise treated like an <strong>Ordinary Bill</strong></li>
+            <li>Joint Sitting possible</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONSTITUTIONAL AMENDMENT -->
+    <div class="bill-type amend">
+      <h3>④ Constitutional Amendment Bill — Article 368</h3>
+      <div class="grid-2" style="gap:12px;margin-top:8px;">
+        <div>
+          <div style="font-weight:700;font-size:12px;color:var(--ink-muted);margin-bottom:6px;">THREE TYPES OF AMENDMENT</div>
+          <ul class="styled">
+            <li><strong>Simple Majority</strong> — Art. 368 NOT required (e.g., admission of new states, creation of LCs)</li>
+            <li><strong>Special Majority</strong> — 2/3rd of members present & voting + majority of total membership of each House</li>
+            <li><strong>Special Majority + State Ratification</strong> — By at least 50% of state legislatures (for federal provisions)</li>
+          </ul>
+        </div>
+        <div>
+          <div style="font-weight:700;font-size:12px;color:var(--ink-muted);margin-bottom:6px;">SPECIAL FEATURES</div>
+          <ul class="styled">
+            <li>Can be introduced in <strong>either House</strong></li>
+            <li><strong>NO Joint Sitting</strong> — both houses must separately pass</li>
+            <li><strong>NO prior recommendation</strong> of President needed</li>
+            <li>President <strong>must give assent</strong> — cannot withhold (24th Amendment)</li>
+            <li>Private member can also introduce</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- COMPARISON TABLE -->
+    <div class="section-title" style="margin-top:24px;">
+      <div class="icon icon-purple">⚖️</div>
+      Quick Comparison — Money Bill vs Financial Bill
+    </div>
+    <div class="table-wrap">
+      <table>
+        <tr>
+          <th>Feature</th>
+          <th>Money Bill (Art. 110)</th>
+          <th>Financial Bill — Type A (Art. 117(1))</th>
+          <th>Financial Bill — Type B (Art. 117(3))</th>
+        </tr>
+        <tr>
+          <td><strong>Introduction</strong></td>
+          <td>Only Lok Sabha</td>
+          <td>Only Lok Sabha</td>
+          <td>Either House</td>
+        </tr>
+        <tr>
+          <td><strong>President's Recommendation</strong></td>
+          <td><span class="check">✔</span> At introduction</td>
+          <td><span class="check">✔</span> At introduction</td>
+          <td><span class="check">✔</span> At consideration stage</td>
+        </tr>
+        <tr>
+          <td><strong>Speaker Certification</strong></td>
+          <td><span class="check">✔</span> Mandatory</td>
+          <td><span class="cross">✗</span> Not certified</td>
+          <td><span class="cross">✗</span> Not certified</td>
+        </tr>
+        <tr>
+          <td><strong>Rajya Sabha's Role</strong></td>
+          <td>Only recommendations (14 days)</td>
+          <td>Can amend/reject</td>
+          <td>Can amend/reject</td>
+        </tr>
+        <tr>
+          <td><strong>Joint Sitting</strong></td>
+          <td><span class="cross">✗</span> NOT possible</td>
+          <td><span class="check">✔</span> Possible</td>
+          <td><span class="check">✔</span> Possible</td>
+        </tr>
+        <tr>
+          <td><strong>Example</strong></td>
+          <td>Finance Bill (tax provisions only)</td>
+          <td>Finance Bill (tax + other matters)</td>
+          <td>Bill creating any new expenditure</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ======================== TAB 2: LEGISLATIVE PROCESS ======================== -->
+<div id="tab-process" class="tab-pane">
+  <div class="section">
+    <div class="section-title">
+      <div class="icon icon-blue">⚙️</div>
+      Passage of Ordinary Bill — Step by Step
+    </div>
+
+    <div class="highlight blue">
+      <div class="highlight-title">📌 Key Concept</div>
+      <p style="font-size:13px;">Every bill passes through <strong>3 Readings</strong> in each House. Total journey = Originating House → Second House → President. Maximum time for complete passage = depends on type.</p>
+    </div>
+
+    <div class="card" style="margin-top:16px;">
+      <div class="card-title">🏛️ Stage I — Originating House (Lok Sabha or Rajya Sabha)</div>
+      <div class="steps">
+        <div class="step" data-n="1">
+          <div class="step-title">First Reading — Introduction (पहला वाचन)</div>
+          <div class="step-detail">Minister moves motion. Bill's title & objectives read. No discussion. After intro, bill is published in Gazette. <span class="pill pill-blue">No voting on content</span></div>
+        </div>
+        <div class="step" data-n="2">
+          <div class="step-title">Second Reading — Scrutiny (दूसरा वाचन)</div>
+          <div class="step-detail">Most important stage — 3 options: <strong>(a)</strong> Take into immediate consideration <strong>(b)</strong> Refer to Select Committee <strong>(c)</strong> Refer to Joint Committee of both Houses. Clause-by-clause discussion & voting. <span class="pill pill-orange">Heart of legislative process</span></div>
+        </div>
+        <div class="step" data-n="3">
+          <div class="step-title">Committee Stage (if referred)</div>
+          <div class="step-detail">Select/Joint Committee examines bill clause by clause, may take expert evidence, submits report to House.</div>
+        </div>
+        <div class="step" data-n="4">
+          <div class="step-title">Third Reading — Final Vote (तीसरा वाचन)</div>
+          <div class="step-detail">No amendments permitted. Bill accepted or rejected as a whole. Simple majority needed. Bill passed by Originating House. <span class="pill pill-green">Vote on entire bill</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">🏛️ Stage II — Second House (दूसरा सदन)</div>
+      <div class="steps">
+        <div class="step" data-n="5">
+          <div class="step-title">Same Three Readings repeat</div>
+          <div class="step-detail">Bill goes through First, Second and Third Reading in the Second House. Bill may be <strong>passed without amendments</strong>, <strong>passed with amendments</strong>, or <strong>rejected / kept pending for 6 months</strong>.</div>
+        </div>
+        <div class="step" data-n="6">
+          <div class="step-title">If Second House amends the bill</div>
+          <div class="step-detail">Bill returns to Originating House. If Originating House <strong>agrees to amendments</strong> → Bill passed. If <strong>disagrees</strong> → Deadlock → President may call <strong>Joint Sitting (Art. 108)</strong>.</div>
+        </div>
+        <div class="step" data-n="7">
+          <div class="step-title">If Second House rejects or delays 6 months</div>
+          <div class="step-detail">Treated as deadlock → President may call <strong>Joint Sitting</strong>. In Joint Sitting, <strong>Lok Sabha usually prevails</strong> due to larger numbers.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">👑 Stage III — President's Assent (राष्ट्रपति की स्वीकृति)</div>
+      <div class="steps">
+        <div class="step" data-n="8">
+          <div class="step-title">President's 4 Options (Ordinary Bill)</div>
+          <div class="step-detail">
+            <strong>(1) Give Assent</strong> → Bill becomes Act ✅<br>
+            <strong>(2) Withhold Assent</strong> → Pocket Veto (no time limit) — rare<br>
+            <strong>(3) Return for Reconsideration</strong> → Suspensive Veto (Art. 111) — Parliament can override by re-passing<br>
+            <strong>(4) Once returned and Parliament re-passes → Must give assent</strong>
+          </div>
+        </div>
+        <div class="step" data-n="9">
+          <div class="step-title">Bill becomes Act</div>
+          <div class="step-detail">After assent, bill becomes an Act. Comes into force from date of assent or specified date.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Parliamentary Procedures -->
+    <div class="section-title" style="margin-top:28px;">
+      <div class="icon icon-orange">🎙️</div>
+      Parliamentary Procedures — Question Hour, Zero Hour, Budget
+    </div>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">⏰ Question Hour (प्रश्न काल)</div>
+        <ul class="styled">
+          <li>First hour of every sitting of Parliament</li>
+          <li><strong>Starred Questions</strong> — Oral answer, supplementaries allowed (⭐)</li>
+          <li><strong>Unstarred Questions</strong> — Written answer only, no supplementaries</li>
+          <li><strong>Short Notice Questions</strong> — Less than 10 days notice, urgent matters</li>
+          <li><strong>Questions to Private Members</strong> — Addressed to Private Member in charge of a bill/resolution</li>
+          <li>10 days advance notice needed for starred/unstarred</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">🕐 Zero Hour (शून्य काल)</div>
+        <ul class="styled">
+          <li>Immediately after Question Hour (12:00 noon)</li>
+          <li><strong>NOT mentioned in Constitution</strong> or Rules</li>
+          <li>Indian innovation — started in 1962</li>
+          <li>Members raise <strong>urgent public matters</strong> without advance notice</li>
+          <li>No voting — only raising issues</li>
+          <li><strong>Half-an-hour Discussion</strong> (after Zero Hour) for matters arising from Q&A</li>
+          <li>Calling Attention Motion, Adjournment Motion — urgent issues</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">💰 Budget Session — Art. 112–116</div>
+        <ul class="styled">
+          <li><strong>Annual Financial Statement (Art. 112)</strong> = Budget = Statement of estimated receipts & expenditure</li>
+          <li>Two parts: <strong>Railway Budget</strong> (merged 2017) + <strong>General Budget</strong></li>
+          <li><strong>Vote on Account</strong> — takes general grant in advance (up to 2 months) before full budget passed</li>
+          <li><strong>Appropriation Bill</strong> — authorises withdrawal from Consolidated Fund (cannot be amended)</li>
+          <li><strong>Finance Bill</strong> — gives effect to taxation proposals</li>
+          <li>Cut Motions — oppose Demand for Grants</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">📋 Types of Motions</div>
+        <ul class="styled">
+          <li><strong>Censure Motion</strong> — against specific ministers (can be passed, PM need not resign)</li>
+          <li><strong>No-Confidence Motion</strong> — against entire Council of Ministers; if passed, govt must resign</li>
+          <li><strong>Confidence Motion</strong> — moved by government to prove majority</li>
+          <li><strong>Adjournment Motion</strong> — urgent public importance, needs 50 members' support</li>
+          <li><strong>Privilege Motion</strong> — against minister for breach of Parliamentary privilege</li>
+          <li><strong>Calling Attention</strong> — call minister's attention to urgent matter</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ======================== TAB 3: JOINT SITTING ======================== -->
+<div id="tab-joint" class="tab-pane">
+  <div class="section">
+    <div class="section-title">
+      <div class="icon icon-green">🤝</div>
+      Joint Sitting of Parliament — Article 108
+    </div>
+
+    <div class="highlight green">
+      <div class="highlight-title">📌 Article 108 — Joint Sitting (संयुक्त बैठक)</div>
+      <p style="font-size:13px;">When a deadlock arises between Lok Sabha and Rajya Sabha on a bill, the President may summon a Joint Sitting of both Houses. Presided over by the <strong>Speaker of Lok Sabha</strong>.</p>
+    </div>
+
+    <div class="grid-2" style="margin-top:16px;">
+      <div class="card">
+        <div class="card-title">⚡ When Joint Sitting is Called</div>
+        <ul class="styled">
+          <li><strong>Condition 1</strong> — Rajya Sabha rejects the bill</li>
+          <li><strong>Condition 2</strong> — Rajya Sabha passes the bill with amendments which Lok Sabha does not accept</li>
+          <li><strong>Condition 3</strong> — Rajya Sabha does not pass the bill within 6 months of receiving it</li>
+          <li>After any of these, President may notify intention to summon Joint Sitting</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">🚫 When Joint Sitting is NOT possible</div>
+        <ul class="styled">
+          <li><strong>Money Bill</strong> — Lok Sabha is supreme, RS has no veto</li>
+          <li><strong>Constitutional Amendment Bill (Art. 368)</strong> — Both houses must separately pass with special majority</li>
+          <li>Financial Bill (Category I) — debatable, but generally treated like Ordinary Bill</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:8px;">
+      <div class="card-title">📊 Joint Sitting — Key Facts</div>
+      <div class="grid-2">
+        <ul class="styled">
+          <li>Presided by <strong>Speaker, Lok Sabha</strong> (in his absence, Deputy Speaker)</li>
+          <li>Decision by <strong>simple majority</strong> of total members present & voting</li>
+          <li>Lok Sabha (543+2) vastly outnumbers RS (245) → <strong>Lok Sabha's view prevails</strong></li>
+          <li>Only <strong>amendments</strong> made by RS may be moved in Joint Sitting — not new ones</li>
+          <li>Once President notifies, bill cannot be amended beyond what RS had amended</li>
+        </ul>
+        <ul class="styled">
+          <li><strong>3 Joint Sittings</strong> have been held in India so far:</li>
+          <li><strong>1961</strong> — Dowry Prohibition Bill</li>
+          <li><strong>1978</strong> — Banking Service Commission (Repeal) Bill</li>
+          <li><strong>2002</strong> — Prevention of Terrorism Act (POTA)</li>
+          <li>Speaker can adjourn Joint Sitting if quorum not present</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="infographic" style="margin-top:16px;">
+      <div style="font-weight:700;font-size:14px;margin-bottom:12px;color:var(--ink);">🗺️ Deadlock Resolution Flow Chart</div>
+      <div class="flow-row">
+        <div class="flow-box">Bill passed<br>by LS</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-box orange">RS Rejects /<br>Amends / Delays 6 months</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-box purple">President<br>Notifies</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-box green">Joint Sitting<br>Called (Art. 108)</div>
+      </div>
+      <div class="flow-row" style="margin-top:10px;">
+        <div class="flow-box" style="flex:none;width:150px;">Speaker<br>presides</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-box orange" style="flex:none;width:200px;">Simple majority vote<br>(LS usually wins)</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-box green" style="flex:none;">Bill deemed<br>passed by both Houses ✅</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ======================== TAB 4: AMENDMENTS ======================== -->
+<div id="tab-amend" class="tab-pane">
+  <div class="section">
+    <div class="section-title">
+      <div class="icon icon-purple">📋</div>
+      Constitutional Amendment — Article 368 Deep Dive
+    </div>
+
+    <div class="grid-2" style="margin-bottom:16px;">
+      <div class="card">
+        <div class="card-title">📌 Art. 368 — Amendment Procedure</div>
+        <div class="steps">
+          <div class="step" data-n="1">
+            <div class="step-title">Introduction</div>
+            <div class="step-detail">Can be introduced in <strong>either House</strong> by a Minister or Private Member. No prior permission of President needed.</div>
+          </div>
+          <div class="step" data-n="2">
+            <div class="step-title">Passage with Special Majority</div>
+            <div class="step-detail">Must be passed by <strong>each House separately</strong> by: (a) Majority of total membership of that House AND (b) Majority of not less than 2/3rd of members present & voting</div>
+          </div>
+          <div class="step" data-n="3">
+            <div class="step-title">State Ratification (if required)</div>
+            <div class="step-detail">For federal provisions — at least <strong>50% of State Legislatures</strong> must ratify by simple majority.</div>
+          </div>
+          <div class="step" data-n="4">
+            <div class="step-title">President's Assent — MANDATORY</div>
+            <div class="step-detail">President <strong>must give assent</strong>. Cannot return for reconsideration (24th Amendment 1971 made this mandatory).</div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">🗂️ Three Categories of Amendment</div>
+        <div style="margin-bottom:12px;">
+          <div class="pill pill-blue" style="font-size:13px;padding:5px 12px;">① Simple Majority</div>
+          <p style="font-size:12.5px;color:var(--ink-soft);margin-top:6px;">Not under Art. 368. Example: Admission of new states (Art. 2), Creation/abolition of State Legislative Councils, Changing names of states, Creating/abolishing UTs.</p>
+        </div>
+        <div style="margin-bottom:12px;">
+          <div class="pill pill-purple" style="font-size:13px;padding:5px 12px;">② Special Majority (Art. 368)</div>
+          <p style="font-size:12.5px;color:var(--ink-soft);margin-top:6px;">Majority of total membership + 2/3rd of present & voting in each House. Most amendments fall here — Fundamental Rights, Directive Principles, etc.</p>
+        </div>
+        <div>
+          <div class="pill pill-orange" style="font-size:13px;padding:5px 12px;">③ Special Majority + 50% States</div>
+          <p style="font-size:12.5px;color:var(--ink-soft);margin-top:6px;">Art. 54, 55, 73, 162, Chapter IV of Part V, Chapter V of Part VI, 7th Schedule, Representation of states in Parliament, Art. 368 itself.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- IMPORTANT AMENDMENTS -->
+    <div class="section-title">
+      <div class="icon icon-purple">⭐</div>
+      Important Constitutional Amendments — UPPSC Must-Know
+    </div>
+    <div class="grid-3">
+      <div class="amend-card">
+        <div class="amend-num">42nd</div>
+        <div class="amend-year">1976 — "Mini Constitution"</div>
+        <div class="amend-title">सबसे महत्वपूर्ण संशोधन</div>
+        <div class="amend-desc">Added SOCIALIST, SECULAR, INTEGRITY to Preamble. Fundamental Duties (Art. 51A). Made Directives override Rights. Extended LS/Assembly terms to 6 yrs. Made President bound by Council advice.</div>
+        <div class="tag-row"><span class="pill pill-red">Indira Emergency Era</span></div>
+      </div>
+      <div class="amend-card">
+        <div class="amend-num">44th</div>
+        <div class="amend-year">1978 — Janata Government</div>
+        <div class="amend-title">Emergency Safeguards</div>
+        <div class="amend-desc">Restored LS/Assembly terms to 5 years. Right to Property removed from FR (Art. 300A). Internal disturbance → Armed rebellion (Art. 352). Cabinet's written advice mandatory for President.</div>
+        <div class="tag-row"><span class="pill pill-blue">Reversed 42nd changes</span></div>
+      </div>
+      <div class="amend-card">
+        <div class="amend-num">52nd</div>
+        <div class="amend-year">1985</div>
+        <div class="amend-title">Anti-Defection Law</div>
+        <div class="amend-desc">Added 10th Schedule to Constitution. Disqualification for defection. Rajiv Gandhi govt. Full details in Anti-Defection tab.</div>
+        <div class="tag-row"><span class="pill pill-orange">10th Schedule</span></div>
+      </div>
+      <div class="amend-card">
+        <div class="amend-num">61st</div>
+        <div class="amend-year">1988</div>
+        <div class="amend-title">Voting Age</div>
+        <div class="amend-desc">Reduced voting age from 21 to <strong>18 years</strong> (Art. 326). Youth franchise.</div>
+        <div class="tag-row"><span class="pill pill-green">18 years voting</span></div>
+      </div>
+      <div class="amend-card">
+        <div class="amend-num">73rd</div>
+        <div class="amend-year">1992</div>
+        <div class="amend-title">Panchayati Raj</div>
+        <div class="amend-desc">Added Part IX and 11th Schedule. Constitutional status to Panchayats. 3-tier system, Gram Sabha, Reservation, 5-year term, State Finance Commission, State Election Commission.</div>
+        <div class="tag-row"><span class="pill pill-green">Part IX</span><span class="pill pill-green">11th Schedule</span></div>
+      </div>
+      <div class="amend-card">
+        <div class="amend-num">74th</div>
+        <div class="amend-year">1992</div>
+        <div class="amend-title">Urban Local Bodies</div>
+        <div class="amend-desc">Added Part IX-A and 12th Schedule. Constitutional status to Municipalities — Nagar Panchayat, Municipal Council, Municipal Corporation. Ward committees, reservation.</div>
+        <div class="tag-row"><span class="pill pill-blue">Part IX-A</span><span class="pill pill-blue">12th Schedule</span></div>
+      </div>
+      <div class="amend-card">
+        <div class="amend-num">86th</div>
+        <div class="amend-year">2002</div>
+        <div class="amend-title">Right to Education</div>
+        <div class="amend-desc">Art. 21A — Free & compulsory education for children 6-14 years as Fundamental Right. Art. 45 amended — Early childhood care (0-6). Art. 51A(k) — duty of parents to send children to school.</div>
+        <div class="tag-row"><span class="pill pill-purple">Art. 21A</span><span class="pill pill-purple">RTE Act 2009</span></div>
+      </div>
+      <div class="amend-card">
+        <div class="amend-num">91st</div>
+        <div class="amend-year">2003</div>
+        <div class="amend-title">Council of Ministers Size</div>
+        <div class="amend-desc">Council of Ministers limited to <strong>15% of total strength</strong> of Lok Sabha (or State Assembly). Anti-defection — disqualified member cannot be reappointed minister.</div>
+        <div class="tag-row"><span class="pill pill-red">15% cap on CoM</span></div>
+      </div>
+      <div class="amend-card">
+        <div class="amend-num">101st</div>
+        <div class="amend-year">2016</div>
+        <div class="amend-title">GST — Goods & Services Tax</div>
+        <div class="amend-desc">Introduced GST — "One Nation One Tax". Added Art. 246A, 269A, 279A. Created GST Council (chaired by Union Finance Minister). Concurrent power for Parliament & States to levy GST.</div>
+        <div class="tag-row"><span class="pill pill-gold">GST Council</span><span class="pill pill-gold">Art. 246A</span></div>
+      </div>
+    </div>
+
+    <div class="highlight red" style="margin-top:16px;">
+      <div class="highlight-title">⚠️ Basic Structure Doctrine — Kesavananda Bharati (1973)</div>
+      <p style="font-size:13px;">Supreme Court held that Parliament cannot amend the <strong>basic structure</strong> of the Constitution. Parliament has <strong>constituent power</strong> but cannot destroy the identity of the Constitution. Basic features include: Supremacy of Constitution, Democratic republic, Secular character, Separation of powers, Federal character, Judicial review, Rule of law, Fundamental Rights.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ======================== TAB 5: ANTI-DEFECTION ======================== -->
+<div id="tab-defection" class="tab-pane">
+  <div class="section">
+    <div class="section-title">
+      <div class="icon icon-red">🚫</div>
+      Anti-Defection Law — 10th Schedule
+    </div>
+
+    <div class="highlight">
+      <div class="highlight-title">📌 52nd Constitutional Amendment, 1985 — 10th Schedule</div>
+      <p style="font-size:13px;">Added by the <strong>52nd Amendment Act, 1985</strong> under Rajiv Gandhi government. Further amended by <strong>91st Amendment, 2003</strong> (removed provision on merger from 1/3rd to 2/3rd). Administered by the <strong>Chairman (RS) / Speaker (LS)</strong> — their decision is final (subject to judicial review after Kihoto Hollohan case, 1992).</p>
+    </div>
+
+    <div class="defect-grid" style="margin-top:16px;">
+      <div class="defect-card disq">
+        <div style="font-weight:700;font-size:14px;color:#be123c;margin-bottom:10px;">❌ GROUNDS FOR DISQUALIFICATION</div>
+        <ul class="styled">
+          <li>Voluntarily gives up membership of political party</li>
+          <li>Votes or abstains from voting contrary to party direction</li>
+          <li>Member of party after election votes against party's whip</li>
+          <li>Independently elected member joins a political party after election</li>
+          <li>Nominated member joins a party after 6 months of taking seat</li>
+        </ul>
+      </div>
+      <div class="defect-card save">
+        <div style="font-weight:700;font-size:14px;color:#15803d;margin-bottom:10px;">✅ EXCEPTIONS (NO DISQUALIFICATION)</div>
+        <ul class="styled">
+          <li><strong>Merger</strong> — at least <strong>2/3rd</strong> of the legislature party agrees to merge (91st Amendment changed from 1/3rd)</li>
+          <li>Member elected as <strong>Speaker or Deputy Speaker</strong> may resign from party — no disqualification</li>
+          <li>Member elected as <strong>Chairman or Deputy Chairman</strong> of RS — same</li>
+          <li>Split was originally an exception (1/3rd members) — <strong>removed by 91st Amendment</strong></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-top:14px;">
+      <div class="card">
+        <div class="card-title">⚖️ Who Decides? — Kihoto Hollohan Case, 1992</div>
+        <ul class="styled">
+          <li>Decision taken by <strong>Speaker (LS) / Chairman (RS)</strong></li>
+          <li>Earlier: their decision was <strong>FINAL</strong> (not subject to judicial review)</li>
+          <li><strong>SC in Kihoto Hollohan (1992)</strong>: Speaker/Chairman's decision IS subject to <strong>judicial review</strong> by High Courts and Supreme Court</li>
+          <li>But courts can only review after final order — not at preliminary stage</li>
+          <li>SC can review under Art. 32 & 136</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">📊 Key Numbers & Concepts</div>
+        <ul class="styled">
+          <li>Merger requires <strong>2/3rd</strong> of legislature party members (91st Amendment)</li>
+          <li>Council of Ministers limited to <strong>15%</strong> of House strength (91st Amendment)</li>
+          <li>A disqualified member <strong>cannot be appointed</strong> as minister</li>
+          <li><strong>Whip</strong> = Party directive. Defying 3-line whip = disqualification</li>
+          <li>Speaker's decision on Speakership — vacates party membership voluntarily to be neutral</li>
+          <li>Nabam Rebia case (2016) — SC: Speaker facing removal motion cannot hear disqualification petitions</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="highlight green" style="margin-top:8px;">
+      <div class="highlight-title">🎯 UPPSC Trick — Remember "2/3 Anti Two-Third"</div>
+      <p style="font-size:13px;">After 91st Amendment 2003: <br>
+      <strong>Merger exception</strong> = 2/3rd of legislature party<br>
+      <strong>Special Majority for Amendment</strong> = 2/3rd of present & voting<br>
+      <strong>No-confidence in President</strong> = 2/3rd of effective strength of House<br>
+      <strong>CoM cap</strong> = 15% of total House strength</p>
+    </div>
+  </div>
+</div>
+
+<!-- ======================== TAB 6: RECENT BILLS ======================== -->
+<div id="tab-recent" class="tab-pane">
+  <div class="section">
+    <div class="section-title">
+      <div class="icon icon-orange">🔥</div>
+      Recent Important Bills & Acts (2025–2026)
+    </div>
+
+    <div class="recent-bill">
+      <div class="rb-year">2025</div>
+      <div>
+        <div class="rb-title">Income-Tax Act, 2025 (New Income Tax Code)</div>
+        <div class="rb-desc">Passed: LS (Aug 11, 2025), RS (Aug 12, 2025). Assented: Aug 21, 2025. In force from April 1, 2026. Replaced the Income-Tax Act, 1961. Major simplification — 536 clauses vs earlier 298 sections but simpler language.</div>
+        <div class="tag-row"><span class="pill pill-gold">Finance</span><span class="pill pill-blue">Ordinary Bill</span></div>
+      </div>
+    </div>
+
+    <div class="recent-bill">
+      <div class="rb-year">2025</div>
+      <div>
+        <div class="rb-title">Waqf (Amendment) Act, 2025</div>
+        <div class="rb-desc">Major amendments to Waqf Act 1995. Enhanced Central Waqf Council powers. Better regulation of Waqf properties.</div>
+        <div class="tag-row"><span class="pill pill-orange">Social</span><span class="pill pill-blue">Ordinary Bill</span></div>
+      </div>
+    </div>
+
+    <div class="recent-bill">
+      <div class="rb-year">2025</div>
+      <div>
+        <div class="rb-title">Mussalman Wakf (Repeal) Act, 2025</div>
+        <div class="rb-desc">Repealed the Mussalman Wakf Act, 1923. Part of broader Waqf governance reform.</div>
+        <div class="tag-row"><span class="pill pill-orange">Repeal</span></div>
+      </div>
+    </div>
+
+    <div class="recent-bill">
+      <div class="rb-year">2025</div>
+      <div>
+        <div class="rb-title">Sustainable Harnessing & Advancement of Nuclear Energy Act (SHANTE), 2025</div>
+        <div class="rb-desc">Opens India's nuclear energy sector to private players for the first time. Major energy sector reform.</div>
+        <div class="tag-row"><span class="pill pill-purple">Energy Reform</span><span class="pill pill-blue">Ordinary Bill</span></div>
+      </div>
+    </div>
+
+    <div class="recent-bill">
+      <div class="rb-year">2025</div>
+      <div>
+        <div class="rb-title">Banking Laws (Amendment) Act, 2025</div>
+        <div class="rb-desc">Amended RBI Act, Banking Regulation Act, SBI Act. Increased number of nominees for bank accounts. Changed reporting dates for banks.</div>
+        <div class="tag-row"><span class="pill pill-gold">Finance</span></div>
+      </div>
+    </div>
+
+    <div class="recent-bill">
+      <div class="rb-year">2025</div>
+      <div>
+        <div class="rb-title">Disaster Management (Amendment) Act, 2025</div>
+        <div class="rb-desc">Strengthened institutional framework. Urban Disaster Management Authority for big cities. State Disaster Response Force statutory basis.</div>
+        <div class="tag-row"><span class="pill pill-red">Governance</span></div>
+      </div>
+    </div>
+
+    <div class="recent-bill">
+      <div class="rb-year">2026</div>
+      <div>
+        <div class="rb-title">Transgender Persons (Protection of Rights) Amendment Act, 2026</div>
+        <div class="rb-desc">Assented: March 30, 2026. New definition, revised procedures for identity certificates, new authority to assist District Magistrate. Contentious — debate on self-identification vs medical verification.</div>
+        <div class="tag-row"><span class="pill pill-purple">Social Justice</span><span class="pill pill-blue">Ordinary Bill</span></div>
+      </div>
+    </div>
+
+    <div class="recent-bill">
+      <div class="rb-year">2026</div>
+      <div>
+        <div class="rb-title">Delimitation Bill, 2026 (Introduced — April 16, 2026)</div>
+        <div class="rb-desc">Proposes to increase Lok Sabha seats from 543 to 850 (815 states + 35 UTs). Enables Delimitation Commission before 2027 Census to facilitate Women's Reservation. Constitution (131st Amendment) Bill 2026 was voted down — related bills became infructuous.</div>
+        <div class="tag-row"><span class="pill pill-red">MAJOR — Lok Sabha Seats</span><span class="pill pill-orange">Failed in LS vote</span></div>
+      </div>
+    </div>
+
+    <div class="recent-bill">
+      <div class="rb-year">2026</div>
+      <div>
+        <div class="rb-title">Finance Bill, 2026 (Budget 2026-27)</div>
+        <div class="rb-desc">Introduced and passed as part of Budget Session 2026. Appropriation Bills also passed. Gives effect to taxation proposals of Union Budget 2026-27.</div>
+        <div class="tag-row"><span class="pill pill-gold">Money Bill</span><span class="pill pill-gold">Art. 110</span></div>
+      </div>
+    </div>
+
+    <div class="highlight" style="margin-top:8px;">
+      <div class="highlight-title">🎯 UPPSC Angle — Operation Sindoor Parliament Discussion</div>
+      <p style="font-size:13px;">A <strong>Special Discussion on Operation Sindoor</strong> (India's response to Pahalgam terror attack) was held in Lok Sabha in 2025. This is a constitutional mechanism under Parliamentary procedure where important national security matters are discussed. President Murmu proclaimed President's Rule in <strong>Manipur (Feb 13, 2025)</strong> under Art. 356 — Parliament approved the same.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ======================== TAB 7: UP ANGLE ======================== -->
+<div id="tab-up" class="tab-pane">
+  <div class="section">
+    <div class="section-title">
+      <div class="icon icon-green">🗺️</div>
+      UP Vidhan Sabha vs Lok Sabha — SDM Must-Know Comparison
+    </div>
+
+    <div class="up-bar">🌿 UP Angle — State Legislature vs Parliament</div>
+    <div class="up-body">
+      <div class="table-wrap">
+        <table>
+          <tr>
+            <th>Feature</th>
+            <th>Lok Sabha (Union)</th>
+            <th>UP Vidhan Sabha (State)</th>
+          </tr>
+          <tr>
+            <td><strong>Article</strong></td>
+            <td>Art. 81</td>
+            <td>Art. 170</td>
+          </tr>
+          <tr>
+            <td><strong>Total Seats</strong></td>
+            <td>543 (elected) + 2 (Anglo-Indian — now abolished by 104th Amend.)</td>
+            <td>403 (elected) + 1 (Governor's nominee)</td>
+          </tr>
+          <tr>
+            <td><strong>UP's Lok Sabha Seats</strong></td>
+            <td><strong>80 seats</strong> — highest in any state</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Term</strong></td>
+            <td>5 years (can be extended during Emergency)</td>
+            <td>5 years (can be extended during Emergency)</td>
+          </tr>
+          <tr>
+            <td><strong>Presiding Officer</strong></td>
+            <td>Speaker (elected by members)</td>
+            <td>Speaker (elected by members) — Satish Mahana (current)</td>
+          </tr>
+          <tr>
+            <td><strong>Minimum Age</strong></td>
+            <td>25 years</td>
+            <td>25 years</td>
+          </tr>
+          <tr>
+            <td><strong>Quorum</strong></td>
+            <td>1/10th of total membership (55 members)</td>
+            <td>1/10th of total membership (41 members)</td>
+          </tr>
+          <tr>
+            <td><strong>Money Bills</strong></td>
+            <td>Rajya Sabha has 14-day recommendation power only</td>
+            <td>UP Vidhan Parishad has same 14-day recommendation power only</td>
+          </tr>
+          <tr>
+            <td><strong>Joint Sitting</strong></td>
+            <td>Art. 108 — possible (LS + RS)</td>
+            <td><strong>NOT possible</strong> at State level (no provision in Constitution)</td>
+          </tr>
+          <tr>
+            <td><strong>Budget</strong></td>
+            <td>Presented by Union Finance Minister (Art. 112)</td>
+            <td>Presented by UP Finance Minister to Vidhan Sabha</td>
+          </tr>
+          <tr>
+            <td><strong>Dissolution</strong></td>
+            <td>By President on advice of PM (Art. 85)</td>
+            <td>By Governor on advice of CM (Art. 174)</td>
+          </tr>
+          <tr>
+            <td><strong>Pro-tem Speaker</strong></td>
+            <td>Senior-most member appointed by President</td>
+            <td>Senior-most MLA appointed by Governor</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-top:16px;">
+      <div class="card">
+        <div class="card-title">🌿 UP Vidhan Parishad (Upper House)</div>
+        <ul class="styled">
+          <li>UP has <strong>Vidhan Parishad</strong> — one of only 6 states with upper house</li>
+          <li>6 States with Vidhan Parishad: UP, Bihar, Maharashtra, Karnataka, Andhra Pradesh, Telangana</li>
+          <li>UP Vidhan Parishad has <strong>100 members</strong></li>
+          <li>Chairman presides — equivalent to Rajya Sabha Chairman</li>
+          <li>1/6th of seats — Graduate constituencies, Teacher constituencies, etc.</li>
+          <li>Governor nominates 1/6th of members</li>
+          <li>Term: 6 years (1/3rd retire every 2 years)</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">📋 State Legislative Process vs Parliament</div>
+        <ul class="styled">
+          <li>State bills follow same 3-Reading procedure</li>
+          <li><strong>No Joint Sitting</strong> at state level if deadlock between Vidhan Sabha & Parishad</li>
+          <li>Governor can summon, prorogue, dissolve — equivalent of President's role</li>
+          <li>Governor's assent — can reserve bill for President's consideration (Art. 200)</li>
+          <li>President can <strong>withhold assent</strong> to state bills — unlike ordinary bills at Centre</li>
+          <li>State cannot legislate on Union List — Centre can on all 3 lists</li>
+          <li>CM is Head of Government, Governor is Constitutional Head</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="highlight green" style="margin-top:8px;">
+      <div class="highlight-title">🎯 SDM UPPSC Special — UP Specific Facts</div>
+      <p style="font-size:13px;">
+        Current UP CM: <strong>Yogi Adityanath</strong> (BJP) — since March 19, 2017 — longest-serving UP CM (surpassed Govind Ballabh Pant's 8yr 127-day record in July 2025)<br>
+        UP Governor: <strong>Anandiben Patel</strong><br>
+        UP Vidhan Sabha Speaker: <strong>Satish Mahana</strong><br>
+        UP has <strong>80 Lok Sabha seats</strong> — most of any state — highest representation in Parliament<br>
+        UP's current CM is elected MLA from <strong>Gorakhpur Urban</strong> constituency<br>
+        UP Vidhan Sabha has <strong>403 seats</strong> — BJP holds majority in 18th UP Assembly (2022)
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ======================== TAB 8: MCQs ======================== -->
+<div id="tab-mcq" class="tab-pane">
+  <div class="section">
+    <div class="section-title">
+      <div class="icon icon-blue">📝</div>
+      10 Parliament & Bills MCQs — UPPSC 2026 Pattern
+    </div>
+
+    <div id="mcq-container">
+
+      <div class="mcq-card" data-correct="b">
+        <div class="mcq-q"><span class="mcq-qnum">1</span> किस अनुच्छेद के अंतर्गत Speaker द्वारा किसी विधेयक को 'धन विधेयक' (Money Bill) प्रमाणित किया जाता है, और यह निर्णय अंतिम होता है?</div>
+        <div class="mcq-options">
+          <div class="mcq-option" data-opt="a"><span class="mcq-opt-key">(a)</span> अनुच्छेद 109</div>
+          <div class="mcq-option" data-opt="b"><span class="mcq-opt-key">(b)</span> अनुच्छेद 110(3)</div>
+          <div class="mcq-option" data-opt="c"><span class="mcq-opt-key">(c)</span> अनुच्छेद 111</div>
+          <div class="mcq-option" data-opt="d"><span class="mcq-opt-key">(d)</span> अनुच्छेद 108</div>
+        </div>
+        <div class="mcq-explain">✅ <strong>सही उत्तर: (b) अनुच्छेद 110(3)</strong> — Art. 110(3) प्रावधान करता है कि यदि Money Bill के बारे में कोई प्रश्न उठे, तो Speaker का निर्णय अंतिम होगा। इसे न्यायालय में चुनौती नहीं दी जा सकती।</div>
+      </div>
+
+      <div class="mcq-card" data-correct="c">
+        <div class="mcq-q"><span class="mcq-qnum">2</span> भारतीय संविधान के अनुसार, एक धन विधेयक (Money Bill) के सम्बंध में राज्य सभा को कितने दिनों में अपनी सिफारिशें लोक सभा को वापस भेजनी होती हैं?</div>
+        <div class="mcq-options">
+          <div class="mcq-option" data-opt="a"><span class="mcq-opt-key">(a)</span> 7 दिन</div>
+          <div class="mcq-option" data-opt="b"><span class="mcq-opt-key">(b)</span> 21 दिन</div>
+          <div class="mcq-option" data-opt="c"><span class="mcq-opt-key">(c)</span> 14 दिन</div>
+          <div class="mcq-option" data-opt="d"><span class="mcq-opt-key">(d)</span> 30 दिन</div>
+        </div>
+        <div class="mcq-explain">✅ <strong>सही उत्तर: (c) 14 दिन</strong> — Art. 109(2) के अनुसार, Money Bill प्राप्त होने के 14 दिनों के भीतर राज्य सभा को इसे सिफारिशों सहित या उसके बिना Lok Sabha को वापस करना होता है।</div>
+      </div>
+
+      <div class="mcq-card" data-correct="d">
+        <div class="mcq-q"><span class="mcq-qnum">3</span> संविधान संशोधन विधेयक (Constitutional Amendment Bill) के संदर्भ में निम्नलिखित में से कौन-सा कथन सही है?<br>1. इसे केवल लोक सभा में प्रस्तुत किया जा सकता है।<br>2. इस पर संयुक्त बैठक (Joint Sitting) नहीं बुलाई जा सकती।<br>3. राष्ट्रपति अनिवार्य रूप से स्वीकृति देने के लिए बाध्य हैं।</div>
+        <div class="mcq-options">
+          <div class="mcq-option" data-opt="a"><span class="mcq-opt-key">(a)</span> केवल 1 और 2</div>
+          <div class="mcq-option" data-opt="b"><span class="mcq-opt-key">(b)</span> केवल 1 और 3</div>
+          <div class="mcq-option" data-opt="c"><span class="mcq-opt-key">(c)</span> केवल 2 और 3</div>
+          <div class="mcq-option" data-opt="d"><span class="mcq-opt-key">(d)</span> 2 और 3 सही हैं; 1 गलत है</div>
+        </div>
+        <div class="mcq-explain">✅ <strong>सही उत्तर: (d)</strong> — Statement 1 गलत है — Amendment Bill किसी भी सदन में प्रस्तुत किया जा सकता है। Statement 2 सही — Joint Sitting NOT possible for Const. Amendment. Statement 3 सही — 24th Amendment 1971 के बाद President MUST give assent.</div>
+      </div>
+
+      <div class="mcq-card" data-correct="b">
+        <div class="mcq-q"><span class="mcq-qnum">4</span> भारत में अब तक कितनी बार संयुक्त संसदीय बैठक (Joint Sitting of Parliament) बुलाई जा चुकी है?</div>
+        <div class="mcq-options">
+          <div class="mcq-option" data-opt="a"><span class="mcq-opt-key">(a)</span> दो बार</div>
+          <div class="mcq-option" data-opt="b"><span class="mcq-opt-key">(b)</span> तीन बार</div>
+          <div class="mcq-option" data-opt="c"><span class="mcq-opt-key">(c)</span> चार बार</div>
+          <div class="mcq-option" data-opt="d"><span class="mcq-opt-key">(d)</span> एक बार</div>
+        </div>
+        <div class="mcq-explain">✅ <strong>सही उत्तर: (b) तीन बार</strong> — 1961 (Dowry Prohibition Bill), 1978 (Banking Service Commission Repeal Bill), 2002 (POTA). तीनों बार संयुक्त बैठक में बहुमत मिला क्योंकि लोक सभा की संख्या राज्य सभा से अधिक होती है।</div>
+      </div>
+
+      <div class="mcq-card" data-correct="a">
+        <div class="mcq-q"><span class="mcq-qnum">5</span> 91वें संविधान संशोधन अधिनियम, 2003 के अनुसार दल-बदल विरोधी कानून के अन्तर्गत विलय (Merger) के लिए दल की न्यूनतम सदस्यता की कितनी आवश्यकता है?</div>
+        <div class="mcq-options">
+          <div class="mcq-option" data-opt="a"><span class="mcq-opt-key">(a)</span> कम से कम 2/3 सदस्य</div>
+          <div class="mcq-option" data-opt="b"><span class="mcq-opt-key">(b)</span> कम से कम 1/3 सदस्य</div>
+          <div class="mcq-option" data-opt="c"><span class="mcq-opt-key">(c)</span> कम से कम 3/4 सदस्य</div>
+          <div class="mcq-option" data-opt="d"><span class="mcq-opt-key">(d)</span> कम से कम 1/2 सदस्य</div>
+        </div>
+        <div class="mcq-explain">✅ <strong>सही उत्तर: (a) 2/3 सदस्य</strong> — 91वें संशोधन 2003 से पहले 1/3 था। अब विलय की मान्यता के लिए विधायी दल के कम से कम 2/3 सदस्यों की सहमति आवश्यक है। Split को Exception से हटा दिया गया।</div>
+      </div>
+
+      <div class="mcq-card" data-correct="c">
+        <div class="mcq-q"><span class="mcq-qnum">6</span> 42वें संविधान संशोधन, 1976 के संदर्भ में निम्नलिखित कथनों पर विचार कीजिए:<br>1. इसके द्वारा प्रस्तावना में 'समाजवादी' और 'धर्मनिरपेक्ष' शब्द जोड़े गए।<br>2. इसके द्वारा लोक सभा का कार्यकाल 5 से 6 वर्ष किया गया।<br>3. यह संशोधन जनता सरकार के काल में हुआ था।</div>
+        <div class="mcq-options">
+          <div class="mcq-option" data-opt="a"><span class="mcq-opt-key">(a)</span> केवल 1</div>
+          <div class="mcq-option" data-opt="b"><span class="mcq-opt-key">(b)</span> केवल 3</div>
+          <div class="mcq-option" data-opt="c"><span class="mcq-opt-key">(c)</span> 1 और 2 सही; 3 गलत</div>
+          <div class="mcq-option" data-opt="d"><span class="mcq-opt-key">(d)</span> सभी सही</div>
+        </div>
+        <div class="mcq-explain">✅ <strong>सही उत्तर: (c)</strong> — कथन 1 और 2 सही हैं। 42वें संशोधन से Preamble में 'Socialist', 'Secular', 'Integrity' जोड़े गए और LS term 6 साल किया गया। Statement 3 गलत — 42nd Amendment इंदिरा गांधी सरकार (Emergency काल) में हुआ, जनता सरकार ने 44वां संशोधन किया।</div>
+      </div>
+
+      <div class="mcq-card" data-correct="b">
+        <div class="mcq-q"><span class="mcq-qnum">7</span> भारतीय संसद में 'शून्य काल' (Zero Hour) के बारे में सही कथन है:</div>
+        <div class="mcq-options">
+          <div class="mcq-option" data-opt="a"><span class="mcq-opt-key">(a)</span> यह संविधान के अनुच्छेद 118 में उल्लेखित है</div>
+          <div class="mcq-option" data-opt="b"><span class="mcq-opt-key">(b)</span> यह न तो संविधान में और न ही संसदीय प्रक्रिया नियमों में उल्लेखित है</div>
+          <div class="mcq-option" data-opt="c"><span class="mcq-opt-key">(c)</span> यह प्रश्न काल से ठीक पहले होता है</div>
+          <div class="mcq-option" data-opt="d"><span class="mcq-opt-key">(d)</span> शून्य काल में मतदान किया जा सकता है</div>
+        </div>
+        <div class="mcq-explain">✅ <strong>सही उत्तर: (b)</strong> — Zero Hour एक भारतीय Parliamentary innovation है। यह 1962 में शुरू हुआ। यह न संविधान में है, न Rules of Procedure में। Question Hour के बाद (12 बजे) शुरू होता है। इसमें मतदान नहीं होता।</div>
+      </div>
+
+      <div class="mcq-card" data-correct="d">
+        <div class="mcq-q"><span class="mcq-qnum">8</span> 101वें संविधान संशोधन अधिनियम, 2016 के अंतर्गत GST परिषद (GST Council) की अध्यक्षता कौन करता है?</div>
+        <div class="mcq-options">
+          <div class="mcq-option" data-opt="a"><span class="mcq-opt-key">(a)</span> भारत के राष्ट्रपति</div>
+          <div class="mcq-option" data-opt="b"><span class="mcq-opt-key">(b)</span> भारत के प्रधान मंत्री</div>
+          <div class="mcq-option" data-opt="c"><span class="mcq-opt-key">(c)</span> नीति आयोग के उपाध्यक्ष</div>
+          <div class="mcq-option" data-opt="d"><span class="mcq-opt-key">(d)</span> केंद्रीय वित्त मंत्री</div>
+        </div>
+        <div class="mcq-explain">✅ <strong>सही उत्तर: (d) केंद्रीय वित्त मंत्री</strong> — Art. 279A के अनुसार GST Council का अध्यक्ष Union Finance Minister होता है। राज्यों के Finance Ministers इसके सदस्य होते हैं। 101वें संशोधन ने Art. 246A, 269A, 279A जोड़े।</div>
+      </div>
+
+      <div class="mcq-card" data-correct="a">
+        <div class="mcq-q"><span class="mcq-qnum">9</span> 86वें संविधान संशोधन, 2002 ने किस अनुच्छेद को जोड़कर 6-14 वर्ष के बच्चों को निःशुल्क एवं अनिवार्य शिक्षा का मौलिक अधिकार दिया?</div>
+        <div class="mcq-options">
+          <div class="mcq-option" data-opt="a"><span class="mcq-opt-key">(a)</span> अनुच्छेद 21A</div>
+          <div class="mcq-option" data-opt="b"><span class="mcq-opt-key">(b)</span> अनुच्छेद 45</div>
+          <div class="mcq-option" data-opt="c"><span class="mcq-opt-key">(c)</span> अनुच्छेद 24</div>
+          <div class="mcq-option" data-opt="d"><span class="mcq-opt-key">(d)</span> अनुच्छेद 51A</div>
+        </div>
+        <div class="mcq-explain">✅ <strong>सही उत्तर: (a) अनुच्छेद 21A</strong> — 86वें संशोधन 2002 ने Art. 21A जोड़ा जो 6-14 वर्ष के बच्चों को Right to Education देता है। Art. 45 में भी बदलाव हुआ (Early childhood care for 0-6 years)। RTE Act 2009 इसी को लागू करता है।</div>
+      </div>
+
+      <div class="mcq-card" data-correct="c">
+        <div class="mcq-q"><span class="mcq-qnum">10</span> उत्तर प्रदेश विधान सभा के सन्दर्भ में निम्नलिखित कथनों पर विचार करें:<br>1. UP Vidhan Sabha में 403 निर्वाचित सदस्य होते हैं।<br>2. UP में Vidhan Parishad (विधान परिषद) में 100 सदस्य हैं।<br>3. उत्तर प्रदेश को लोक सभा में सर्वाधिक 90 सीटें प्राप्त हैं।<br>4. UP विधान सभा एवं लोक सभा का कार्यकाल दोनों 5 वर्ष है।</div>
+        <div class="mcq-options">
+          <div class="mcq-option" data-opt="a"><span class="mcq-opt-key">(a)</span> 1, 2 और 4</div>
+          <div class="mcq-option" data-opt="b"><span class="mcq-opt-key">(b)</span> 2, 3 और 4</div>
+          <div class="mcq-option" data-opt="c"><span class="mcq-opt-key">(c)</span> 1, 2 और 4 सही; 3 गलत</div>
+          <div class="mcq-option" data-opt="d"><span class="mcq-opt-key">(d)</span> सभी सही</div>
+        </div>
+        <div class="mcq-explain">✅ <strong>सही उत्तर: (c)</strong> — Statement 3 गलत है: UP को Lok Sabha में <strong>80 सीटें</strong> मिलती हैं, 90 नहीं। UP 80 सीटों के साथ सर्वाधिक सीटों वाला राज्य है। बाकी 1, 2, 4 सभी सही हैं।</div>
+      </div>
+
+    </div><!-- end mcq-container -->
+
+    <div class="mcq-score" id="score-box" style="display:none;">
+      <div class="score-num" id="score-num">0/10</div>
+      <div class="score-label" id="score-label">Score</div>
+      <div style="margin-top:8px;font-size:13px;opacity:.8;" id="score-msg"></div>
+    </div>
+
+    <div style="text-align:center;margin-top:16px;">
+      <button onclick="checkAnswers()" style="background:var(--accent-blue);color:#fff;border:none;padding:12px 32px;border-radius:50px;font-size:14px;font-weight:700;cursor:pointer;margin-right:10px;">
+        ✅ Submit & Check Answers
+      </button>
+      <button onclick="resetMCQ()" style="background:var(--bg-soft);color:var(--ink);border:1.5px solid var(--border);padding:12px 24px;border-radius:50px;font-size:14px;font-weight:700;cursor:pointer;">
+        🔄 Reset
+      </button>
+    </div>
+  </div>
+</div>
+
+</div><!-- end container -->
+
+<!-- Print Button -->
+<button class="print-btn no-print" onclick="window.print()">🖨️ Print / Save PDF</button>
+
+<script>
+// Tab switching
+function showTab(id) {
+  document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+// MCQ Logic
+let answered = {};
+const correctAnswers = {};
+
+document.querySelectorAll('.mcq-card').forEach(card => {
+  const correct = card.dataset.correct;
+  const qIdx = card.querySelector('.mcq-qnum').textContent;
+  correctAnswers[qIdx] = correct;
+
+  card.querySelectorAll('.mcq-option').forEach(opt => {
+    opt.addEventListener('click', function() {
+      if (answered[qIdx]) return; // already answered
+      answered[qIdx] = opt.dataset.opt;
+      card.querySelectorAll('.mcq-option').forEach(o => o.style.cursor = 'default');
+      // highlight selected
+      opt.style.borderColor = '#6366f1';
+      opt.style.background = '#ede9fe';
+    });
+  });
+});
+
+function checkAnswers() {
+  let score = 0;
+  document.querySelectorAll('.mcq-card').forEach(card => {
+    const qIdx = card.querySelector('.mcq-qnum').textContent;
+    const correct = card.dataset.correct;
+    const selected = answered[qIdx];
+
+    card.querySelectorAll('.mcq-option').forEach(opt => {
+      opt.classList.remove('correct', 'wrong');
+      if (opt.dataset.opt === correct) opt.classList.add('correct');
+      else if (opt.dataset.opt === selected && selected !== correct) opt.classList.add('wrong');
+    });
+
+    card.querySelector('.mcq-explain').classList.add('show');
+    if (selected === correct) score++;
+  });
+
+  const box = document.getElementById('score-box');
+  box.style.display = 'block';
+  document.getElementById('score-num').textContent = score + '/10';
+  const msgs = ['Keep going! Revise basics.','Good attempt!','Average — review key articles.','Good! Focus on weak areas.','Very Good! SDM target on track.','Excellent! Top 10 rank material! 🎯'];
+  const msgIdx = score <= 2 ? 0 : score <= 4 ? 1 : score <= 5 ? 2 : score <= 6 ? 3 : score <= 8 ? 4 : 5;
+  document.getElementById('score-msg').textContent = msgs[msgIdx];
+  box.scrollIntoView({ behavior: 'smooth' });
+}
+
+function resetMCQ() {
+  answered = {};
+  document.querySelectorAll('.mcq-card').forEach(card => {
+    card.querySelectorAll('.mcq-option').forEach(opt => {
+      opt.classList.remove('correct','wrong');
+      opt.style.borderColor = '';
+      opt.style.background = '';
+      opt.style.cursor = 'pointer';
+    });
+    card.querySelector('.mcq-explain').classList.remove('show');
+  });
+  document.getElementById('score-box').style.display = 'none';
+}
+</script>
+</body>
+</html>
