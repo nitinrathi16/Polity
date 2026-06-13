@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UPPSC 2026 — Constitution & Fundamental Rights Topper Toolkit</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&family=JetBrains+Mono:wght@400;600&display=swap');
+:root{--saffron:#FF6B00;--saffron-light:#FFF3E6;--saffron-mid:#FFD4AA;--white-india:#F8F9FA;--green-india:#138808;--green-light:#E8F5E9;--navy:#1A237E;--navy-mid:#3949AB;--navy-light:#E8EAF6;--gold:#C9A14A;--gold-light:#FFF8E1;--red-alert:#C62828;--red-light:#FFEBEE;--teal:#00695C;--teal-light:#E0F2F1;--purple:#6A1B9A;--purple-light:#F3E5F5;--text-dark:#1C1C2E;--text-mid:#4A4A6A;--text-light:#7A7A9A;--border:#E0E0F0;--bg:#FAFAFA;--card:#FFFFFF;--shadow:0 2px 12px rgba(0,0,0,0.08)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text-dark);line-height:1.65;font-size:14px}
+.hero{background:linear-gradient(135deg,#1A237E 0%,#283593 40%,#1565C0 70%,#0D47A1 100%);color:white;position:relative;overflow:hidden}
+.hero-inner{position:relative;z-index:1;padding:36px 48px 32px;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,107,0,0.2);border:1px solid rgba(255,107,0,0.4);border-radius:20px;padding:4px 14px;font-size:11px;font-weight:600;color:#FFB74D;letter-spacing:1px;text-transform:uppercase;margin-bottom:12px}
+.hero h1{font-family:'Playfair Display',serif;font-size:32px;font-weight:800;line-height:1.2;margin-bottom:8px}
+.hero h1 span{color:#FF6B00}
+.hero-sub{font-size:14px;opacity:0.8}
+.hero-stats{display:flex;gap:16px;margin-top:20px;flex-wrap:wrap}
+.hero-stat{text-align:center;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:10px;padding:10px 16px}
+.hero-stat-num{font-size:22px;font-weight:800;color:#FF6B00;display:block}
+.hero-stat-label{font-size:10px;opacity:0.7;letter-spacing:0.5px}
+.tri-color{height:6px;background:linear-gradient(to right,#FF9933 33.33%,#FFFFFF 33.33% 66.66%,#138808 66.66%)}
+.nav-bar{background:white;border-bottom:2px solid var(--border);padding:0 48px;position:sticky;top:0;z-index:100;box-shadow:var(--shadow);display:flex;gap:0;overflow-x:auto}
+.nav-tab{padding:14px 18px;font-size:12.5px;font-weight:600;color:var(--text-mid);cursor:pointer;border-bottom:3px solid transparent;transition:all 0.2s;white-space:nowrap;text-decoration:none;display:inline-block}
+.nav-tab:hover,.nav-tab.active{color:var(--navy);border-bottom-color:var(--saffron)}
+.container{max-width:1100px;margin:0 auto;padding:32px 24px}
+.section{margin-bottom:48px}
+.section-title{display:flex;align-items:center;gap:12px;margin-bottom:24px;padding-bottom:12px;border-bottom:2px solid var(--border)}
+.section-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.section-title h2{font-size:20px;font-weight:700;color:var(--navy)}
+.section-title .subtitle{font-size:12px;color:var(--text-light);font-weight:400}
+.card{background:var(--card);border-radius:14px;border:1px solid var(--border);box-shadow:var(--shadow);overflow:hidden;margin-bottom:20px}
+.card-header{padding:14px 20px;display:flex;align-items:center;gap:12px;cursor:pointer;user-select:none}
+.card-header:hover{background:var(--navy-light)}
+.card-body{padding:20px;border-top:1px solid var(--border);display:none}
+.card.open .card-body{display:block}
+.art-pill{display:inline-flex;align-items:center;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px;letter-spacing:0.5px}
+.pill-navy{background:var(--navy-light);color:var(--navy)}
+.pill-orange{background:var(--saffron-light);color:var(--saffron)}
+.pill-green{background:var(--green-light);color:var(--green-india)}
+.pill-red{background:var(--red-light);color:var(--red-alert)}
+.pill-purple{background:var(--purple-light);color:var(--purple)}
+.pill-teal{background:var(--teal-light);color:var(--teal)}
+.pill-gold{background:var(--gold-light);color:#7B5B00}
+.card-title{flex:1;font-size:15px;font-weight:700;color:var(--text-dark)}
+.card-arrow{font-size:12px;color:var(--text-light);transition:transform 0.2s}
+.card.open .card-arrow{transform:rotate(180deg)}
+.art-table{width:100%;border-collapse:collapse;margin:0}
+.art-table th{background:var(--navy);color:white;padding:10px 14px;text-align:left;font-size:11px;font-weight:600;letter-spacing:0.5px;text-transform:uppercase}
+.art-table td{padding:10px 14px;border-bottom:1px solid var(--border);font-size:13px;vertical-align:top}
+.art-table tr:last-child td{border-bottom:none}
+.art-table tr:hover td{background:var(--navy-light)}
+.art-table tr:nth-child(even) td{background:#F8F9FE}
+.art-num{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:13px;color:var(--navy)}
+.fr-card{border-left:5px solid var(--navy);border-radius:0 14px 14px 0;background:var(--card);box-shadow:var(--shadow);margin-bottom:28px;overflow:hidden}
+.fr-card.orange{border-left-color:var(--saffron)}
+.fr-card.green{border-left-color:var(--green-india)}
+.fr-card.red{border-left-color:var(--red-alert)}
+.fr-card.purple{border-left-color:var(--purple)}
+.fr-card.teal{border-left-color:var(--teal)}
+.fr-card.gold{border-left-color:var(--gold)}
+.fr-header{padding:16px 20px;display:flex;align-items:flex-start;gap:14px;cursor:pointer}
+.fr-icon{font-size:28px;flex-shrink:0;margin-top:2px}
+.fr-meta{flex:1}
+.fr-title{font-size:16px;font-weight:700;color:var(--text-dark);margin-bottom:4px}
+.fr-range{font-size:12px;color:var(--text-light)}
+.fr-body{padding:0 20px 20px;display:none}
+.fr-card.open .fr-body{display:block}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0}
+@media(max-width:640px){.info-grid{grid-template-columns:1fr}}
+.info-box{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:14px}
+.info-box-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--text-light);margin-bottom:8px}
+.info-box-body{font-size:13px;color:var(--text-mid);line-height:1.6}
+.case-card{background:var(--navy-light);border:1px solid rgba(26,35,126,0.15);border-radius:10px;padding:12px 16px;margin:8px 0}
+.case-name{font-weight:700;color:var(--navy);font-size:13px}
+.case-year{color:var(--saffron);font-weight:600;font-size:12px}
+.case-sig{color:var(--text-mid);font-size:12.5px;margin-top:4px}
+.memory-box{background:linear-gradient(135deg,#FFF8E1,#FFFDE7);border:1px solid var(--gold);border-radius:10px;padding:12px 16px;margin:14px 0}
+.memory-title{font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
+.memory-trick{font-size:14px;font-weight:600;color:#4A3000;font-family:'JetBrains Mono',monospace}
+.up-box{background:linear-gradient(135deg,#E8F5E9,#F1F8E9);border:1px solid var(--green-india);border-radius:10px;padding:12px 16px;margin:14px 0}
+.up-title{font-size:11px;font-weight:700;color:var(--green-india);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
+.amend-badge{display:inline-flex;align-items:center;gap:4px;background:var(--red-light);border:1px solid rgba(198,40,40,0.3);color:var(--red-alert);border-radius:6px;padding:2px 8px;font-size:11px;font-weight:600}
+.preamble-visual{background:var(--card);border:2px solid var(--navy);border-radius:16px;padding:32px;text-align:center;position:relative;overflow:hidden}
+.preamble-text{font-family:'Playfair Display',serif;font-size:15px;line-height:2.1;color:var(--text-dark);max-width:620px;margin:0 auto}
+.preamble-highlight{background:var(--saffron);color:white;padding:0 6px;border-radius:4px;font-weight:700}
+.preamble-added{background:var(--red-alert);color:white;padding:0 5px;border-radius:4px;font-weight:700;font-size:10px;vertical-align:super}
+.timeline{position:relative;padding-left:32px}
+.timeline::before{content:'';position:absolute;left:12px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--saffron),var(--navy))}
+.timeline-item{position:relative;margin-bottom:24px}
+.timeline-dot{position:absolute;left:-26px;top:8px;width:14px;height:14px;border-radius:50%;background:var(--navy);border:2px solid white;box-shadow:0 0 0 2px var(--navy)}
+.timeline-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 18px;box-shadow:var(--shadow)}
+.timeline-num{font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--saffron);font-size:12px;margin-bottom:4px}
+.timeline-title{font-weight:700;font-size:14px;color:var(--navy);margin-bottom:6px}
+.timeline-points{padding-left:16px}
+.timeline-points li{font-size:12.5px;color:var(--text-mid);margin:3px 0;list-style:none;position:relative;padding-left:14px}
+.timeline-points li::before{content:'→';position:absolute;left:0;color:var(--saffron)}
+.schedule-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:640px){.schedule-grid{grid-template-columns:1fr}}
+.schedule-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px 14px;box-shadow:var(--shadow)}
+.sch-num{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;color:var(--text-light);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+.sch-title{font-weight:700;font-size:13px;color:var(--navy);margin-bottom:4px}
+.sch-desc{font-size:11.5px;color:var(--text-mid)}
+.mcq-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px 20px;margin-bottom:16px;box-shadow:var(--shadow)}
+.mcq-num{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;color:var(--saffron);margin-bottom:8px;text-transform:uppercase;letter-spacing:1px}
+.mcq-q{font-size:13.5px;font-weight:600;color:var(--text-dark);margin-bottom:12px;line-height:1.6}
+.mcq-options{list-style:none;padding:0}
+.mcq-options li{padding:8px 12px;border-radius:8px;border:1px solid var(--border);margin-bottom:6px;font-size:13px;cursor:pointer;transition:all 0.15s}
+.mcq-options li:hover{background:var(--navy-light);border-color:var(--navy-mid)}
+.mcq-options li.correct{background:var(--green-light);border-color:var(--green-india);color:var(--green-india);font-weight:600}
+.mcq-options li.wrong{background:var(--red-light);border-color:var(--red-alert);color:var(--red-alert)}
+.mcq-answer{margin-top:12px;padding:10px 14px;background:var(--green-light);border-radius:8px;border:1px solid var(--green-india);font-size:12.5px;color:var(--teal);display:none}
+.mcq-answer.show{display:block}
+.mcq-source{font-size:10px;color:var(--text-light);margin-top:6px;font-style:italic}
+.compare-table{width:100%;border-collapse:collapse}
+.compare-table th{padding:10px 14px;font-size:12px;font-weight:700;text-align:left}
+.compare-table th:nth-child(1){background:var(--navy);color:white}
+.compare-table th:nth-child(2){background:var(--saffron);color:white}
+.compare-table th:nth-child(3){background:var(--teal);color:white}
+.compare-table td{padding:9px 14px;border-bottom:1px solid var(--border);font-size:12.5px;vertical-align:top}
+.compare-table tr:last-child td{border-bottom:none}
+.duty-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+@media(max-width:640px){.duty-grid{grid-template-columns:1fr}}
+.duty-item{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
+.duty-num{width:28px;height:28px;background:var(--navy);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0}
+.duty-text{font-size:12.5px;color:var(--text-mid);line-height:1.5}
+.ca-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.ca-person{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px;display:flex;gap:10px}
+.ca-emoji{font-size:28px}
+.ca-name{font-weight:700;font-size:13px;color:var(--navy)}
+.ca-role{font-size:11.5px;color:var(--saffron);font-weight:600;margin-bottom:4px}
+.ca-desc{font-size:12px;color:var(--text-mid)}
+.score-bar{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:24px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.score-display{font-family:'JetBrains Mono',monospace;font-size:28px;font-weight:700;color:var(--navy)}
+.score-progress{flex:1;height:8px;background:var(--border);border-radius:4px;overflow:hidden;min-width:100px}
+.score-fill{height:100%;background:linear-gradient(to right,var(--saffron),var(--green-india));width:0%;transition:width 0.5s ease;border-radius:4px}
+.tag{display:inline-block;padding:2px 8px;border-radius:12px;font-size:10px;font-weight:600;letter-spacing:0.5px;margin:2px}
+.tag-hot{background:#FFE0E0;color:#C62828}
+.tag-imp{background:var(--saffron-light);color:var(--saffron)}
+.tag-2025{background:var(--navy-light);color:var(--navy)}
+.tab-content{display:none}
+.tab-content.active{display:block}
+p{margin:8px 0;font-size:13px;color:var(--text-mid)}
+ul,ol{padding-left:18px}
+li{margin:4px 0;font-size:13px;color:var(--text-mid)}
+strong{color:var(--text-dark);font-weight:600}
+hr{border:none;border-top:1px solid var(--border);margin:16px 0}
+@media print{.nav-bar{display:none!important}.card-body,.fr-body,.mcq-answer{display:block!important}@page{margin:1.5cm}.section{page-break-inside:avoid}}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="tri-color"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge">🎯 SDM Target · Top 10 Rank · UPPSC 2026</div>
+      <h1>भारतीय संविधान<br><span>Complete Topper Toolkit</span></h1>
+      <div class="hero-sub">Fundamental Rights · DPSP · Duties · Amendments · All 12 Schedules · 20 MCQs</div>
+      <div class="hero-stats">
+        <div class="hero-stat"><span class="hero-stat-num">6</span><div class="hero-stat-label">FR Categories</div></div>
+        <div class="hero-stat"><span class="hero-stat-num">Art.12–51A</span><div class="hero-stat-label">Full Coverage</div></div>
+        <div class="hero-stat"><span class="hero-stat-num">20</span><div class="hero-stat-label">MCQs</div></div>
+        <div class="hero-stat"><span class="hero-stat-num">12</span><div class="hero-stat-label">Schedules</div></div>
+      </div>
+    </div>
+    <div style="font-size:100px;opacity:0.2">☸️</div>
+  </div>
+</div>
+
+<nav class="nav-bar">
+  <a class="nav-tab active" onclick="showTab('making',this)">🏛️ Making of Constitution</a>
+  <a class="nav-tab" onclick="showTab('preamble',this)">📜 Preamble</a>
+  <a class="nav-tab" onclick="showTab('fr',this)">⚖️ Fundamental Rights</a>
+  <a class="nav-tab" onclick="showTab('dpsp',this)">🌿 DPSP</a>
+  <a class="nav-tab" onclick="showTab('duties',this)">🤝 Duties</a>
+  <a class="nav-tab" onclick="showTab('amendments',this)">📋 Amendments</a>
+  <a class="nav-tab" onclick="showTab('schedules',this)">🗓️ Schedules</a>
+  <a class="nav-tab" onclick="showTab('mcq',this)">📝 20 MCQs</a>
+</nav>
+
+
+<!-- TAB: MAKING OF CONSTITUTION -->
+<div id="tab-making" class="tab-content active">
+<div class="container">
+  <div class="section">
+    <div class="section-title">
+      <div class="section-icon" style="background:var(--navy-light)">🏛️</div>
+      <div><h2>Constituent Assembly — संविधान सभा</h2><div class="subtitle">How India's Constitution was born</div></div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px">
+      <div style="background:var(--navy);color:white;border-radius:12px;padding:16px;text-align:center"><div style="font-size:28px;font-weight:800">389</div><div style="font-size:11px;opacity:0.8">Total Members (originally)</div></div>
+      <div style="background:var(--saffron);color:white;border-radius:12px;padding:16px;text-align:center"><div style="font-size:28px;font-weight:800">299</div><div style="font-size:11px;opacity:0.8">Members after Partition</div></div>
+      <div style="background:var(--green-india);color:white;border-radius:12px;padding:16px;text-align:center"><div style="font-size:22px;font-weight:800">2 yr 11 mo 18 d</div><div style="font-size:11px;opacity:0.8">Time Taken (Adopted 26 Nov 1949)</div></div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px">
+      <div style="background:var(--purple-light);border:1px solid var(--purple);border-radius:12px;padding:14px;text-align:center"><div style="font-size:22px;font-weight:800;color:var(--purple)">11</div><div style="font-size:11px;color:var(--text-mid)">Sessions held</div></div>
+      <div style="background:var(--gold-light);border:1px solid var(--gold);border-radius:12px;padding:14px;text-align:center"><div style="font-size:22px;font-weight:800;color:#7B5B00">₹ 63.96 Lakh</div><div style="font-size:11px;color:var(--text-mid)">Total Cost</div></div>
+      <div style="background:var(--teal-light);border:1px solid var(--teal);border-radius:12px;padding:14px;text-align:center"><div style="font-size:22px;font-weight:800;color:var(--teal)">9 Dec 1946</div><div style="font-size:11px;color:var(--text-mid)">First Meeting</div></div>
+    </div>
+
+    <div class="section-title"><div class="section-icon" style="background:var(--saffron-light)">👥</div><div><h2>Key Persons — महत्वपूर्ण व्यक्तित्व</h2></div></div>
+    <div class="ca-grid">
+      <div class="ca-person"><div class="ca-emoji">⚖️</div><div><div class="ca-name">Dr. B.R. Ambedkar</div><div class="ca-role">Chairman, Drafting Committee</div><div class="ca-desc">"Father of Indian Constitution" — Drafted the final text. Member of: Labour, Fundamental Rights, Advisory Committees</div></div></div>
+      <div class="ca-person"><div class="ca-emoji">🌹</div><div><div class="ca-name">Jawaharlal Nehru</div><div class="ca-role">Moved Objectives Resolution (13 Dec 1946)</div><div class="ca-desc">Presented the vision of sovereign democratic republic — became Preamble's soul. Also chaired: Union Constitution, Union Powers, States Committees</div></div></div>
+      <div class="ca-person"><div class="ca-emoji">📚</div><div><div class="ca-name">Dr. Rajendra Prasad</div><div class="ca-role">President, Constituent Assembly</div><div class="ca-desc">Signed the Constitution. Later became India's first President</div></div></div>
+      <div class="ca-person"><div class="ca-emoji">🏗️</div><div><div class="ca-name">Sardar Vallabhbhai Patel</div><div class="ca-role">Chairman: Provincial Const. Committee & Advisory Committee</div><div class="ca-desc">Iron Man — shaped Centre-State provisions, minority rights, scheduled areas</div></div></div>
+      <div class="ca-person"><div class="ca-emoji">🎓</div><div><div class="ca-name">Sir B.N. Rau</div><div class="ca-role">Constitutional Advisor (not a member)</div><div class="ca-desc">Prepared the preliminary draft; consulted constitutions of 60+ countries. The real architect behind the scenes.</div></div></div>
+      <div class="ca-person"><div class="ca-emoji">✒️</div><div><div class="ca-name">Prem Behari Narain Raizada</div><div class="ca-role">Calligrapher of the Constitution</div><div class="ca-desc">Hand-wrote entire Constitution in italic calligraphy. Refused monetary payment — asked only to write his name and grandfather's on each page.</div></div></div>
+    </div>
+
+    <div class="section-title" style="margin-top:28px"><div class="section-icon" style="background:var(--teal-light)">📋</div><div><h2>Key Committees — महत्वपूर्ण समितियाँ</h2></div></div>
+    <table class="art-table">
+      <thead><tr><th>Committee</th><th>Chairman</th><th>Key Work</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Drafting Committee ⭐</strong></td><td class="art-num">Dr. B.R. Ambedkar</td><td>Prepared the draft Constitution — MOST IMPORTANT! (7 members)</td></tr>
+        <tr><td>Union Constitution Committee</td><td class="art-num">J.L. Nehru</td><td>Union Executive, Legislature</td></tr>
+        <tr><td>Provincial Constitution Committee</td><td class="art-num">Sardar Patel</td><td>Provincial/State constitutions</td></tr>
+        <tr><td>Fundamental Rights Sub-Committee</td><td class="art-num">J.B. Kripalani</td><td>Drafted Part III (FRs)</td></tr>
+        <tr><td>Advisory Committee on Minorities</td><td class="art-num">Sardar Patel</td><td>Minority rights, scheduled areas</td></tr>
+        <tr><td>Steering Committee</td><td class="art-num">Dr. Rajendra Prasad</td><td>Overall coordination</td></tr>
+        <tr><td>Union Powers Committee</td><td class="art-num">J.L. Nehru</td><td>Distribution of powers</td></tr>
+        <tr><td>Order of Business Committee</td><td class="art-num">K.M. Munshi</td><td>Rules and procedure</td></tr>
+      </tbody>
+    </table>
+    <div class="memory-box" style="margin-top:16px">
+      <div class="memory-title">🧠 Memory — Drafting Committee 7 Members</div>
+      <div class="memory-trick">A · KAA · DK · TK · KMM · N.M · G = Ambedkar · Alladi K. Ayyar · D.P. Khaitan · T.T. Krishnamachari* · K.M. Munshi · N. Madhava Rau · Gopalaswami Ayyangar</div>
+      <div style="font-size:11px;color:var(--text-mid);margin-top:4px">*T.T. Krishnamachari replaced D.P. Khaitan after his death</div>
+    </div>
+
+    <div class="section-title" style="margin-top:28px"><div class="section-icon" style="background:var(--purple-light)">🌍</div><div><h2>Sources of Indian Constitution</h2></div></div>
+    <table class="art-table">
+      <thead><tr><th>Country</th><th>What India Borrowed</th></tr></thead>
+      <tbody>
+        <tr><td>🇬🇧 <strong>Britain</strong></td><td>Parliamentary system, Rule of Law, Cabinet, Bicameralism, Writs, Speaker, Single Citizenship, Nominal Head (President)</td></tr>
+        <tr><td>🇺🇸 <strong>USA</strong></td><td>Fundamental Rights, Judicial Review, Independent Judiciary, Preamble, Impeachment, Written Constitution</td></tr>
+        <tr><td>🇮🇪 <strong>Ireland</strong></td><td>DPSP ⭐, Election of President, Nomination of RS members by President</td></tr>
+        <tr><td>🇨🇦 <strong>Canada</strong></td><td>Quasi-federal features, Strong Centre, Residual Powers with Centre, Advisory jurisdiction of SC</td></tr>
+        <tr><td>🇦🇺 <strong>Australia</strong></td><td>Concurrent List, Freedom of trade & commerce, Joint sitting of Parliament</td></tr>
+        <tr><td>🇷🇺 <strong>USSR/Russia</strong></td><td>Fundamental Duties ⭐ (Art.51A), Five Year Plans, Social, Economic & Political Justice in Preamble</td></tr>
+        <tr><td>🇩🇪 <strong>Germany/Weimar</strong></td><td>Suspension of FRs during Emergency, Emergency provisions</td></tr>
+        <tr><td>🇿🇦 <strong>South Africa</strong></td><td>Amendment procedure (Art.368), Election of RS members by state legislatures</td></tr>
+        <tr><td>🇯🇵 <strong>Japan</strong></td><td>Procedure established by law (Art.21 concept)</td></tr>
+      </tbody>
+    </table>
+    <div class="memory-box" style="margin-top:12px">
+      <div class="memory-title">🧠 Memory — Country Sources</div>
+      <div class="memory-trick">BIA · CAR · GJS = Britain · Ireland · Australia · Canada · America · Russia · Germany · Japan · South Africa</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- TAB: PREAMBLE -->
+<div id="tab-preamble" class="tab-content">
+<div class="container">
+  <div class="section">
+    <div class="section-title"><div class="section-icon" style="background:var(--gold-light)">📜</div><div><h2>Preamble — प्रस्तावना</h2><div class="subtitle">Soul & Mirror of the Constitution</div></div></div>
+    <div class="preamble-visual">
+      <div style="font-size:12px;font-weight:700;letter-spacing:2px;color:var(--text-light);text-transform:uppercase;margin-bottom:16px">The Preamble of India</div>
+      <div class="preamble-text">
+        WE, THE PEOPLE OF INDIA, having solemnly resolved to constitute India into a
+        <span class="preamble-highlight">SOVEREIGN</span>
+        <span class="preamble-highlight" style="background:var(--red-alert)">SOCIALIST<sup class="preamble-added">42nd</sup></span>
+        <span class="preamble-highlight" style="background:var(--red-alert)">SECULAR<sup class="preamble-added">42nd</sup></span>
+        <span class="preamble-highlight">DEMOCRATIC</span>
+        <span class="preamble-highlight" style="background:var(--green-india)">REPUBLIC</span>
+        <br><br>and to secure to all its citizens:<br><br>
+        <span class="preamble-highlight" style="background:var(--purple)">JUSTICE</span> — Social, Economic, Political<br>
+        <span class="preamble-highlight" style="background:var(--teal)">LIBERTY</span> — of thought, expression, belief, faith and worship<br>
+        <span class="preamble-highlight" style="background:var(--navy-mid)">EQUALITY</span> — of status and of opportunity<br>
+        <span class="preamble-highlight" style="background:var(--gold)">FRATERNITY</span> — dignity of individual &amp; unity and <span style="text-decoration:underline;text-decoration-color:red">integrity</span><sup class="preamble-added">42nd</sup> of the Nation<br><br>
+        IN OUR CONSTITUENT ASSEMBLY this twenty-sixth day of November, 1949
+      </div>
+      <div style="margin-top:16px;padding-top:12px;border-top:1px solid var(--border);font-size:11px;color:var(--text-light)">🔴 Red/Orange highlights = Added by <strong>42nd Constitutional Amendment, 1976</strong> &nbsp;|&nbsp; Preamble amended <strong>only once</strong></div>
+    </div>
+
+    <div class="info-grid" style="margin-top:20px">
+      <div class="info-box"><div class="info-box-title">⚡ SOVEREIGN</div><div class="info-box-body">India is free from external control. Not subject to any foreign power. Can acquire/cede territory. UN membership doesn't affect sovereignty.</div></div>
+      <div class="info-box"><div class="info-box-title">🔴 SOCIALIST (Added 1976)</div><div class="info-box-body">Democratic Socialism (NOT Communism). Mixed economy. Avoid concentration of wealth. D.S. Nakara v. UoI (1983) — equal pay for equal work.</div></div>
+      <div class="info-box"><div class="info-box-title">🔴 SECULAR (Added 1976)</div><div class="info-box-body">No state religion. Equal respect to all religions. "Positive Secularism" — state can intervene for social reform. Different from Western model.</div></div>
+      <div class="info-box"><div class="info-box-title">🗳️ DEMOCRATIC</div><div class="info-box-body">Govt derives authority from people. Universal Adult Franchise. Includes social &amp; economic democracy via DPSP alongside political democracy.</div></div>
+      <div class="info-box"><div class="info-box-title">🏛️ REPUBLIC</div><div class="info-box-body">Elected head of state (President), NOT hereditary. No monarchy. All public offices open to all citizens through proper process.</div></div>
+      <div class="info-box"><div class="info-box-title">🤝 FRATERNITY + INTEGRITY</div><div class="info-box-body">Brotherhood ensures: (1) Dignity of individual (2) Unity &amp; Integrity of Nation. "Integrity" added by 42nd Amendment 1976.</div></div>
+    </div>
+
+    <div class="section-title" style="margin-top:28px"><div class="section-icon" style="background:var(--navy-light)">⚖️</div><div><h2>Landmark Cases on Preamble</h2></div></div>
+    <div class="case-card"><div class="case-name">Berubari Union Case <span class="case-year">1960</span></div><div class="case-sig">SC held: Preamble is NOT part of the Constitution; cannot be used to interpret provisions. (LATER OVERRULED!)</div></div>
+    <div class="case-card"><div class="case-name">Kesavananda Bharati v. State of Kerala <span class="case-year">1973</span> ⭐⭐⭐</div><div class="case-sig">🌟 13-judge bench: Preamble IS part of the Constitution. Represents basic structure. Parliament CANNOT amend basic structure. Overruled Berubari case.</div></div>
+    <div class="case-card"><div class="case-name">S.R. Bommai v. Union of India <span class="case-year">1994</span></div><div class="case-sig">Secularism is a basic feature of the Constitution. President's Rule on communal grounds upheld as constitutional.</div></div>
+    <div class="case-card"><div class="case-name">LIC of India v. Consumer Education &amp; Research Centre <span class="case-year">1995</span></div><div class="case-sig">Preamble aids interpretation. Socialism means equal pay for equal work. DPSP and FR should be read harmoniously.</div></div>
+
+    <div class="card" style="margin-top:20px">
+      <div class="card-header" onclick="toggleCard(this)"><span class="art-pill pill-orange">⚠️ EXAM TRAPS</span><span class="card-title">Common Errors on Preamble — MUST KNOW!</span><span class="card-arrow">▼</span></div>
+      <div class="card-body">
+        <ul>
+          <li><strong>42nd Amendment (1976)</strong> added <em>Socialist + Secular + Integrity</em> <span class="tag tag-hot">HOT MCQ — UPPSC 2025 Q.56</span></li>
+          <li>Preamble has been amended <strong>only ONCE</strong> in history (1976)</li>
+          <li>Constitution ADOPTED: <strong>26 Nov 1949</strong> (Samvidhan Divas) | ENFORCED: <strong>26 Jan 1950</strong> (Republic Day)</li>
+          <li>Objectives Resolution moved by Nehru on <strong>13 December 1946</strong></li>
+          <li>"We the People" — CA represented people; no direct referendum was held</li>
+          <li>Justice includes Social, Economic AND Political — all three from Preamble (inspired by USSR Constitution)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- TAB: FUNDAMENTAL RIGHTS -->
+<div id="tab-fr" class="tab-content">
+<div class="container">
+  <div class="section">
+    <div class="section-title"><div class="section-icon" style="background:var(--navy-light)">⚖️</div><div><h2>Fundamental Rights (Art. 12–35) — मौलिक अधिकार</h2><div class="subtitle">Part III of Constitution | Most Important for UPPSC</div></div></div>
+    <table class="art-table" style="margin-bottom:16px">
+      <thead><tr><th>Category</th><th>Articles</th><th>Key Content</th></tr></thead>
+      <tbody>
+        <tr><td>🟠 Right to Equality</td><td class="art-num">14–18</td><td>Equality before law, No discrimination, Abolition of untouchability &amp; titles</td></tr>
+        <tr><td>🔵 Right to Freedom</td><td class="art-num">19–22</td><td>6 Freedoms, Protection from conviction, Right to life &amp; liberty, Preventive detention</td></tr>
+        <tr><td>🔴 Against Exploitation</td><td class="art-num">23–24</td><td>Prohibition of trafficking, forced labour, child labour below 14</td></tr>
+        <tr><td>🟢 Freedom of Religion</td><td class="art-num">25–28</td><td>Freedom of conscience, practice, propagation; manage religious affairs</td></tr>
+        <tr><td>🟣 Cultural &amp; Educational</td><td class="art-num">29–30</td><td>Minority rights, right to establish &amp; administer educational institutions</td></tr>
+        <tr><td>⚫ Constitutional Remedies</td><td class="art-num">32</td><td>"Heart &amp; Soul" — Right to move SC; 5 types of writs</td></tr>
+      </tbody>
+    </table>
+    <div style="background:var(--red-light);border:1px solid var(--red-alert);border-radius:8px;padding:10px 14px;margin-bottom:12px;font-size:12.5px;color:var(--red-alert)">❌ <strong>RIGHT TO PROPERTY (Art.31 + Art.19(f))</strong> REMOVED from FRs by <strong>44th Amendment 1978</strong> → Now only Legal Right under Art. 300A</div>
+    <div style="background:var(--saffron-light);border:1px solid var(--saffron);border-radius:8px;padding:10px 14px;margin-bottom:20px;font-size:12.5px;color:var(--saffron)">⚠️ <strong>Art.12</strong> = Defines "State" | <strong>Art.13</strong> = Laws inconsistent with FRs are VOID | <strong>Art.33</strong> = Parliament can restrict FRs of Armed Forces | <strong>Art.34</strong> = Martial Law | <strong>Art.35</strong> = Parliament to legislate on certain FR matters</div>
+
+    <!-- FR 1: Right to Equality -->
+    <div class="fr-card orange open">
+      <div class="fr-header" onclick="toggleFR(this)"><div class="fr-icon">⚖️</div><div class="fr-meta"><div class="fr-title">1. Right to Equality — समानता का अधिकार</div><div class="fr-range"><span class="art-pill pill-orange">Art. 14–18</span> <span class="tag tag-hot">Most Asked in UPPSC</span></div></div><span class="card-arrow">▼</span></div>
+      <div class="fr-body">
+        <div class="memory-box"><div class="memory-title">🧠 Memory Trick — Art 14 to 18</div><div class="memory-trick">14=EL(Equality+Law) | 15=No Discrimination | 16=Equal Opportunity | 17=Untouchability Abolished | 18=Titles Abolished</div></div>
+        <table class="art-table" style="margin-bottom:16px">
+          <thead><tr><th>Article</th><th>Right</th><th>Key Point</th><th>Exception</th></tr></thead>
+          <tbody>
+            <tr><td class="art-num">14</td><td><strong>Equality before Law &amp; Equal Protection of Laws</strong></td><td>Applies to citizens + non-citizens + companies. Two concepts: British (equality before law) + American (equal protection)</td><td>Reasonable classification allowed: intelligible differentia + rational nexus</td></tr>
+            <tr><td class="art-num">15</td><td><strong>Prohibition of Discrimination</strong></td><td>State shall NOT discriminate on: Religion, Race, Caste, Sex, Place of Birth</td><td>Special provision for Women, Children (15(3)); SC/ST/OBC (15(4)); EWS 10% by 103rd Amend 2019 (15(6))</td></tr>
+            <tr><td class="art-num">16</td><td><strong>Equal Opportunity in Public Employment</strong></td><td>Equal opportunity in govt jobs for ALL citizens</td><td>Reservation for SC/ST/OBC (16(4)); Residence requirement (16(3)); Religious offices (16(5)); EWS 10% (16(6))</td></tr>
+            <tr><td class="art-num">17</td><td><strong>Abolition of Untouchability</strong> 🛡️</td><td>Absolute right — no exceptions. Protection of Civil Rights Act 1955</td><td><strong>NONE — Absolute!</strong></td></tr>
+            <tr><td class="art-num">18</td><td><strong>Abolition of Titles</strong></td><td>No military/academic titles EXCEPT military distinctions &amp; academic degrees. Citizens cannot accept foreign titles</td><td>Bharat Ratna, Padma awards are NOT titles — they are national awards (Balaji Raghavan case 1995)</td></tr>
+          </tbody>
+        </table>
+        <div class="section-title" style="border:none;margin-bottom:10px"><strong>⚖️ Landmark Cases</strong></div>
+        <div class="case-card"><div class="case-name">State of W.B. v. Anwar Ali Sarkar <span class="case-year">1952</span></div><div class="case-sig">Art.14 struck down Special Criminal Courts Act — no reasonable classification shown. Established the "reasonable classification test."</div></div>
+        <div class="case-card"><div class="case-name">Indra Sawhney v. Union of India <span class="case-year">1992</span></div><div class="case-sig">⭐ Mandal Commission — OBC 27% reservation upheld. Established 50% ceiling on total reservations. No reservation in promotions. Creamy layer concept for OBCs.</div></div>
+        <div class="case-card"><div class="case-name">Janhit Abhiyan v. Union of India <span class="case-year">2022</span></div><div class="case-sig">🆕 SC upheld 103rd Amendment — 10% EWS reservation valid even beyond 50% ceiling. Does not violate basic structure. Narrow 3:2 majority.</div></div>
+        <div class="up-box"><div class="up-title">🏛️ UP Angle</div><div style="font-size:12.5px;color:var(--text-mid)"><strong>Lata Singh v. State of UP (2006):</strong> SC held inter-caste/inter-religion marriage is a Fundamental Right. Caste panchayats or families cannot threaten or harass such couples. UP Police must protect them. Art.14 + Art.21 both involved.</div></div>
+      </div>
+    </div>
+
+    <!-- FR 2: Right to Freedom -->
+    <div class="fr-card">
+      <div class="fr-header" onclick="toggleFR(this)"><div class="fr-icon">🕊️</div><div class="fr-meta"><div class="fr-title">2. Right to Freedom — स्वतंत्रता का अधिकार</div><div class="fr-range"><span class="art-pill pill-navy">Art. 19–22</span> <span class="tag tag-hot">Frequently Asked</span></div></div><span class="card-arrow">▼</span></div>
+      <div class="fr-body">
+        <div class="memory-box"><div class="memory-title">🧠 Memory — 6 Freedoms under Art.19 (Originally 7)</div><div class="memory-trick">S·A·A·M·R·P = Speech · Assemble · Associate · Move · Reside · Profession<br><span style="font-size:11px">Art.19(f) = Property was REMOVED by 44th Amendment 1978</span></div></div>
+        <table class="art-table" style="margin-bottom:14px">
+          <thead><tr><th>Article</th><th>Freedom</th><th>Restrictions Allowed</th></tr></thead>
+          <tbody>
+            <tr><td class="art-num">19(1)(a)</td><td><strong>Speech &amp; Expression</strong></td><td>Security of State, Sovereignty &amp; Integrity, Friendly relations with foreign states, Public order, Decency/Morality, Contempt of Court, Defamation, Incitement to offence</td></tr>
+            <tr><td class="art-num">19(1)(b)</td><td><strong>Assemble Peacefully (without arms)</strong></td><td>Sovereignty &amp; Integrity, Public Order</td></tr>
+            <tr><td class="art-num">19(1)(c)</td><td><strong>Form Associations/Unions/Co-ops</strong></td><td>Sovereignty &amp; Integrity, Public Order, Morality</td></tr>
+            <tr><td class="art-num">19(1)(d)</td><td><strong>Move Freely throughout India</strong></td><td>Interests of General Public, Scheduled Tribes protection</td></tr>
+            <tr><td class="art-num">19(1)(e)</td><td><strong>Reside &amp; Settle anywhere in India</strong></td><td>Interests of General Public, Scheduled Tribes protection</td></tr>
+            <tr><td class="art-num">19(1)(g)</td><td><strong>Practise any Profession/Trade/Business</strong></td><td>Interests of General Public, Professional qualifications prescribed by State</td></tr>
+          </tbody>
+        </table>
+        <div class="info-grid">
+          <div class="info-box"><div class="info-box-title">📖 Article 20 — Protection in Conviction</div><div class="info-box-body">(1) <strong>Ex-post-facto</strong> — No conviction for act not offence when done<br>(2) <strong>Double Jeopardy</strong> — Not tried twice for same offence<br>(3) <strong>Self-Incrimination</strong> — Not compelled to witness against self<br><br>🔑 Art.20 CANNOT be suspended even during Emergency! (44th Amendment)</div></div>
+          <div class="info-box"><div class="info-box-title">🌟 Article 21 — Right to Life &amp; Liberty</div><div class="info-box-body">"No person shall be deprived of his life or personal liberty except according to PROCEDURE ESTABLISHED BY LAW"<br><br>SC expanded to include: Privacy (2017), Dignity, Livelihood, Health, Education, Die with Dignity, Choose partner<br><br>Cannot be suspended even during Emergency (44th Amend)</div></div>
+          <div class="info-box"><div class="info-box-title">🏫 Article 21A — Right to Education</div><div class="info-box-body">Added by <strong>86th Amendment 2002</strong><br>Free &amp; compulsory education for children aged <strong>6–14 years</strong><br>RTE Act 2009 gives legal effect<br><span class="amend-badge">86th Amendment 2002</span></div></div>
+          <div class="info-box"><div class="info-box-title">🔒 Article 22 — Preventive Detention</div><div class="info-box-body">Against arbitrary arrest: informed of grounds, produced before Magistrate within 24 hrs, right to consult lawyer<br><br><strong>Preventive Detention:</strong> Max 3 months without Advisory Board approval. National Security Act 1980 (NSA) used in UP frequently.</div></div>
+        </div>
+        <div class="section-title" style="border:none;margin-top:14px;margin-bottom:8px"><strong>⚖️ Landmark Cases</strong></div>
+        <div class="case-card"><div class="case-name">A.K. Gopalan v. State of Madras <span class="case-year">1950</span></div><div class="case-sig">Art.21 interpreted narrowly — any procedure laid down by law is sufficient. Each FR read in isolation. OVERRULED by Maneka Gandhi case.</div></div>
+        <div class="case-card"><div class="case-name">Maneka Gandhi v. Union of India <span class="case-year">1978</span> ⭐⭐⭐</div><div class="case-sig">🌟 LANDMARK: Art.21 procedure must be just, fair &amp; reasonable. FRs not mutually exclusive — must be read together. Passportimpoundment case. Reversed Gopalan.</div></div>
+        <div class="case-card"><div class="case-name">K.S. Puttaswamy v. Union of India <span class="case-year">2017</span> ⭐⭐⭐</div><div class="case-sig">🌟 9-judge bench unanimous: RIGHT TO PRIVACY is FR under Art.21. Overruled M.P. Sharma (1954) &amp; Kharak Singh (1962). Triggered Aadhaar challenge.</div></div>
+        <div class="case-card"><div class="case-name">Manish Sisodia v. CBI/ED <span class="case-year">2024</span></div><div class="case-sig">🆕 SC 2024: Prolonged incarceration without trial commencement violates Art.21 Right to speedy trial. Bail granted after 17 months. <span class="tag tag-2025">Recent</span></div></div>
+        <div class="case-card"><div class="case-name">Imran Pratapgadhi v. State of Gujarat <span class="case-year">2025</span></div><div class="case-sig">🆕 SC 2025: FIR quashed against RS MP for sharing poem on social media. SC: Law enforcement is "ignorant or doesn't care" about Art.19(1)(a). <span class="tag tag-2025">2025</span></div></div>
+        <div class="up-box"><div class="up-title">🏛️ UP Angle — Art. 21 &amp; Art. 22</div><div style="font-size:12.5px;color:var(--text-mid)"><strong>Allahabad HC 2020:</strong> Adult's right to choose life partner is FR under Art.21. UP Police cannot interfere. | <strong>NSA (National Security Act)</strong> frequently used in UP — must be challenged under Art.32 or Art.226 via Habeas Corpus.</div></div>
+      </div>
+    </div>
+
+    <!-- FR 3: Against Exploitation -->
+    <div class="fr-card red">
+      <div class="fr-header" onclick="toggleFR(this)"><div class="fr-icon">🚫</div><div class="fr-meta"><div class="fr-title">3. Right Against Exploitation — शोषण के विरुद्ध अधिकार</div><div class="fr-range"><span class="art-pill pill-red">Art. 23–24</span></div></div><span class="card-arrow">▼</span></div>
+      <div class="fr-body">
+        <div class="info-grid">
+          <div class="info-box"><div class="info-box-title">📍 Art. 23 — Traffic &amp; Forced Labour Banned</div><div class="info-box-body">Prohibits: Human trafficking, Begar (forced labour without pay), other forms of forced labour<br><br><strong>Exception:</strong> State can impose compulsory service for public purpose (military, social service) — BUT no discrimination on religion/race/caste/class<br><br>Available to citizens AND non-citizens</div></div>
+          <div class="info-box"><div class="info-box-title">👶 Art. 24 — Child Labour Prohibition</div><div class="info-box-body">No child below <strong>14 years</strong> in any factory, mine, or hazardous employment<br><br>Non-hazardous activities NOT covered by Art.24 alone<br><br>Child Labour Act 2016 extended ban to age 14 in ALL occupations (with family enterprise exception)<br><br>Hazardous = factories, mines, construction</div></div>
+        </div>
+        <div class="case-card"><div class="case-name">People's Union for Democratic Rights v. Union of India <span class="case-year">1982</span></div><div class="case-sig">Asiad workers case. Forced labour = payment below minimum wage also counts. Art.23 includes right to receive minimum wages. Landmark for bonded labour abolition.</div></div>
+        <div class="memory-box"><div class="memory-title">🧠 Trick</div><div class="memory-trick">23 = Trafficking + Begar Banned (adults &amp; children) | 24 = Child below 14 NOT in hazardous work</div></div>
+      </div>
+    </div>
+
+    <!-- FR 4: Religion -->
+    <div class="fr-card green">
+      <div class="fr-header" onclick="toggleFR(this)"><div class="fr-icon">🕌</div><div class="fr-meta"><div class="fr-title">4. Freedom of Religion — धार्मिक स्वतंत्रता का अधिकार</div><div class="fr-range"><span class="art-pill pill-green">Art. 25–28</span></div></div><span class="card-arrow">▼</span></div>
+      <div class="fr-body">
+        <table class="art-table" style="margin-bottom:14px">
+          <thead><tr><th>Art</th><th>Provision</th><th>Exception/Limit</th></tr></thead>
+          <tbody>
+            <tr><td class="art-num">25</td><td><strong>Freedom of conscience, practice &amp; propagation</strong></td><td>"Propagation" ≠ forced conversion (Stainislaus v. State of MP 1977). State can regulate economic activities associated with religion. Can reform Hindu religious institutions.</td></tr>
+            <tr><td class="art-num">26</td><td><strong>Freedom to manage religious affairs</strong></td><td>Subject to public order, morality, health. Every religious denomination can establish institutions, manage own affairs, own property</td></tr>
+            <tr><td class="art-num">27</td><td><strong>Freedom from taxes for religion</strong></td><td>No one compelled to pay tax for promotion of any particular religion. Regulatory fees ARE allowed (not taxes)</td></tr>
+            <tr><td class="art-num">28</td><td><strong>Freedom from religious instruction in state schools</strong></td><td>Wholly state-funded schools cannot impart religious instruction. Aided schools — voluntary attendance. Institutions set up by endowments for religious teaching are excepted.</td></tr>
+          </tbody>
+        </table>
+        <div class="case-card"><div class="case-name">Shirur Mutt Case <span class="case-year">1954</span></div><div class="case-sig">🌟 "Essential Religious Practices" test: Only essential &amp; integral practices of religion get constitutional protection under Art.25-26. State can regulate secular activities.</div></div>
+        <div class="case-card"><div class="case-name">Aiyaruddin Navab v. State of MP <span class="case-year">1977</span></div><div class="case-sig">Right to propagate does NOT include right to convert by force, fraud, or inducement. Stainislaus case established this limit on Art.25.</div></div>
+        <div class="memory-box"><div class="memory-title">🧠 Trick — 25 to 28</div><div class="memory-trick">25=Practise+Propagate | 26=Manage Religious Affairs | 27=No Tax for Religion | 28=No Religious Teaching in Govt Schools</div></div>
+      </div>
+    </div>
+
+    <!-- FR 5: Cultural & Educational -->
+    <div class="fr-card purple">
+      <div class="fr-header" onclick="toggleFR(this)"><div class="fr-icon">📚</div><div class="fr-meta"><div class="fr-title">5. Cultural &amp; Educational Rights — सांस्कृतिक एवं शैक्षिक अधिकार</div><div class="fr-range"><span class="art-pill pill-purple">Art. 29–30</span></div></div><span class="card-arrow">▼</span></div>
+      <div class="fr-body">
+        <div class="info-grid">
+          <div class="info-box"><div class="info-box-title">📖 Art. 29 — Protection of Minority Interests</div><div class="info-box-body">Any section of citizens with distinct language, script, or culture has right to conserve it<br><br>No citizen denied admission to state-aided institution on grounds of religion, race, caste, language<br><br>Important: Art.29 applies to ALL citizens (majority &amp; minority both)</div></div>
+          <div class="info-box"><div class="info-box-title">🏫 Art. 30 — Minority Right to Establish Institutions</div><div class="info-box-body">All minorities (religious or linguistic) can establish &amp; administer educational institutions<br><br>State shall not discriminate in granting aid to minority institutions<br><br>T.M.A. Pai Foundation (2002): Right to establish educational institution is also a FR for all — minorities have additional protection under Art.30</div></div>
+        </div>
+        <div class="case-card"><div class="case-name">T.M.A. Pai Foundation v. State of Karnataka <span class="case-year">2002</span></div><div class="case-sig">11-judge bench. Right to establish educational institution is a FR for all citizens and minorities under Art.19(1)(g) &amp; Art.26 + Art.30. Limits on State's reservation in private/minority institutions.</div></div>
+      </div>
+    </div>
+
+    <!-- FR 6: Constitutional Remedies -->
+    <div class="fr-card gold">
+      <div class="fr-header" onclick="toggleFR(this)"><div class="fr-icon">🔑</div><div class="fr-meta"><div class="fr-title">6. Constitutional Remedies — संवैधानिक उपचार का अधिकार</div><div class="fr-range"><span class="art-pill pill-gold">Art. 32</span> <span class="tag tag-hot">MOST IMPORTANT — "Heart &amp; Soul"</span></div></div><span class="card-arrow">▼</span></div>
+      <div class="fr-body">
+        <div style="background:var(--gold-light);border:1px solid var(--gold);border-radius:10px;padding:14px;margin-bottom:14px"><div style="font-size:13px;font-style:italic;color:#4A3000;font-weight:600">"Article 32 is the very soul of the Constitution and the very heart of it."</div><div style="font-size:11px;color:var(--text-light);margin-top:4px">— Dr. B.R. Ambedkar</div></div>
+        <div class="info-grid">
+          <div class="info-box"><div class="info-box-title">🔑 What Art.32 Guarantees</div><div class="info-box-body">Right to move SUPREME COURT directly for enforcement of FRs<br>SC can issue 5 types of writs<br>Parliament can empower other courts too (Art.32(3))<br><br><strong>Art.226</strong> = HC issues writs (WIDER scope — for any purpose, not just FRs). Both Art.32 and Art.226 are FRs.</div></div>
+          <div class="info-box"><div class="info-box-title">📋 Five Writs — HMPCQ</div><div class="info-box-body">🖐️ <strong>Habeas Corpus</strong> — Produce the body (illegal detention)<br>✋ <strong>Mandamus</strong> — We command (perform public duty)<br>🤚 <strong>Prohibition</strong> — Stop inferior court from exceeding jurisdiction<br>✌️ <strong>Certiorari</strong> — Transfer/quash order of lower court<br>👆 <strong>Quo Warranto</strong> — By what authority (challenge to public office)</div></div>
+        </div>
+        <div class="memory-box"><div class="memory-title">🧠 Trick for 5 Writs</div><div class="memory-trick">HMPCQ = "Hum Mar Phir Chalenge Quickly"<br>Habeas · Mandamus · Prohibition · Certiorari · Quo Warranto</div></div>
+        <div style="background:var(--red-light);border:1px solid var(--red-alert);border-radius:8px;padding:10px;margin-top:12px;font-size:12.5px;color:var(--red-alert)">⚠️ Art.32 CAN be suspended during National Emergency under Art.359. BUT Art.20 &amp; Art.21 CANNOT be suspended. (44th Amendment guarantee)</div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<!-- TAB: DPSP -->
+<div id="tab-dpsp" class="tab-content">
+<div class="container">
+  <div class="section">
+    <div class="section-title"><div class="section-icon" style="background:var(--green-light)">🌿</div><div><h2>Directive Principles of State Policy (Art. 36–51)</h2><div class="subtitle">Part IV | Non-Justiciable but Fundamental to Governance</div></div></div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px">
+      <div style="background:var(--navy);color:white;border-radius:12px;padding:16px">
+        <div style="font-size:13px;font-weight:700;margin-bottom:8px">⚖️ Fundamental Rights (Part III)</div>
+        <ul style="color:rgba(255,255,255,0.85);font-size:12px;padding-left:14px">
+          <li>Justiciable (Enforceable in court)</li>
+          <li>Negative obligations on State</li>
+          <li>Political Democracy</li>
+          <li>Art. 12–35</li>
+          <li>Inspired by USA Bill of Rights</li>
+        </ul>
+      </div>
+      <div style="background:var(--green-india);color:white;border-radius:12px;padding:16px">
+        <div style="font-size:13px;font-weight:700;margin-bottom:8px">🌿 DPSP (Part IV)</div>
+        <ul style="color:rgba(255,255,255,0.85);font-size:12px;padding-left:14px">
+          <li>Non-Justiciable (NOT enforceable)</li>
+          <li>Positive obligations on State</li>
+          <li>Social &amp; Economic Democracy</li>
+          <li>Art. 36–51</li>
+          <li>Inspired by Ireland's Constitution</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card open">
+      <div class="card-header" onclick="toggleCard(this)"><span class="art-pill pill-green">3 Types</span><span class="card-title">Classification of DPSPs</span><span class="card-arrow">▼</span></div>
+      <div class="card-body">
+        <table class="art-table">
+          <thead><tr><th>Type</th><th>Key Articles</th><th>Content</th></tr></thead>
+          <tbody>
+            <tr><td><strong>🔴 Socialistic</strong></td><td class="art-num">38, 39, 39A, 41, 42, 43, 43A, 47</td><td>Equal pay, Equal distribution of resources, Free legal aid, Maternity relief, Living wage, Workers' participation in management, Raise level of nutrition</td></tr>
+            <tr><td><strong>🟢 Gandhian</strong></td><td class="art-num">40, 43, 43B, 46, 47, 48</td><td>Panchayati Raj ⭐, Village industries, Uplift of SC/ST, Prohibition of intoxicants, Preservation of cow, Cottage industries</td></tr>
+            <tr><td><strong>🔵 Liberal-Intellectual</strong></td><td class="art-num">44, 45, 48A, 49, 50, 51</td><td>Uniform Civil Code ⭐, Early childhood care (0-6 yrs), Environmental protection ⭐, Protection of monuments, Separation of judiciary, International peace</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card open" style="margin-top:16px">
+      <div class="card-header" onclick="toggleCard(this)"><span class="art-pill pill-orange">HOT MCQ</span><span class="card-title">Key DPSP Articles to Remember</span><span class="card-arrow">▼</span></div>
+      <div class="card-body">
+        <table class="art-table">
+          <thead><tr><th>Article</th><th>Content</th><th>Exam Tag</th></tr></thead>
+          <tbody>
+            <tr><td class="art-num">39A</td><td>Free Legal Aid &amp; Equal Justice — added by <strong>42nd Amendment 1976</strong></td><td><span class="tag tag-hot">HOT</span></td></tr>
+            <tr><td class="art-num">40</td><td>Organisation of Village Panchayats (Gandhian DPSP) — later made justiciable by 73rd Amendment</td><td><span class="tag tag-imp">IMP</span></td></tr>
+            <tr><td class="art-num">44</td><td>Uniform Civil Code (UCC) — Most debated DPSP. Art.44 says State shall endeavour to secure UCC.</td><td><span class="tag tag-hot">HOT</span></td></tr>
+            <tr><td class="art-num">45</td><td>Early Childhood Care &amp; Education for children below 6 years (modified by 86th Amend 2002)</td><td><span class="tag tag-imp">IMP</span></td></tr>
+            <tr><td class="art-num">48A</td><td>Environment Protection &amp; Safeguard of forests &amp; wildlife — added by <strong>42nd Amendment 1976</strong></td><td><span class="tag tag-imp">IMP</span></td></tr>
+            <tr><td class="art-num">50</td><td>Separation of Judiciary from Executive in public services</td><td></td></tr>
+            <tr><td class="art-num">51</td><td>Promotion of International Peace &amp; Security — basis of India's foreign policy</td><td></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="section-title" style="margin-top:28px"><div class="section-icon" style="background:var(--red-light)">⚡</div><div><h2>FR vs DPSP Conflict — Landmark Cases</h2></div></div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot" style="background:var(--saffron)"></div>
+        <div class="timeline-card">
+          <div class="timeline-num">1951 · Art.31A-B Added</div>
+          <div class="timeline-title">Champakam Dorairajan v. State of Madras</div>
+          <div class="timeline-points"><li>SC: FR prevails over DPSP in case of conflict</li><li>Led to 1st Constitutional Amendment 1951 — added Art.31A &amp; 31B (9th Schedule)</li></div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot" style="background:var(--navy)"></div>
+        <div class="timeline-card">
+          <div class="timeline-num">1967 · Golaknath Case</div>
+          <div class="timeline-title">I.C. Golaknath v. State of Punjab</div>
+          <div class="timeline-points"><li>SC: Parliament CANNOT amend Part III FRs at all</li><li>FRs are transcendental &amp; immutable</li><li>Led to 24th Amendment (1971) — Parliament CAN amend any part including FRs</li></div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot" style="background:var(--red-alert)"></div>
+        <div class="timeline-card">
+          <div class="timeline-num">1973 · Basic Structure Doctrine ⭐⭐⭐</div>
+          <div class="timeline-title">Kesavananda Bharati v. State of Kerala</div>
+          <div class="timeline-points"><li>13-judge bench (7:6): Parliament CAN amend Constitution BUT cannot destroy its basic structure</li><li>Basic structure = Supremacy of Constitution, Republican &amp; Democratic form, Secular character, Separation of powers, Federal character, Free &amp; fair elections, Independence of judiciary</li><li>Overruled Golaknath but limited Parliament's amending power</li></div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot" style="background:var(--green-india)"></div>
+        <div class="timeline-card">
+          <div class="timeline-num">1980 · Balance Restored</div>
+          <div class="timeline-title">Minerva Mills v. Union of India</div>
+          <div class="timeline-points"><li>SC struck down 42nd Amendment clauses giving DPSP absolute primacy over FRs</li><li>Harmony &amp; balance between FR (Part III) and DPSP (Part IV) is basic structure</li><li>Neither can be given absolute priority over the other</li></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="memory-box" style="margin-top:20px">
+      <div class="memory-title">🧠 Memory — FR-DPSP Conflict Cases</div>
+      <div class="memory-trick">C-G-K-M = Champakam (1951) → Golaknath (1967) → Kesavananda (1973) → Minerva Mills (1980)</div>
+    </div>
+    <div class="up-box">
+      <div class="up-title">🏛️ UP Angle — Art.40 Panchayati Raj</div>
+      <div style="font-size:12.5px;color:var(--text-mid)">Art.40 DPSP was implemented via <strong>73rd Amendment 1992</strong> in Rajiv Gandhi era. UP was among early states to pass the UP Panchayati Raj Act. 3-tier system: <strong>Gram Panchayat → Panchayat Samiti → Zila Parishad</strong>. Reservation for women (33%), SC/ST/OBC provided under 73rd Amendment.</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- TAB: DUTIES -->
+<div id="tab-duties" class="tab-content">
+<div class="container">
+  <div class="section">
+    <div class="section-title"><div class="section-icon" style="background:var(--teal-light)">🤝</div><div><h2>Fundamental Duties (Art. 51A)</h2><div class="subtitle">Part IVA | Added by 42nd Amendment 1976 | Swaran Singh Committee</div></div></div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px">
+      <div style="background:var(--saffron);color:white;border-radius:12px;padding:14px;text-align:center"><div style="font-size:24px;font-weight:800">42nd</div><div style="font-size:11px;opacity:0.85">Amendment 1976<br>Added 10 duties</div></div>
+      <div style="background:var(--navy);color:white;border-radius:12px;padding:14px;text-align:center"><div style="font-size:24px;font-weight:800">86th</div><div style="font-size:11px;opacity:0.85">Amendment 2002<br>Added 11th duty (k)</div></div>
+      <div style="background:var(--green-india);color:white;border-radius:12px;padding:14px;text-align:center"><div style="font-size:24px;font-weight:800">USSR</div><div style="font-size:11px;opacity:0.85">Inspired from<br>Soviet Constitution</div></div>
+    </div>
+
+    <div style="background:var(--gold-light);border:1px solid var(--gold);border-radius:10px;padding:12px 16px;margin-bottom:20px;font-size:12.5px;color:#4A3000">
+      <strong>⭐ Key Fact:</strong> Swaran Singh Committee (1976) recommended Fundamental Duties. Committee suggested 8 duties; 42nd Amendment added 10. <strong>86th Amendment 2002</strong> added the 11th duty (k) on parent/guardian duty to provide educational opportunities for children.
+    </div>
+
+    <div class="duty-grid">
+      <div class="duty-item"><div class="duty-num">a</div><div class="duty-text">Abide by the Constitution and respect its ideals, National Flag and National Anthem</div></div>
+      <div class="duty-item"><div class="duty-num">b</div><div class="duty-text">Cherish and follow the noble ideals which inspired our national struggle for freedom</div></div>
+      <div class="duty-item"><div class="duty-num">c</div><div class="duty-text">Uphold and protect the <strong>sovereignty, unity and integrity</strong> of India</div></div>
+      <div class="duty-item"><div class="duty-num">d</div><div class="duty-text">Defend the country and render national service when called upon to do so</div></div>
+      <div class="duty-item"><div class="duty-num">e</div><div class="duty-text">Promote harmony and the spirit of common brotherhood among all people of India</div></div>
+      <div class="duty-item"><div class="duty-num">f</div><div class="duty-text">Value and preserve the <strong>rich heritage</strong> of our composite culture</div></div>
+      <div class="duty-item"><div class="duty-num">g</div><div class="duty-text">Protect and improve the <strong>natural environment</strong> including forests, lakes, rivers and wildlife</div></div>
+      <div class="duty-item"><div class="duty-num">h</div><div class="duty-text">Develop <strong>scientific temper</strong>, humanism and the spirit of inquiry and reform</div></div>
+      <div class="duty-item"><div class="duty-num">i</div><div class="duty-text">Safeguard public property and abjure violence</div></div>
+      <div class="duty-item"><div class="duty-num">j</div><div class="duty-text">Strive towards <strong>excellence</strong> in all spheres of individual and collective activity</div></div>
+      <div class="duty-item" style="border:2px solid var(--saffron)"><div class="duty-num" style="background:var(--saffron)">k</div><div class="duty-text"><strong>86th Amend 2002:</strong> Parent/guardian to provide opportunities for education of child between <strong>6–14 years</strong> <span class="amend-badge">86th</span></div></div>
+    </div>
+
+    <div class="memory-box" style="margin-top:20px">
+      <div class="memory-title">🧠 Memory — 11 Duties (a to k)</div>
+      <div class="memory-trick">A·B·C·D·E·F·G·H·I·J·K<br>
+        Abide · Brotherhood national values · Country sovereignty · Defend · Equality harmony · Folk culture preserve · Green environment · Humanist-scientific temper · Integrity-public property · Justice excellence · Kids' education</div>
+    </div>
+
+    <div class="card" style="margin-top:20px">
+      <div class="card-header" onclick="toggleCard(this)"><span class="art-pill pill-orange">⚠️ EXAM POINTS</span><span class="card-title">Critical Facts on Fundamental Duties</span><span class="card-arrow">▼</span></div>
+      <div class="card-body">
+        <ul>
+          <li>Fundamental Duties are <strong>NON-JUSTICIABLE</strong> (not enforceable by court)</li>
+          <li>They apply only to <strong>citizens</strong> (NOT aliens/foreigners)</li>
+          <li>Added by <strong>42nd Amendment 1976</strong> (10 duties) based on Swaran Singh Committee</li>
+          <li><strong>11th duty (k)</strong> added by <strong>86th Amendment 2002</strong></li>
+          <li>Inspired by <strong>USSR Constitution (Soviet Union)</strong></li>
+          <li>Verma Committee (1999) noted: no legal sanction but courts can use them to test reasonableness of laws</li>
+          <li>Art.51A(g) is basis for many environment protection laws — cited by SC in cases on pollution, deforestation</li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="background:var(--compare-table);margin-top:20px">
+      <div class="section-title"><div class="section-icon" style="background:var(--purple-light)">📊</div><div><h2>FR vs DPSP vs Duties — Quick Compare</h2></div></div>
+      <table class="compare-table" style="width:100%;border-collapse:collapse">
+        <thead>
+          <tr>
+            <th style="background:var(--navy);color:white;padding:10px 14px">Feature</th>
+            <th style="background:var(--saffron);color:white;padding:10px 14px">Fundamental Rights</th>
+            <th style="background:var(--teal);color:white;padding:10px 14px">DPSP</th>
+            <th style="background:var(--purple);color:white;padding:10px 14px">FD</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid var(--border);font-weight:600">Part</td><td style="padding:9px 14px;border-bottom:1px solid var(--border)">Part III (Art.12–35)</td><td style="padding:9px 14px;border-bottom:1px solid var(--border)">Part IV (Art.36–51)</td><td style="padding:9px 14px;border-bottom:1px solid var(--border)">Part IVA (Art.51A)</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid var(--border);font-weight:600">Justiciable?</td><td style="padding:9px 14px;border-bottom:1px solid var(--border);color:var(--green-india)">✅ Yes</td><td style="padding:9px 14px;border-bottom:1px solid var(--border);color:var(--red-alert)">❌ No</td><td style="padding:9px 14px;border-bottom:1px solid var(--border);color:var(--red-alert)">❌ No</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid var(--border);font-weight:600">Who?</td><td style="padding:9px 14px;border-bottom:1px solid var(--border)">Citizens + Aliens (most)</td><td style="padding:9px 14px;border-bottom:1px solid var(--border)">Obligation on State</td><td style="padding:9px 14px;border-bottom:1px solid var(--border)">Only Citizens</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid var(--border);font-weight:600">Nature</td><td style="padding:9px 14px;border-bottom:1px solid var(--border)">Negative (State shall NOT)</td><td style="padding:9px 14px;border-bottom:1px solid var(--border)">Positive (State shall)</td><td style="padding:9px 14px;border-bottom:1px solid var(--border)">Moral obligation</td></tr>
+          <tr><td style="padding:9px 14px;font-weight:600">Source</td><td style="padding:9px 14px">USA Bill of Rights</td><td style="padding:9px 14px">Ireland</td><td style="padding:9px 14px">USSR</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- TAB: AMENDMENTS -->
+<div id="tab-amendments" class="tab-content">
+<div class="container">
+  <div class="section">
+    <div class="section-title"><div class="section-icon" style="background:var(--red-light)">📋</div><div><h2>Key Constitutional Amendments</h2><div class="subtitle">Art. 368 | Most Important for UPPSC 2026</div></div></div>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot" style="background:var(--saffron)"></div>
+        <div class="timeline-card">
+          <div class="timeline-num">1st Amendment — 1951</div>
+          <div class="timeline-title">Land Reform Amendments</div>
+          <div class="timeline-points">
+            <li>Added Art.31A (saving agrarian reform laws) &amp; Art.31B (9th Schedule protection)</li>
+            <li>Response to Champakam Dorairajan case (1951)</li>
+            <li>Added 3 more grounds to Art.19(2) restrictions on free speech</li>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot" style="background:var(--red-alert)"></div>
+        <div class="timeline-card">
+          <div class="timeline-num">24th Amendment — 1971</div>
+          <div class="timeline-title">Parliament CAN Amend FRs</div>
+          <div class="timeline-points">
+            <li>Reversed Golaknath (1967): Declared Parliament has power to amend any provision including FRs</li>
+            <li>President <em>shall</em> give assent to Constitutional Amendment Bills</li>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot" style="background:var(--red-alert)"></div>
+        <div class="timeline-card">
+          <div class="timeline-num">42nd Amendment — 1976 ⭐⭐⭐</div>
+          <div class="timeline-title">"Mini Constitution" — Indira Gandhi Emergency era</div>
+          <div class="timeline-points">
+            <li>Added SOCIALIST + SECULAR + INTEGRITY to Preamble <span class="tag tag-hot">UPPSC 2025 Q.56</span></li>
+            <li>Added Fundamental Duties (Art.51A) — 10 duties</li>
+            <li>Added Art.39A (Free Legal Aid), Art.48A (Environment)</li>
+            <li>Gave DPSP primacy over FRs (later struck down by Minerva Mills 1980)</li>
+            <li>Parliament term extended 5→6 years; added word "Socialist"</li>
+            <li>Created Administrative Tribunals (Art.323A-B)</li>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot" style="background:var(--navy)"></div>
+        <div class="timeline-card">
+          <div class="timeline-num">44th Amendment — 1978 ⭐⭐</div>
+          <div class="timeline-title">Janata Party — Reversal of Emergency Excesses</div>
+          <div class="timeline-points">
+            <li>Removed Right to Property from FRs (Art.19(f) &amp; Art.31 deleted) → Now only legal right under Art.300A <span class="tag tag-hot">HOT MCQ</span></li>
+            <li>Art.20 &amp; Art.21 CANNOT be suspended even during Emergency</li>
+            <li>Restored Parliament term from 6→5 years</li>
+            <li>Cabinet's written advice to President is now binding</li>
+            <li>Art.38 amended — State to minimize inequalities in income</li>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot" style="background:var(--green-india)"></div>
+        <div class="timeline-card">
+          <div class="timeline-num">73rd Amendment — 1992 ⭐⭐</div>
+          <div class="timeline-title">Constitutional Status to Panchayati Raj</div>
+          <div class="timeline-points">
+            <li>Added Part IX (Art.243 to 243-O) + 11th Schedule (29 subjects)</li>
+            <li>3-tier Panchayati Raj: Gram Panchayat, Intermediate, District Panchayat</li>
+            <li>Reservation: SC/ST proportionate to population + minimum 33% for women</li>
+            <li>State Finance Commission + State Election Commission mandatory</li>
+            <li>5-year term; elections must be held before expiry <span class="tag tag-hot">HOT MCQ</span></li>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot" style="background:var(--teal)"></div>
+        <div class="timeline-card">
+          <div class="timeline-num">74th Amendment — 1992</div>
+          <div class="timeline-title">Urban Local Bodies — Nagarpalika Act</div>
+          <div class="timeline-points">
+            <li>Added Part IXA (Art.243P to 243ZG) + 12th Schedule (18 subjects)</li>
+            <li>3 types: Nagar Panchayat, Municipal Council, Municipal Corporation</li>
+            <li>Same reservation pattern as 73rd Amendment</li>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot" style="background:var(--purple)"></div>
+        <div class="timeline-card">
+          <div class="timeline-num">86th Amendment — 2002 ⭐⭐</div>
+          <div class="timeline-title">Right to Education</div>
+          <div class="timeline-points">
+            <li>Inserted Art.21A — Free &amp; compulsory education for children 6–14 years <span class="tag tag-hot">HOT MCQ</span></li>
+            <li>Art.45 amended — Early childhood care for children below 6</li>
+            <li>Added 11th FD (k) — parent/guardian duty to ensure education</li>
+            <li>Atal Bihari Vajpayee government's Sarva Shiksha Abhiyan basis</li>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot" style="background:var(--gold)"></div>
+        <div class="timeline-card">
+          <div class="timeline-num">101st Amendment — 2016 ⭐⭐</div>
+          <div class="timeline-title">Goods &amp; Services Tax (GST)</div>
+          <div class="timeline-points">
+            <li>Introduced GST — "One Nation One Tax"</li>
+            <li>Abolished various indirect taxes; added Art.279A (GST Council)</li>
+            <li>GST Council chaired by Union Finance Minister; 2/3 states + 1/3 Centre voting</li>
+            <li>Implemented: 1 July 2017</li>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot" style="background:var(--saffron)"></div>
+        <div class="timeline-card">
+          <div class="timeline-num">103rd Amendment — 2019 ⭐⭐</div>
+          <div class="timeline-title">EWS 10% Reservation</div>
+          <div class="timeline-points">
+            <li>Added Art.15(6) and Art.16(6) — 10% reservation for Economically Weaker Sections</li>
+            <li>EWS = Annual family income below ₹8 lakh + not in SC/ST/OBC</li>
+            <li>Upheld by SC in Janhit Abhiyan (2022) — 3:2 majority <span class="tag tag-2025">2022 Case</span></li>
+            <li>Does not violate basic structure even though beyond 50% ceiling</li>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="memory-box" style="margin-top:20px">
+      <div class="memory-title">🧠 Quick Key — Amendment Numbers</div>
+      <div class="memory-trick">1st=Land | 24th=FR can be Amended | 42nd=Mini Constitution | 44th=Property removed | 73rd=Panchayat | 74th=Urban | 86th=RTE | 101st=GST | 103rd=EWS</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- TAB: SCHEDULES -->
+<div id="tab-schedules" class="tab-content">
+<div class="container">
+  <div class="section">
+    <div class="section-title"><div class="section-icon" style="background:var(--navy-light)">🗓️</div><div><h2>All 12 Schedules of the Constitution</h2><div class="subtitle">Critical for UPPSC — Know the number, subject and key content</div></div></div>
+
+    <div class="schedule-grid">
+      <div class="schedule-card" style="border-top:3px solid var(--saffron)">
+        <div class="sch-num">Schedule 1</div>
+        <div class="sch-title">States &amp; Union Territories</div>
+        <div class="sch-desc">Lists 28 States + 8 UTs with their territories. UP is the most populous state listed.</div>
+      </div>
+      <div class="schedule-card" style="border-top:3px solid var(--navy)">
+        <div class="sch-num">Schedule 2</div>
+        <div class="sch-title">Salaries of Constitutional Posts</div>
+        <div class="sch-desc">President, VP, Governors, Speaker, Judges of SC &amp; HC, CAG salaries fixed here.</div>
+      </div>
+      <div class="schedule-card" style="border-top:3px solid var(--green-india)">
+        <div class="sch-num">Schedule 3</div>
+        <div class="sch-title">Forms of Oaths &amp; Affirmations</div>
+        <div class="sch-desc">Oath texts for President, Judges, MPs, Members of State Legislature, Ministers.</div>
+      </div>
+      <div class="schedule-card" style="border-top:3px solid var(--red-alert)">
+        <div class="sch-num">Schedule 4 ⭐</div>
+        <div class="sch-title">Allocation of Seats in Rajya Sabha</div>
+        <div class="sch-desc">State-wise RS seat allocation. UP = 31 seats (highest). Total 238 elected + 12 nominated = 250. <span class="tag tag-hot">HOT MCQ</span></div>
+      </div>
+      <div class="schedule-card" style="border-top:3px solid var(--purple)">
+        <div class="sch-num">Schedule 5</div>
+        <div class="sch-title">Administration of Scheduled Areas &amp; Tribes</div>
+        <div class="sch-desc">Provisions for tribal areas in 10 states (NOT northeast). Tribes Advisory Council, Governor's power.</div>
+      </div>
+      <div class="schedule-card" style="border-top:3px solid var(--teal)">
+        <div class="sch-num">Schedule 6</div>
+        <div class="sch-title">Tribal Areas in NE States</div>
+        <div class="sch-desc">Assam, Meghalaya, Tripura, Mizoram. Autonomous District Councils (ADCs) for tribal self-governance.</div>
+      </div>
+      <div class="schedule-card" style="border-top:3px solid var(--saffron);grid-column:span 1">
+        <div class="sch-num">Schedule 7 ⭐⭐⭐</div>
+        <div class="sch-title">Three Legislative Lists</div>
+        <div class="sch-desc">
+          <strong style="color:var(--navy)">Union List:</strong> 98 subjects (Defence, Currency, Foreign Affairs, Railways)<br>
+          <strong style="color:var(--saffron)">State List:</strong> 61 subjects (Police, Public Health, Agriculture, Land)<br>
+          <strong style="color:var(--green-india)">Concurrent List:</strong> 52 subjects (Education, Forests, Marriage, Criminal Law)<br>
+          <span class="tag tag-hot">HOT MCQ</span>
+        </div>
+      </div>
+      <div class="schedule-card" style="border-top:3px solid var(--gold)">
+        <div class="sch-num">Schedule 8 ⭐</div>
+        <div class="sch-title">Official Languages (22)</div>
+        <div class="sch-desc">Originally 14 languages. Currently 22. Hindi in Devanagari = official language of Union. English continues. <span class="tag tag-hot">MCQ</span></div>
+      </div>
+      <div class="schedule-card" style="border-top:3px solid var(--red-alert)">
+        <div class="sch-num">Schedule 9</div>
+        <div class="sch-title">Protected Laws (Land Reforms)</div>
+        <div class="sch-desc">Laws placed here cannot be challenged in court on FR grounds (after 1st Amendment 1951). Now 284 laws. SC in I.R. Coelho (2007): Laws added after Kesavananda (1973) can be reviewed.</div>
+      </div>
+      <div class="schedule-card" style="border-top:3px solid var(--navy)">
+        <div class="sch-num">Schedule 10 ⭐</div>
+        <div class="sch-title">Anti-Defection Law</div>
+        <div class="sch-desc">Added by 52nd Amendment 1985. Speaker/Chairman is final authority. Kihoto Hollohan (1992): Speaker's decision is final but subject to judicial review. <span class="tag tag-imp">IMP</span></div>
+      </div>
+      <div class="schedule-card" style="border-top:3px solid var(--green-india)">
+        <div class="sch-num">Schedule 11 ⭐</div>
+        <div class="sch-title">Panchayati Raj (29 Subjects)</div>
+        <div class="sch-desc">Added by 73rd Amendment 1992. 29 subjects transferred to Panchayats including Agriculture, Primary Education, Health. <span class="tag tag-hot">HOT MCQ</span></div>
+      </div>
+      <div class="schedule-card" style="border-top:3px solid var(--purple)">
+        <div class="sch-num">Schedule 12</div>
+        <div class="sch-title">Urban Local Bodies (18 Subjects)</div>
+        <div class="sch-desc">Added by 74th Amendment 1992. 18 subjects for Municipalities including Urban planning, Regulation of land use, Public health, Slum improvement.</div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:24px">
+      <div class="card-header" onclick="toggleCard(this)"><span class="art-pill pill-orange">⭐ Schedule 7 DEEP DIVE</span><span class="card-title">3 Lists — Most Asked in UPPSC</span><span class="card-arrow">▼</span></div>
+      <div class="card-body">
+        <table class="art-table">
+          <thead><tr><th>List</th><th>Subjects</th><th>Key Items</th><th>In Conflict</th></tr></thead>
+          <tbody>
+            <tr><td><strong style="color:var(--navy)">Union List</strong><br><span style="font-size:11px">98 subjects</span></td><td>Defence, Foreign Affairs, Currency, Atomic Energy, Railways, Air Transport, Posts &amp; Telegraphs, Banking, Insurance, Census</td><td>Parliament alone legislates</td><td>Union prevails</td></tr>
+            <tr><td><strong style="color:var(--saffron)">State List</strong><br><span style="font-size:11px">61 subjects</span></td><td>Public Order, Police, Agriculture, Land, Public Health, Local Government, Trade within state, Prisons</td><td>State legislature normally legislates. Parliament can under Art.249, 250, 252, 253</td><td>Union prevails if Concurrent conflict + Proclamation</td></tr>
+            <tr><td><strong style="color:var(--green-india)">Concurrent List</strong><br><span style="font-size:11px">52 subjects</span></td><td>Education, Criminal law &amp; procedure, Marriage &amp; Divorce, Forests, Economic &amp; Social Planning, Electricity, Population Control, Bankruptcy, Drugs</td><td>Both Parliament &amp; State; repugnancy Art.254</td><td>Parliament's law prevails</td></tr>
+          </tbody>
+        </table>
+        <div class="memory-box" style="margin-top:12px">
+          <div class="memory-title">🧠 Memory — 7th Schedule Numbers</div>
+          <div class="memory-trick">Union: 98 (Nine-Eight) | State: 61 (Six-One = SI) | Concurrent: 52 (Five-Two = FT) | Total = 211 subjects</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="memory-box" style="margin-top:20px">
+      <div class="memory-title">🧠 Memory — Schedule by Number</div>
+      <div class="memory-trick">1=States | 2=Salaries | 3=Oaths | 4=RS Seats | 5=Tribal Areas (10 states) | 6=NE Tribes | 7=3 Lists⭐ | 8=22 Languages | 9=Protected Laws | 10=Anti-Defection | 11=PR 29 Subjects | 12=ULB 18 Subjects</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- TAB: MCQ -->
+<div id="tab-mcq" class="tab-content">
+<div class="container">
+  <div class="section">
+    <div class="section-title"><div class="section-icon" style="background:var(--saffron-light)">📝</div><div><h2>20 Practice MCQs — UPPSC Pattern</h2><div class="subtitle">Based on past papers 2021–2025 | Answer pattern: (a)(b)(c)(d)</div></div></div>
+
+    <div class="score-bar">
+      <div><div style="font-size:12px;color:var(--text-light);margin-bottom:4px">Your Score</div><div class="score-display"><span id="score-num">0</span>/<span id="score-total">20</span></div></div>
+      <div class="score-progress"><div class="score-fill" id="score-fill"></div></div>
+      <div><button onclick="resetMCQ()" style="padding:8px 18px;background:var(--navy);color:white;border:none;border-radius:8px;font-size:12px;cursor:pointer;font-weight:600">↺ Reset</button></div>
+    </div>
+
+    <div id="mcq-container">
+
+    <div class="mcq-card" data-answered="false">
+      <div class="mcq-num">Q.1 · Preamble <span class="tag tag-hot">UPPSC 2025 Q.56</span></div>
+      <div class="mcq-q">संविधान की प्रस्तावना में 42वें संशोधन (1976) द्वारा कौन से दो शब्द जोड़े गए? / Which two words were added to the Preamble by the 42nd Amendment (1976)?</div>
+      <ul class="mcq-options">
+        <li onclick="selectOption(this,'wrong')">(a) Democratic and Republic</li>
+        <li onclick="selectOption(this,'wrong')">(b) Integrity and Justice</li>
+        <li onclick="selectOption(this,'correct')">(c) Socialist and Secular</li>
+        <li onclick="selectOption(this,'wrong')">(d) Sovereign and Fraternity</li>
+      </ul>
+      <div class="mcq-answer">✅ <strong>(c) Socialist and Secular</strong> — 42nd Constitutional Amendment 1976 added the words "Socialist", "Secular" to the Preamble AND "Integrity" to the FRATERNITY clause. Preamble amended only ONCE in history.</div>
+      <div class="mcq-source">📎 Source: UPPSC Prelims 2025 Q.56</div>
+    </div>
+
+    <div class="mcq-card" data-answered="false">
+      <div class="mcq-num">Q.2 · Constituent Assembly</div>
+      <div class="mcq-q">संविधान सभा की प्रारूप समिति के अध्यक्ष कौन थे? / Who was the Chairman of the Drafting Committee of the Constituent Assembly?</div>
+      <ul class="mcq-options">
+        <li onclick="selectOption(this,'wrong')">(a) Jawaharlal Nehru</li>
+        <li onclick="selectOption(this,'wrong')">(b) Dr. Rajendra Prasad</li>
+        <li onclick="selectOption(this,'correct')">(c) Dr. B.R. Ambedkar</li>
+        <li onclick="selectOption(this,'wrong')">(d) Sardar Vallabhbhai Patel</li>
+      </ul>
+      <div class="mcq-answer">✅ <strong>(c) Dr. B.R. Ambedkar</strong> — Father of the Indian Constitution; Chairman of the 7-member Drafting Committee. Dr. Rajendra Prasad was President of the Constituent Assembly.</div>
+    </div>
+
+    <div class="mcq-card" data-answered="false">
+      <div class="mcq-num">Q.3 · Fundamental Rights + Emergency <span class="tag tag-hot">HOT</span></div>
+      <div class="mcq-q">राष्ट्रीय आपातकाल के दौरान भी निलंबित नहीं किए जा सकते? / Which Articles CANNOT be suspended even during National Emergency?</div>
+      <ul class="mcq-options">
+        <li onclick="selectOption(this,'wrong')">(a) Article 19 and Article 21</li>
+        <li onclick="selectOption(this,'wrong')">(b) Article 21 and Article 22</li>
+        <li onclick="selectOption(this,'correct')">(c) Article 20 and Article 21</li>
+        <li onclick="selectOption(this,'wrong')">(d) Article 19 and Article 20</li>
+      </ul>
+      <div class="mcq-answer">✅ <strong>(c) Article 20 and Article 21</strong> — 44th Amendment 1978 ensured that Articles 20 (protection in conviction) and 21 (right to life) CANNOT be suspended even during National Emergency under Art.359.</div>
+    </div>
+
+    <div class="mcq-card" data-answered="false">
+      <div class="mcq-num">Q.4 · Fundamental Rights</div>
+      <div class="mcq-q">अस्पृश्यता (Untouchability) का उन्मूलन किस अनुच्छेद के अंतर्गत किया गया है? / Abolition of Untouchability is provided under which Article?</div>
+      <ul class="mcq-options">
+        <li onclick="selectOption(this,'wrong')">(a) Article 14</li>
+        <li onclick="selectOption(this,'correct')">(b) Article 17</li>
+        <li onclick="selectOption(this,'wrong')">(c) Article 15</li>
+        <li onclick="selectOption(this,'wrong')">(d) Article 18</li>
+      </ul>
+      <div class="mcq-answer">✅ <strong>(b) Article 17</strong> — Abolition of Untouchability. This is an ABSOLUTE right — no exceptions! "Untouchability" is abolished and its practice in any form is an offence punishable under the Protection of Civil Rights Act 1955.</div>
+    </div>
+
+    <div class="mcq-card" data-answered="false">
+      <div class="mcq-num">Q.5 · Right to Privacy <span class="tag tag-2025">2017 Case</span></div>
+      <div class="mcq-q">K.S. Puttaswamy वाद (2017) में सर्वोच्च न्यायालय ने निजता के अधिकार को किस अनुच्छेद के अंतर्गत मौलिक अधिकार घोषित किया? / SC declared Right to Privacy as FR under which Article in Puttaswamy (2017)?</div>
+      <ul class="mcq-options">
+        <li onclick="selectOption(this,'wrong')">(a) Article 14</li>
+        <li onclick="selectOption(this,'wrong')">(b) Article 19</li>
+        <li onclick="selectOption(this,'correct')">(c) Article 21</li>
+        <li onclick="selectOption(this,'wrong')">(d) Article 32</li>
+      </ul>
+      <div class="mcq-answer">✅ <strong>(c) Article 21</strong> — 9-judge constitutional bench unanimous verdict (2017): Right to Privacy is a Fundamental Right under Art.21 (Right to Life &amp; Personal Liberty). Overruled M.P. Sharma (1954) and Kharak Singh (1962).</div>
+    </div>
+
+    <div class="mcq-card" data-answered="false">
+      <div class="mcq-num">Q.6 · Schedules <span class="tag tag-hot">HOT</span></div>
+      <div class="mcq-q">भारतीय संविधान की 11वीं अनुसूची किससे संबंधित है? / 11th Schedule of the Indian Constitution relates to?</div>
+      <ul class="mcq-options">
+        <li onclick="selectOption(this,'correct')">(a) Panchayati Raj — 29 subjects</li>
+        <li onclick="selectOption(this,'wrong')">(b) Urban Local Bodies — 18 subjects</li>
+        <li onclick="selectOption(this,'wrong')">(c) Official Languages — 22 languages</li>
+        <li onclick="selectOption(this,'wrong')">(d) Anti-Defection provisions</li>
+      </ul>
+      <div class="mcq-answer">✅ <strong>(a) Panchayati Raj — 29 subjects</strong> — Added by 73rd Constitutional Amendment 1992. 12th Schedule = Urban Local Bodies (18 subjects) by 74th Amendment 1992. 8th Schedule = 22 Official Languages. 10th Schedule = Anti-Defection.</div>
+    </div>
+
+    <div class="mcq-card" data-answered="false">
+      <div class="mcq-num">Q.7 · Sources of Constitution</div>
+      <div class="mcq-q">राज्य के नीति निदेशक तत्व (DPSP) किस देश के संविधान से लिए गए हैं? / DPSP in Indian Constitution is inspired by which country's Constitution?</div>
+      <ul class="mcq-options">
+        <li onclick="selectOption(this,'wrong')">(a) USA</li>
+        <li onclick="selectOption(this,'correct')">(b) Ireland</li>
+        <li onclick="selectOption(this,'wrong')">(c) Britain</li>
+        <li onclick="selectOption(this,'wrong')">(d) Canada</li>
+      </ul>
+      <div class="mcq-answer">✅ <strong>(b) Ireland</strong> — DPSP was borrowed from the Irish Constitution (Éire). The concept of directive principles was itself inspired by Spain's Constitution. Fundamental Duties borrowed from USSR; Fundamental Rights from USA.</div>
+    </div>
+
+    <div class="mcq-card" data-answered="false">
+      <div class="mcq-num">Q.8 · Fundamental Duties <span class="tag tag-hot">HOT</span></div>
+      <div class="mcq-q">मौलिक कर्तव्यों को किस समिति की सिफारिश पर और किस संशोधन द्वारा जोड़ा गया? / Fundamental Duties were added on recommendation of which committee and by which amendment?</div>
+      <ul class="mcq-options">
+        <li onclick="selectOption(this,'wrong')">(a) 86th Amendment + Verma Committee</li>
+        <li onclick="selectOption(this,'wrong')">(b) 44th Amendment + L.M. Singhvi Committee</li>
+        <li onclick="selectOption(this,'wrong')">(c) 42nd Amendment + Balwant Rai Mehta Committee</li>
+        <li onclick="selectOption(this,'correct')">(d) 42nd Amendment + Swaran Singh Committee</li>
+      </ul>
+      <div class="mcq-answer">✅ <strong>(d) 42nd Amendment + Swaran Singh Committee</strong> — Swaran Singh Committee (1976) recommended Fundamental Duties. 42nd Amendment 1976 added Art.51A with 10 duties. 86th Amendment 2002 later added the 11th duty (k).</div>
+    </div>
+
+    <div class="mcq-card" data-answered="false">
+      <div class="mcq-num">Q.9 · Article 32</div>
+      <div class="mcq-q">Dr. Ambedkar ने किस अनुच्छेद को "संविधान की आत्मा और हृदय" कहा था? / Dr. Ambedkar called which Article "the Heart and Soul of the Constitution"?</div>
+      <ul class="mcq-options">
+        <li onclick="selectOption(this,'wrong')">(a) Article 14</li>
+        <li onclick="selectOption(this,'wrong')">(b) Article 21</li>
+        <li onclick="selectOption(this,'correct')">(c) Article 32</li>
+        <li onclick="selectOption(this,'wrong')">(d) Article 19</li>
+      </ul>
+      <div class="mcq-answer">✅ <strong>(c) Article 32</strong> — Dr. B.R. Ambedkar called Art.32 "the very soul of the Constitution and the very heart of it." Art.32 gives right to approach Supreme Court DIRECTLY for enforcement of Fundamental Rights.</div>
+    </div>
+
+    <div class="mcq-card" data-answered="false">
+      <div class="mcq-num">Q.10 · Right to Property <span class="tag tag-hot">HOT</span></div>
+      <div class="mcq-q">संपत्ति के अधिकार को मौलिक अधिकारों की सूची से किस संशोधन द्वारा हटाया गया? / By which amendment was Right to Property removed from Fundamental Rights?</div>
+      <ul class="mcq-options">
+        <li onclick="selectOption(this,'wrong')">(a) 42nd Amendment 1976</li>
+        <li onclick="selectOption(this,'correct')">(b) 44th Amendment 1978</li>
+        <li onclick="selectOption(this,'wrong')">(c) 25th Amendment 1971</li>
+        <li onclick="selectOption(this,'wrong')">(d) 24th Amendment 1971</li>
+      </ul>
+      <div class="mcq-answer">✅ <strong>(b) 44th Amendment 1978</strong> — Janata Party government under PM Morarji Desai removed Right to Property (Art.19(f) &amp; Art.31) from FRs. Now it's only a Constitutional/Legal Right under Art.300A — "No person shall be deprived of his property save by authority of law."</div>
+    </div>
+
+    <div class="mcq-card" data-answered="false">
+      <div class="mcq-num">Q.11 · Constitution Dates <span class="tag tag-imp">IMP</span></div>
+      <div class="mcq-q">भारतीय संविधान कब अंगीकृत (adopted) किया गया था? / When was the Indian Constitution adopted?</div>
+      <ul class="mcq-options">
+        <li onclick="selectOption(this,'correct')">(a) 26 November 1949</li>
+        <li onclick="selectOption(this,'wrong')">(b) 26 January 1950</li>
+        <li onclick="selectOption(this,'wrong')">(c) 15 August 1947</li>
+        <li onclick="selectOption(this,'wrong')">(d) 9 December 1946</li>
+      </ul>
+      <div class="mcq-answer">✅ <strong>(a) 26 November 1949</strong> — Constitution was ADOPTED on 26 Nov 1949 (celebrated as Samvidhan Divas / Constitution Day since 2015). It came into FORCE on 26 Jan 1950 (Republic Day). 9 Dec 1946 = First meeting of CA. 15 Aug 1947 = Independence.</div>
+    </div>
+
+    <div class="mcq-card" data-answered="false">
+      <div class="mcq-num">Q.12 · Schedules (Rajya Sabha)</div>
+      <div class="mcq-q">राज्यसभा में राज्यों को सीटों का आवंटन किस अनुसूची में है? / Allocation of seats to states in Rajya Sabha is provided in which Schedule?</div>
+      <ul class="mcq-options">
+        <li onclick="selectOption(this,'wrong')">(a) 2nd Schedule</li>
+        <li onclick="selectOption(this,'wrong')">(b) 3rd Schedule</li>
+        <li onclick="selectOption(this,'correct')">(c) 4th Schedule</li>
+        <li onclick="selectOption(this,'wrong')">(d) 7th Schedule</li>
+      </ul>
+      <div class="mcq-answer">✅ <strong>(c) 4th Schedule</strong> — 4th Schedule allocates seats in Rajya Sabha to States and Union Territories. UP has the highest number of RS seats (31). Total RS strength = 245 (233 elected + 12 nominated by President for expertise in art, science, literature, social service).</div>
+    </div>
+
+    <div class="mcq-card" data-answered="false">
+      <div class="mcq-num">Q.13 · Child Labour (Art. 24)</div>
+      <div class="mcq-q">अनुच्छेद 24 के अनुसार किस आयु से कम के बच्चों को खदानों, कारखानों और हानिकारक कार्यों में नियोजित नहीं किया जा सकता? / Art.24 prohibits employment of children below what age in factories, mines?</div>
+      <ul class="mcq-options">
+        <li onclick="selectOption(this,'wrong')">(a) 12 years</li>
+        <li onclick="selectOption(this,'wrong')">(b) 16 years</li>
+        <li onclick="selectOption(this,'wrong')">(c) 18 years</li>
+        <li onclick="selectOption(this,'correct')">(d) 14 years</li>
+      </ul>
+      <div class="mcq-answer">✅ <strong>(d) 14 years</strong> — Art.24 prohibits employment of children below 14 years in ANY factory, mine, or hazardous employment. Also Art.21A gives FRs for education 6–14 years. Child Labour (Prohibition &amp; Regulation) Amendment Act 2016 extended ban to all occupations below 14.</div>
+    </div>
+
+    <div class="mcq-card" data-answered="false">
+      <div class="mcq-num">Q.14 · DPSP (Art. 44)</div>
+      <div class="mcq-q">समान नागरिक संहिता (Uniform Civil Code) का प्रावधान किस अनुच्छेद में है? / Uniform Civil Code is a DPSP under which Article?</div>
+      <ul class="mcq-options">
+        <li onclick="selectOption(this,'wrong')">(a) Article 40</li>
+        <li onclick="selectOption(this,'correct')">(b) Article 44</li>
+        <li onclick="selectOption(this,'wrong')">(c) Article 39A</li>
+        <li onclick="selectOption(this,'wrong')">(d) Article 48A</li>
+      </ul>
+      <div class="mcq-answer">✅ <strong>(b) Article 44</strong> — Art.44 DPSP: State shall endeavour to secure Uniform Civil Code for citizens throughout India. It is a directive, not enforceable. Art.40=Panchayats, Art.39A=Free legal aid, Art.48A=Environment protection.</div>
+    </div>
+
+    <div class="mcq-card" data-answered="false">
+      <div class="mcq-num">Q.15 · Writs (Art. 32/226)</div>
+      <div class="mcq-q">अवैध निरोध के विरुद्ध कौन सी रिट जारी की जाती है? / Which writ is issued against illegal detention?</div>
+      <ul class="mcq-options">
+        <li onclick="selectOption(this,'correct')">(a) Habeas Corpus</li>
+        <li onclick="selectOption(this,'wrong')">(b) Mandamus</li>
+        <li onclick="selectOption(this,'wrong')">(c) Certiorari</li>
+        <li onclick="selectOption(this,'wrong')">(d) Quo Warranto</li>
+      </ul>
+      <div class="mcq-answer">✅ <strong>(a) Habeas Corpus</strong> — Means "produce the body." Issued to free a person from illegal detention. Mandamus = Command to perform public duty. Certiorari = Transfer/quash inferior court order. Quo Warranto = Challenge to public office. Prohibition = Stop inferior court from exceeding jurisdiction.</div>
+    </div>
+
+    <div class="mcq-card" data-answered="false">
+      <div class="mcq-num">Q.16 · Preamble (Is it part of Constitution?)</div>
+      <div class="mcq-q">किस मामले में सर्वोच्च न्यायालय ने निर्णय दिया कि प्रस्तावना संविधान का अंग है? / In which case did SC hold that Preamble IS part of the Constitution?</div>
+      <ul class="mcq-options">
+        <li onclick="selectOption(this,'wrong')">(a) Berubari Union Case 1960</li>
+        <li onclick="selectOption(this,'wrong')">(b) Golaknath Case 1967</li>
+        <li onclick="selectOption(this,'correct')">(c) Kesavananda Bharati 1973</li>
+        <li onclick="selectOption(this,'wrong')">(d) Minerva Mills 1980</li>
+      </ul>
+      <div class="mcq-answer">✅ <strong>(c) Kesavananda Bharati 1973</strong> — 13-judge bench held Preamble IS part of the Constitution and represents the basic structure. Berubari Union (1960) held the opposite — that Preamble is NOT part of Constitution — but Kesavananda overruled this.</div>
+    </div>
+
+    <div class="mcq-card" data-answered="false">
+      <div class="mcq-num">Q.17 · Art. 21A — Right to Education</div>
+      <div class="mcq-q">अनुच्छेद 21A (शिक्षा का अधिकार) किस संवैधानिक संशोधन द्वारा जोड़ा गया? / Art.21A (Right to Education) was inserted by which Constitutional Amendment?</div>
+      <ul class="mcq-options">
+        <li onclick="selectOption(this,'wrong')">(a) 73rd Amendment 1992</li>
+        <li onclick="selectOption(this,'wrong')">(b) 74th Amendment 1992</li>
+        <li onclick="selectOption(this,'wrong')">(c) 42nd Amendment 1976</li>
+        <li onclick="selectOption(this,'correct')">(d) 86th Amendment 2002</li>
+      </ul>
+      <div class="mcq-answer">✅ <strong>(d) 86th Amendment 2002</strong> — 86th Constitutional Amendment 2002 inserted Art.21A providing free &amp; compulsory education for children aged 6–14 years. The Right to Education (RTE) Act 2009 gives statutory force to this right. Also modified Art.45 and added duty (k) to Art.51A.</div>
+    </div>
+
+    <div class="mcq-card" data-answered="false">
+      <div class="mcq-num">Q.18 · Sources (Judicial Review)</div>
+      <div class="mcq-q">न्यायिक पुनरावलोकन (Judicial Review) की अवधारणा किस देश के संविधान से ली गई है? / Judicial Review concept in Indian Constitution is borrowed from?</div>
+      <ul class="mcq-options">
+        <li onclick="selectOption(this,'wrong')">(a) Britain</li>
+        <li onclick="selectOption(this,'correct')">(b) USA</li>
+        <li onclick="selectOption(this,'wrong')">(c) Canada</li>
+        <li onclick="selectOption(this,'wrong')">(d) Australia</li>
+      </ul>
+      <div class="mcq-answer">✅ <strong>(b) USA</strong> — Judicial Review (power of courts to declare laws unconstitutional) is borrowed from the USA. Britain follows Parliamentary Supremacy — courts cannot strike down Acts of Parliament. Canada gave us quasi-federal features; Australia gave Concurrent List.</div>
+    </div>
+
+    <div class="mcq-card" data-answered="false">
+      <div class="mcq-num">Q.19 · 73rd Amendment</div>
+      <div class="mcq-q">73वें संवैधानिक संशोधन द्वारा क्या प्रदान किया गया? / What did the 73rd Constitutional Amendment provide?</div>
+      <ul class="mcq-options">
+        <li onclick="selectOption(this,'correct')">(a) Constitutional status to Panchayati Raj institutions</li>
+        <li onclick="selectOption(this,'wrong')">(b) Constitutional status to Urban Local Bodies</li>
+        <li onclick="selectOption(this,'wrong')">(c) Goods &amp; Services Tax implementation</li>
+        <li onclick="selectOption(this,'wrong')">(d) Right to Education for children 6-14 years</li>
+      </ul>
+      <div class="mcq-answer">✅ <strong>(a) Constitutional status to Panchayati Raj institutions</strong> — 73rd Amendment 1992 added Part IX (Art.243 to 243-O) and 11th Schedule giving constitutional status and 29 subjects to Panchayati Raj. 74th Amendment gave similar status to Urban Local Bodies. 101st = GST. 86th = RTE.</div>
+    </div>
+
+    <div class="mcq-card" data-answered="false">
+      <div class="mcq-num">Q.20 · Basic Structure Doctrine <span class="tag tag-hot">MOST IMP</span></div>
+      <div class="mcq-q">बुनियादी संरचना का सिद्धांत (Basic Structure Doctrine) किस ऐतिहासिक वाद में प्रतिपादित किया गया? / Basic Structure Doctrine was propounded in which landmark case?</div>
+      <ul class="mcq-options">
+        <li onclick="selectOption(this,'wrong')">(a) Golaknath v. State of Punjab 1967</li>
+        <li onclick="selectOption(this,'wrong')">(b) Minerva Mills v. Union of India 1980</li>
+        <li onclick="selectOption(this,'correct')">(c) Kesavananda Bharati v. State of Kerala 1973</li>
+        <li onclick="selectOption(this,'wrong')">(d) Maneka Gandhi v. Union of India 1978</li>
+      </ul>
+      <div class="mcq-answer">✅ <strong>(c) Kesavananda Bharati v. State of Kerala 1973</strong> — 13-judge constitutional bench (7:6 majority) held Parliament CAN amend the Constitution but CANNOT destroy its basic structure. Most important constitutional case in India's history. Golaknath (1967) said Parliament can't amend FRs at all. Minerva Mills (1980) reaffirmed basic structure.</div>
+    </div>
+
+    </div><!-- end mcq-container -->
+
+    <div id="final-score" style="display:none;background:var(--navy);color:white;border-radius:16px;padding:32px;text-align:center;margin-top:24px">
+      <div style="font-size:48px;margin-bottom:8px">🏆</div>
+      <div style="font-size:32px;font-weight:800;margin-bottom:8px">Final Score: <span id="final-num">0</span>/20</div>
+      <div id="final-msg" style="font-size:14px;opacity:0.85;margin-bottom:16px"></div>
+      <button onclick="resetMCQ()" style="padding:10px 28px;background:var(--saffron);color:white;border:none;border-radius:8px;font-size:13px;cursor:pointer;font-weight:700">↺ Attempt Again</button>
+    </div>
+
+  </div>
+</div>
+</div>
+
+
+<script>
+function showTab(name, el) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  var target = document.getElementById('tab-' + name);
+  if (target) target.classList.add('active');
+  if (el) el.classList.add('active');
+}
+function toggleCard(header) {
+  var card = header.parentElement;
+  card.classList.toggle('open');
+}
+function toggleFR(header) {
+  var card = header.parentElement.parentElement;
+  card.classList.toggle('open');
+}
+var score = 0, answered = 0, total = 20;
+function selectOption(li, type) {
+  var card = li.closest('.mcq-card');
+  if (card.dataset.answered === 'true') return;
+  card.dataset.answered = 'true';
+  var options = card.querySelectorAll('.mcq-options li');
+  options.forEach(function(opt) { opt.style.pointerEvents = 'none'; });
+  li.classList.add(type);
+  if (type === 'wrong') {
+    options.forEach(function(opt) {
+      if (opt.getAttribute('onclick') && opt.getAttribute('onclick').includes('correct')) opt.classList.add('correct');
+    });
+  }
+  var answerEl = card.querySelector('.mcq-answer');
+  if (answerEl) answerEl.classList.add('show');
+  if (type === 'correct') score++;
+  answered++;
+  updateScore();
+  if (answered === total) setTimeout(showFinalScore, 600);
+}
+function updateScore() {
+  document.getElementById('score-num').textContent = score;
+  var pct = (score / total) * 100;
+  document.getElementById('score-fill').style.width = pct + '%';
+}
+function showFinalScore() {
+  document.getElementById('final-num').textContent = score;
+  var msgs = ['Keep studying! Review the toolkit carefully.', 'Good start! Focus on highlighted HOT topics.', 'Well done! Revise cases and amendments.', 'Excellent! UPPSC 2026 topper material!', 'Perfect score! You are exam-ready!'];
+  var idx = Math.min(Math.floor((score / total) * 4), 4);
+  document.getElementById('final-msg').textContent = score + '/20 — ' + msgs[idx];
+  document.getElementById('final-score').style.display = 'block';
+}
+function resetMCQ() {
+  score = 0; answered = 0;
+  document.getElementById('score-num').textContent = '0';
+  document.getElementById('score-fill').style.width = '0%';
+  document.getElementById('final-score').style.display = 'none';
+  document.querySelectorAll('.mcq-card').forEach(function(card) {
+    card.dataset.answered = 'false';
+    card.querySelectorAll('.mcq-options li').forEach(function(li) {
+      li.className = ''; li.style.pointerEvents = '';
+    });
+    var ans = card.querySelector('.mcq-answer');
+    if (ans) ans.classList.remove('show');
+  });
+}
+</script>
+</body>
+</html>
